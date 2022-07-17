@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="report">
+    <test name="testRep">
+        <classes>
+            <class name="com.course.code.extentdemo.TestExtentRep"></class>
+            <methods>
+                <include name="testFalse"></include>
+                <include name="testTrue"></include>
+                <include name="testString"></include>
+                <include name="testLog"></include>
+            </methods>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"></listener>
+    </listeners>
+</suite>
