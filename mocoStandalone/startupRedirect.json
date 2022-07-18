@@ -1,0 +1,38 @@
+[
+  {
+    "description":"重定向到百度的get请求",
+    "request": {
+      "uri": "/getdemo/api1/redirect",
+      "method": "get",
+      "cookies": {
+        "login": "true"
+      }
+    },
+    "redirectTo": "https://www.baidu.com"
+  },
+
+
+  {
+    "description":"重定向到自己的网页上",
+    "request": {
+      "uri": "/getdemo/api1/redirecttoself",
+      "method": "get",
+      "cookies": {
+        "login": "true"
+      }
+    },
+    "redirectTo": "/getdemo/api1/new"
+  },
+  {
+    "description":"这是被重定向到的请求",
+    "request": {
+      "uri": "/getdemo/api1/new"
+    },
+    "response": {
+      "headers": {
+        "Content-Type": "application/json;charset=GBK"
+      },
+      "text": "重定向成功啦"
+    }
+  }
+]

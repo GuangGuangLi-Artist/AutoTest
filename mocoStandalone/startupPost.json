@@ -1,0 +1,33 @@
+[
+  {
+    "description":"模拟一个post请求的mock例子",
+    "request": {
+      "uri": "/postdemo",
+      "method": "post"
+    },
+    "response": {
+      "text": "这是一个post请求的mock返回值",
+      "headers": {
+        "Content-Type": "text/html;charset=GBK"
+      }
+    }
+  },
+  {
+    "description":"模拟一个带参数的post请求的mock例子",
+    "request": {
+      "uri": "/postdemoWithparam",
+      "method": "post",
+      "forms": {
+        "name": "dawei",
+        "age": "28"
+      }
+    },
+    "response": {
+      "text": "这是一个带有参数的post请求",
+      "headers": {
+        "Content-Type": "application/json;charset=GBK"
+      }
+
+    }
+  }
+]

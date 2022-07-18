@@ -1,0 +1,42 @@
+[
+  {
+    "description":"模拟一个带有cookie的get请求",
+    "request": {
+      "uri": "/getdemo/api1/cookies",
+      "method": "get",
+      "cookies": {
+        "login": "true"
+      }
+    },
+    "response": {
+      "text": "这是一个必须带有Cookies的get请求",
+      "headers": {
+        "Content-Type": "application/json;charset=GBK"
+      }
+    }
+  },
+  {
+    "description":"模拟一个带有cookie的post请求----这是一个最综合的例子",
+    "request": {
+      "uri": "/postdemo/api1/cookies",
+      "method": "post",
+      "json": {
+        "name": "dawei",
+        "age": "28"
+      },
+      "cookies": {
+        "login": "true"
+      }
+    },
+    "response": {
+      "status": 200,
+      "json":{
+        "content": "这是一个必须带有Cookies的post请求",
+        "time": "2022-07-18"
+      },
+      "headers": {
+        "Content-Type": "application/json;charset=GBK"
+      }
+    }
+  }
+]

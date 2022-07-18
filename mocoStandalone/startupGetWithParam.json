@@ -1,0 +1,19 @@
+[
+  {
+    "description":"模拟一个带参数的get请求的mock例子",
+    "request": {
+      "uri": "/getwithparamdemo",
+      "method": "get",
+      "queries": {
+        "name": "subiao",
+        "age": "29"
+      }
+    },
+    "response": {
+      "text": "我苏表又回来了",
+      "headers": {
+        "Content-Type": "text/html;charset=GBK"
+      }
+    }
+  }
+]

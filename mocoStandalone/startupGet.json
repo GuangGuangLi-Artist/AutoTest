@@ -1,0 +1,15 @@
+[
+  {
+    "description":"模拟一个没有参数的get请求的mock例子",
+    "request": {
+      "uri": "/getdemo",
+      "method": "get"
+    },
+    "response": {
+      "text": "get请求的mockDemo的返回值",
+      "headers": {
+        "Content-Type": "text/html;charset=GBK"
+      }
+    }
+  }
+]
