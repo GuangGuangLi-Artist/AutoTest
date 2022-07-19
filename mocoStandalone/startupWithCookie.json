@@ -12,6 +12,9 @@
       "text": "这是一个必须带有Cookies的get请求",
       "headers": {
         "Content-Type": "application/json;charset=GBK"
+      },
+      "cookies": {
+        "login": "getCookie"
       }
     }
   },
