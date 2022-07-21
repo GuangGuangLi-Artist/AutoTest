@@ -3,10 +3,7 @@
     "description":"模拟一个带有cookie的get请求",
     "request": {
       "uri": "/getdemo/api1/cookies",
-      "method": "get",
-      "cookies": {
-        "login": "true"
-      }
+      "method": "get"
     },
     "response": {
       "text": "这是一个必须带有Cookies的get请求",
@@ -15,6 +12,22 @@
       },
       "cookies": {
         "login": "getCookie"
+      }
+    }
+  },
+  {
+    "description":"模拟一个带有cookie的get请求",
+    "request": {
+      "uri": "/getdemo/api2/cookies",
+      "method": "get",
+      "cookies": {
+        "login": "getCookie"
+      }
+    },
+    "response": {
+      "text": "这是一个必须带有Cookies的get请求1",
+      "headers": {
+        "Content-Type": "application/json;charset=GBK"
       }
     }
   },

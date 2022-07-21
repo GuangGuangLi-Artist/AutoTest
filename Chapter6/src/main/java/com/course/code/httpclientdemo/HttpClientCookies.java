@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -29,6 +30,9 @@ public class HttpClientCookies {
 
     //读取配置文件的方法类
     private ResourceBundle bundle;
+
+    //用来存储Cookie信息的CookStore
+    private CookieStore cookieStore;
 
     @BeforeTest
     public void beforeTest(){
@@ -53,13 +57,32 @@ public class HttpClientCookies {
         System.out.println(res);
 
         //获取Cookies
-        CookieStore store = client.getCookieStore();
-        List<Cookie> cookieList = store.getCookies();
+        this.cookieStore = client.getCookieStore();
+        List<Cookie> cookieList = cookieStore.getCookies();
         for (Cookie cookie:cookieList){
             String name = cookie.getName();
             String value = cookie.getValue();
             System.out.println("name:" + name + " ;value:" +value);
         }
+
+    }
+
+
+    @Test(dependsOnMethods = {"testGetCook"})
+    public void testgetWithCookies() throws IOException {
+
+        //拼接url
+        String api2 = bundle.getString("test.getdemo.api2.cookies");
+        String urlapi2 = this.url + api2;
+
+        //请求
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpGet get = new HttpGet(urlapi2);
+        client.setCookieStore(this.cookieStore);
+        HttpResponse response = client.execute(get);
+        HttpEntity entity = response.getEntity();
+        String res = EntityUtils.toString(entity, "UTF-8");
+        System.out.println(res);
 
     }
 }
