@@ -41,7 +41,7 @@
         "age": "28"
       },
       "cookies": {
-        "login": "true"
+        "login": "getCookie"
       }
     },
     "response": {
