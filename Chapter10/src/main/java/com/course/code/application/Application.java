@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-
-@SpringBootApplication//托管给SpringBoot
-@ComponentScan("com.course.code.springdevelop")
+//托管给SpringBoot
+@SpringBootApplication
+@ComponentScan("com.course.code")
 public class Application {
 
 
