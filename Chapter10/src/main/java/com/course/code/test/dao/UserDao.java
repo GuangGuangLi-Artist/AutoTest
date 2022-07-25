@@ -9,4 +9,8 @@ public interface UserDao {
     public Integer getUserCount();
 
     public void addUser(User user);
+
+    public void updateUser(User user);
+
+    public void deleteUser(int id);
 }

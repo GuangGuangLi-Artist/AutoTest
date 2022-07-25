@@ -8,10 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.log4j.Log4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @Log4j
@@ -43,6 +40,24 @@ public class GetUserCount {
     public void addUser(@RequestBody User user){
        userService.addUser(user);
     }
+
+
+    @RequestMapping(value = "/updateUser",method = RequestMethod.POST)
+    @ApiOperation(value = "更新user",httpMethod = "post")
+    public void updateUser(@RequestBody User user){
+        userService.updateUser(user);
+    }
+
+
+    @RequestMapping(value = "/deleteUser",method = RequestMethod.GET)
+    @ApiOperation(value = "更新user",httpMethod = "GET")
+    public void deleteUser(@RequestParam int id){
+        userService.deleteUser(id);
+    }
+
+
+
+
 
 
 }
