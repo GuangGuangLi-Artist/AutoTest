@@ -1,19 +1,18 @@
 package com.course.code.test.domain;
 
 public class User {
-    private Integer id;
+    private int id;
     private String name;
     private String age;
-
-
-
     private String sex;
 
-    public Integer getId() {
+
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -41,7 +40,6 @@ public class User {
         this.sex = sex;
     }
 
-
     @Override
     public String toString() {
         return "User{" +
@@ -51,5 +49,10 @@ public class User {
                 ", sex='" + sex + '\'' +
                 '}';
     }
+
+
+
+
+
 
 }
