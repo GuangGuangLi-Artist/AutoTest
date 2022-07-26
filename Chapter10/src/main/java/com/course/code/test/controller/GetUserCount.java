@@ -50,7 +50,7 @@ public class GetUserCount {
 
 
     @RequestMapping(value = "/deleteUser",method = RequestMethod.GET)
-    @ApiOperation(value = "更新user",httpMethod = "GET")
+    @ApiOperation(value = "刪除user",httpMethod = "GET")
     public void deleteUser(@RequestParam int id){
         userService.deleteUser(id);
     }
