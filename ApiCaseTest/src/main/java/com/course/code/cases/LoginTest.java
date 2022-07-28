@@ -38,4 +38,13 @@ public class LoginTest {
 
     }
 
+    @Test(groups = "loginFalse",description = "用户登录失败接口测试")
+    public void loginFalse() throws IOException {
+        SqlSession session = DatabaseUtil.getSqlSession();
+        LoginCase loginCase = session.selectOne("logingCase",2);
+        System.out.println(loginCase.toString());
+        System.out.println(TestConfig.loginUrl);
+
+    }
+
 }

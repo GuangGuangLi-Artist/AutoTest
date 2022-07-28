@@ -13,7 +13,7 @@ public class UpdateUserCase {
 
     @Override
     public String toString() {
-        return "UpdateUserCase{" +
+        return "UpdateUserCaseTest{" +
                 "id=" + id +
                 ", userId='" + userId + '\'' +
                 ", userName='" + userName + '\'' +

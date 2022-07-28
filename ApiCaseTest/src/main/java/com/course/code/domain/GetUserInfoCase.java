@@ -8,7 +8,7 @@ public class GetUserInfoCase {
 
     @Override
     public String toString() {
-        return "GetUserInfoCase{" +
+        return "GetUserInfoCaseTest{" +
                 "id=" + id +
                 ", userId='" + userId + '\'' +
                 ", expected='" + expected + '\'' +

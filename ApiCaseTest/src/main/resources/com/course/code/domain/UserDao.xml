@@ -6,4 +6,22 @@
     <select id="logingCase" parameterType="Integer" resultType="com.course.code.domain.LoginCase" >
         select * from test_logincase where id=#{id};
     </select>
+
+    <select id="addUserCase" parameterType="Integer" resultType="com.course.code.domain.AddUserCase">
+        select * from test_addusercase where id=#{id};
+    </select>
+
+    <select id="getUserInfo" parameterType="Integer" resultType="com.course.code.domain.GetUserInfoCase">
+        select * from test_getuserinfocase where id=#{id};
+    </select>
+
+    <select id="getUserList" parameterType="Integer" resultType="com.course.code.domain.GetUserListCase">
+        select * from test_getuserlistcase where id=#{id};
+    </select>
+    <select id="updateUser" parameterType="Integer" resultType="com.course.code.domain.UpdateUserCase">
+        select  * from test_updateusercase where  id=#{id};
+    </select>
+    <select id="deleteUser" parameterType="Integer" resultType="com.course.code.domain.UpdateUserCase">
+        select  * from test_updateusercase where  id=#{id};
+    </select>
 </mapper>

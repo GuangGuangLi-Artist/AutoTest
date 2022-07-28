@@ -1,4 +1,47 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="用户管理系统测试套件">
-    <test name=""></test>
+    <test name="用户管理系统测试用例">
+        <classes>
+            <class name="com.course.code.cases.LoginTest">
+                <methods>
+                    <include name="loginTrue"></include>
+                    <include name="loginFalse"></include>
+                </methods>
+            </class>
+
+
+            <class name="com.course.code.cases.AddUserCaseTest">
+                <methods>
+                    <include name="addUser"></include>
+                </methods>
+            </class>
+
+            <class name="com.course.code.cases.GetUserInfoCaseTest">
+                <methods>
+                    <include name="getUserInfo"></include>
+                </methods>
+            </class>
+
+            <class name="com.course.code.cases.GetUserListCaseTest">
+                <methods>
+                    <include name="getUserList"></include>
+                </methods>
+            </class>
+
+            <class name="com.course.code.cases.UpdateUserCaseTest">
+                <methods>
+                    <include name="updateUser"></include>
+                    <include name="deleteUser"></include>
+                </methods>
+            </class>
+
+
+        </classes>
+    </test>
+
+    <!-- 配置测试报告监听器-->
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"></listener>
+    </listeners>
 </suite>

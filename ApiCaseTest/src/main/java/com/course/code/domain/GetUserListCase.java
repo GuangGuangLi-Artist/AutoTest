@@ -8,7 +8,7 @@ public class GetUserListCase {
 
     @Override
     public String toString() {
-        return "GetUserListCase{" +
+        return "GetUserListCaseTest{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", age='" + age + '\'' +

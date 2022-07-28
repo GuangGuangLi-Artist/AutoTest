@@ -13,7 +13,7 @@ public class AddUserCase {
 
     @Override
     public String toString() {
-        return "AddUserCase{" +
+        return "AddUserCaseTest{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
