@@ -3,31 +3,14 @@ package com.course.code.domain;
 public class GetUserInfoCase {
 
     private int id;
-    private String userId;
+    private int userId;
     private String expected;
 
-    @Override
-    public String toString() {
-        return "GetUserInfoCaseTest{" +
-                "id=" + id +
-                ", userId='" + userId + '\'' +
-                ", expected='" + expected + '\'' +
-                '}';
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -37,5 +20,14 @@ public class GetUserInfoCase {
 
     public void setExpected(String expected) {
         this.expected = expected;
+    }
+
+    @Override
+    public String toString() {
+        return "GetUserInfoCase{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", expected='" + expected + '\'' +
+                '}';
     }
 }

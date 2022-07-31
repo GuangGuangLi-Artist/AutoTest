@@ -11,20 +11,6 @@ public class AddUserCase {
     private String isDelete;
     private String expected;
 
-    @Override
-    public String toString() {
-        return "AddUserCaseTest{" +
-                "id=" + id +
-                ", userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", sex='" + sex + '\'' +
-                ", age='" + age + '\'' +
-                ", permission='" + permission + '\'' +
-                ", isDelete='" + isDelete + '\'' +
-                ", expected='" + expected + '\'' +
-                '}';
-    }
-
     public int getId() {
         return id;
     }
@@ -87,5 +73,19 @@ public class AddUserCase {
 
     public void setExpected(String expected) {
         this.expected = expected;
+    }
+
+    @Override
+    public String toString() {
+        return "AddUserCase{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", age='" + age + '\'' +
+                ", permission='" + permission + '\'' +
+                ", isDelete='" + isDelete + '\'' +
+                ", expected='" + expected + '\'' +
+                '}';
     }
 }
