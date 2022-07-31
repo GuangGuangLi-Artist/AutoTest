@@ -39,6 +39,7 @@ public class UpdateUserCaseTest {
 
         HttpPost post = new HttpPost(TestConfig.updateUserUrl);
         JSONObject param = new JSONObject();
+        param.put("id",updateUserCase.getUserId());
         param.put("userName",updateUserCase.getUserName());
         param.put("sex",updateUserCase.getSex());
         param.put("age",updateUserCase.getAge());
