@@ -19,6 +19,7 @@
     <module>Chapter10</module>
     <module>ApiCaseTest</module>
     <module>ApiUserManager</module>
+    <module>WebAutoTest</module>
   </modules>
 
   <name>AutoTest</name>
