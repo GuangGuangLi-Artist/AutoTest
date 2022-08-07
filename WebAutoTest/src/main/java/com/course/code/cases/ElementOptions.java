@@ -17,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class ElementOptions {
 
+
     /**
      * getSize() 返回元素的尺寸。
      * getText() 获取元素的文本。
@@ -166,6 +167,80 @@ public class ElementOptions {
             driver.close();
         }
     }
+
+
+    /**
+     * 多窗口切换
+     * switchTo().frame()
+     *
+     * 定位动态id的元素
+     * driver.find_element_by_xpath
+     * ("//div[contains(@id, 'btn-attention')]")
+     * driver.find_element_by_xpath
+     * ("//div[starts-with(@id, 'btn-attention')]")
+     * driver.find_element_by_xpath
+     * ("//div[ends-with(@id, 'btn-attention')]")
+     *
+     * # 这个需要结尾是‘btn-attention’
+     * contains(a, b) 如果a中含有字符串b，则返回true，否则返回false
+     * starts-with(a, b) 如果a是以字符串b开头，返回true，否则返回false
+     * ends-with(a, b) 如果a是以字符串b结尾，返回true，否则返回false
+     *
+     * 定位动态id的iframe的第二种方法
+     * 定位他的父级固定的元素，然后再定位到下级元素如下
+     * //div[@id="loginDiv"]/iframe
+     *
+     */
+
+    @Test
+    public void swichFrame() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://mail.163.com/");
+        //方式一：定位id为动态的iframe
+        WebElement ifrme = driver.findElement(By.xpath("//iframe[starts-with(@id,'x-URS-iframe')]"));
+        driver.switchTo().frame(ifrme);
+        //方式2
+        //driver.switchTo().frame(driver.findElement(By.xpath("//iframe[starts-with(@id,'x-URS-iframe')]")));
+
+        driver.findElement(By.name("email")).clear();
+        driver.findElement(By.name("email")).sendKeys("15607521111");
+        driver.findElement(By.name("password")).clear();
+        driver.findElement(By.name("password")).sendKeys("12345678&*");
+        driver.findElement(By.id("dologin")).click();
+        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+        Thread.sleep(30000);
+        driver.quit();
+
+    }
+
+
+    /**
+     * 多窗口切换
+     *
+     * 在页面操作过程中有时候点击某个链接会弹出新的窗口，这时就需要主机切换到新打开的窗口上进行操作
+     *
+     *
+     */
+
+    @Test
+    public void swichWindows(){
+        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.baidu.com");
+
+        //获得当前窗口句柄
+        String search_handle = driver.getWindowHandle();
+
+        //打开百度注册窗口
+        System.out.println(search_handle);
+        driver.findElement()
+
+
+
+
+    }
+
 
 
 }
