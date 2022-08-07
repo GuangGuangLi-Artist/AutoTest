@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -326,6 +327,27 @@ public class ElementOptions {
 
         driver.quit();
 
+    }
+
+    /**
+     * 上传文件
+     * 普通上传：普通的附件上传是将本地文件的路径作为一个值放在 input 标签中，通过 form 表单将这个值提交给服务器。
+     * 插件上传：一般是指基于 Flash、JavaScript 或 Ajax 等技术所实现的上传功能。
+     */
+
+    @Test
+    public void upLoadFile() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        File file = new File("F:\\ideaWorkspace\\AutoTest\\WebAutoTest\\src\\main\\java\\com\\course\\code\\html\\upfile.html");
+        String filePath = file.getAbsolutePath();
+        System.out.println(filePath);
+        driver.get(filePath);
+
+        //定位上传按钮，添加本地文件
+        driver.findElement(By.name("file")).sendKeys("F:\\setUp\\GenWebCode\\pinyougou-user-web\\pom.xml");
+        Thread.sleep(5000);
+        driver.quit();
     }
 
 
