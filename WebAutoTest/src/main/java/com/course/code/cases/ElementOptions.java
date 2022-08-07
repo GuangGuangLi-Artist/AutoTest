@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.Test;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -219,12 +220,14 @@ public class ElementOptions {
      * 多窗口切换
      *
      * 在页面操作过程中有时候点击某个链接会弹出新的窗口，这时就需要主机切换到新打开的窗口上进行操作
-     *
+     *  getWindowHandle()：获得当前窗口句柄。
+     * getWindowHandles()：返回的所有窗口的句柄到当前会话。
+     * switchTo().window()：用于切换到相应的窗口，与上一节的 switchTo().frame()类似
      *
      */
 
     @Test
-    public void swichWindows(){
+    public void swichWindows() throws InterruptedException {
         System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://www.baidu.com");
@@ -234,10 +237,94 @@ public class ElementOptions {
 
         //打开百度注册窗口
         System.out.println(search_handle);
-        driver.findElement()
+        driver.findElement(By.linkText("登录")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.linkText("立即注册")).click();
+
+        //获取所有窗口句柄
+        Set<String> handles = driver.getWindowHandles();
+
+        //判断是否为注册窗口，并操作注册窗口上的元素
+        for (String handle:handles){
+            if(handle.equals(search_handle)==false){
+                //切换到注册页面
+                driver.switchTo().window(handle);
+                System.out.println("现在是注册页面窗口");
+                Thread.sleep(3000);
+                driver.findElement(By.name("userName")).clear();
+                driver.findElement(By.name("userName")).sendKeys("userName15607");
+//                driver.findElement(By.name("phone")).clear();
+//                driver.findElement(By.name("phone")).sendKeys("12345678901");
+//                driver.findElement(By.name("password")).clear();
+//                driver.findElement(By.name("password")).sendKeys("123456@33");
+//                driver.findElement(By.name("submit")).submit();
+                Thread.sleep(3000);
+                driver.close();
+            }
+        }
+
+        //判断是否为百度首页，并操作首页上的元素
+        for (String handle:handles){
+            if(handle.equals(search_handle)){
+                //切换到百度首页页面
+                driver.switchTo().window(handle);
+                Thread.sleep(3000);
+                driver.findElement(By.className("close-btn")).click();
+                System.out.println("这是百度首页");
+                driver.findElement(By.id("kw")).sendKeys("hello world");
+                driver.findElement(By.id("su")).click();
+                Thread.sleep(3000);
+
+            }
+        }
+        driver.close();
 
 
 
+
+    }
+
+    /**
+     * 警告框处理
+     *
+     * 在 WebDriver 中处理JavaScript所生成的alert 、confirm以及 prompt十分简单，具体做法是使用
+     * switch_to_alert()方法定位到 alert/confirm/prompt，然后使用 text/accept/dismiss/ sendKeys 等方法进行操作。
+     * getText()：返回 alert/confirm/prompt 中的文字信息。
+     * accept()： 接受现有警告框。
+     * dismiss()：解散现有警告框。
+     * sendKeys(keysToSend)：
+     * 发送文本至警告框。keysToSend：将文本发送至警告框。
+     */
+
+    @Test
+    public void alertHandle() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://www.baidu.com");
+
+        // 鼠标移动到“设置”按钮上并悬停
+        Actions actions = new Actions(driver);
+        actions.clickAndHold(driver.findElement(By.id("s-usersetting-top"))).perform();
+        Thread.sleep(2000);
+
+
+        //定位搜索设置并点击
+        driver.findElement(By.linkText("搜索设置")).click();
+        Thread.sleep(3000);
+
+        //保存设置
+        driver.findElement(By.xpath("//div[@id='se-setting-7']/a[2]")).click();
+        Thread.sleep(3000);
+
+
+        //接受弹框内容
+        String text = driver.switchTo().alert().getText();
+        System.out.println(text);
+
+        //接受弹窗
+        driver.switchTo().alert().accept();
+
+        driver.quit();
 
     }
 
