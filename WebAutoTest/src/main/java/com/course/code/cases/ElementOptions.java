@@ -350,6 +350,32 @@ public class ElementOptions {
         driver.quit();
     }
 
+    /**
+     * 调用javaScript
+     */
+
+    @Test
+    public void exeJavascript() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().setSize(new Dimension(700,600));
+        driver.get("http://www.baidu.com");
+
+        driver.findElement(By.id("kw")).sendKeys("wenDriver");
+        driver.findElement(By.id("su")).click();
+
+        Thread.sleep(3000);
+
+        //将页面滚动条拖到底部
+        ((JavascriptExecutor)driver).executeScript("window.scrollTo(100,450)");
+        Thread.sleep(3000);
+        System.out.println("end");
+        driver.quit();
+
+    }
+
+
+
 
 
 }
