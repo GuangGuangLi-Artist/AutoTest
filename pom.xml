@@ -20,6 +20,7 @@
     <module>ApiCaseTest</module>
     <module>ApiUserManager</module>
     <module>WebAutoTest</module>
+      <module>JavaSeReview</module>
   </modules>
 
   <name>AutoTest</name>
