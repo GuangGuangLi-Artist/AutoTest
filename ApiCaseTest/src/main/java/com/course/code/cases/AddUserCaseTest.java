@@ -23,15 +23,15 @@ public class AddUserCaseTest {
     public void addUser() throws IOException, InterruptedException {
         SqlSession session = DatabaseUtil.getSqlSession();
         AddUserCase addUserCase = session.selectOne("addUserCase",1);
-        System.out.println(addUserCase.toString());
-        System.out.println(TestConfig.addUserUrl);
+        System.out.println(addUserCase.toString());//{id=1, userName='李四', password='123456', sex='男', age='28', permission='0', isDelete='1', expected='true'}
+        System.out.println(TestConfig.addUserUrl);//http://localhost:8083/v1/addUser
         //1, heh, 123, 15, 男, true, 1, true
 
 
         //发请求获取结果
-        String result = getResult(addUserCase);
-        Thread.sleep(2000);
-
+        String result = getResult(addUserCase);//true
+        Thread.sleep(5000);
+      //{id=1, userName='李四', password='123456', sex='男', age='28', permission='0', isDelete='1', expected='true'}
         User user = session.selectOne("addUser",addUserCase);
         System.out.println(user.toString());
         //验证返回结果
@@ -63,7 +63,7 @@ public class AddUserCaseTest {
         HttpResponse response = TestConfig.defaultHttpClient.execute(post);
 
         result = EntityUtils.toString(response.getEntity(),"utf-8");
-        System.out.println(result);
+        System.out.println(result);//true
 
 
 
