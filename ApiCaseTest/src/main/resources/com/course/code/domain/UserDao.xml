@@ -27,7 +27,7 @@
 
     <select id="addUser" parameterType="com.course.code.domain.AddUserCase" resultType="com.course.code.domain.User" flushCache="false" useCache="false">
         select * from test_user where
-        userName= #{userName}and password=#{password} and age=#{age} and sex=#{sex} and age=#{age} and permission=#{permission} and isDelete=#{isDelete}
+        userName= #{userName}and password=#{password} and age=#{age} and sex=#{sex}  and permission=#{permission} and isDelete=#{isDelete}
     </select>
     
 <!--    获取用户信息-->

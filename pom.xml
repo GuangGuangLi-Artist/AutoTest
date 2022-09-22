@@ -21,6 +21,7 @@
     <module>ApiUserManager</module>
     <module>WebAutoTest</module>
       <module>JavaSeReview</module>
+      <module>JmeterPlugins</module>
   </modules>
 
   <name>AutoTest</name>
