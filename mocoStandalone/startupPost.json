@@ -29,5 +29,55 @@
       }
 
     }
+  },
+  {
+    "description":"这是一个Content-Type为application/x-www-form-urlencoded; charset=utf-8的请求  date 22-9-24",
+    "request": {
+      "uri": "/post/xwwwformurlencoded",
+      "method": "post",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded; charset=utf-8"
+
+      },
+      "forms": {
+        "name": "guangguang",
+        "password": "guang"
+      }
+    },
+    "response": {
+      "headers": {
+        "Content-Typ":"application/json"
+      },
+      "json": {
+        "code": 200,
+        "status": "success",
+        "result": "请求参数是application/x-www-form-urlencoded类型"
+      }
+    }
+  },
+  {
+    "description":"这是一个Content-Type为application/json的请求  date 22-9-24",
+    "request": {
+      "uri": "/post/json",
+      "method": "post",
+      "headers": {
+        "content-type": "application/json"
+
+      },
+      "json": {
+        "name": "guangguangjson",
+        "password": "guangjson"
+      }
+    },
+    "response": {
+      "headers": {
+        "Content-Typ":"application/json"
+      },
+      "json": {
+        "code": 200,
+        "status": "success",
+        "result": "请求参数是application/json类型"
+      }
+    }
   }
 ]

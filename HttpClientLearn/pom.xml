@@ -2,30 +2,13 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.0.RELEASE</version>
-  </parent>
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.course.code</groupId>
-  <artifactId>AutoTest</artifactId>
-  <packaging>pom</packaging>
+  <artifactId>HttpClientLearn</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <modules>
-    <module>Chapter5</module>
-    <module>Chapter6</module>
-    <module>Chapter10</module>
-    <module>ApiCaseTest</module>
-    <module>ApiUserManager</module>
-    <module>WebAutoTest</module>
-      <module>JavaSeReview</module>
-      <module>JmeterPlugins</module>
-    <module>HttpClientLearn</module>
-  </modules>
 
-  <name>AutoTest</name>
+  <name>HttpClientLearn</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -33,17 +16,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <testng.version>6.10</testng.version>
-    <extentreports.version>2.41.1</extentreports.version>
-    <testngextentreports.version>1.3.1</testngextentreports.version>
-    <extentreportsaventstack.version>3.0.6</extentreportsaventstack.version>
-    <httpclient.version>4.5.3</httpclient.version>
-    <lombok.version>1.16.14</lombok.version>
-    <json.version>1.2.76</json.version>
-    <swagger.version>2.6.1</swagger.version>
-    <mybatis.version>2.1.3</mybatis.version>
-    <mysqlconnector.version>8.0.16</mysqlconnector.version>
-    <logback.version>1.2.9</logback.version>
   </properties>
 
   <dependencies>
@@ -56,66 +28,18 @@
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>${testng.version}</version>
+      <version>6.10</version>
     </dependency>
-    <dependency>
-      <groupId>com.relevantcodes</groupId>
-      <artifactId>extentreports</artifactId>
-      <version>${extentreports.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.vimalselvam</groupId>
-      <artifactId>testng-extentsreport</artifactId>
-      <version>${testngextentreports.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.aventstack</groupId>
-      <artifactId>extentreports</artifactId>
-      <version>${extentreportsaventstack.version}</version>
-    </dependency>
-
     <dependency>
       <groupId>org.apache.httpcomponents</groupId>
       <artifactId>httpclient</artifactId>
-      <version>${httpclient.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
+      <version>4.5.13</version>
     </dependency>
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>fastjson</artifactId>
-      <version>${json.version}</version>
+      <version>1.2.76</version>
     </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger2</artifactId>
-      <version>${swagger.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>io.springfox</groupId>
-      <artifactId>springfox-swagger-ui</artifactId>
-      <version>${swagger.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>${mysqlconnector.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.mybatis.spring.boot</groupId>
-      <artifactId>mybatis-spring-boot-starter</artifactId>
-      <version>${mybatis.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-      <version>${logback.version}</version>
-    </dependency>
-
   </dependencies>
 
   <build>

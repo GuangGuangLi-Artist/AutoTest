@@ -1,3 +1,5 @@
 启动： java -jar ./moco-runner-0,11.0-standalone.jar  http -p 8888 -c json配置文件
 ================
 java -jar ./moco-runner-0.11.0-standalone.jar http -p 8888 -c startupWithCookie.json
+java -jar ./moco-runner-0.11.0-standalone.jar http -p 8888 -c startupGetWithParam.json
+java -jar ./moco-runner-0.11.0-standalone.jar http -p 8888 -c startupPost.json
