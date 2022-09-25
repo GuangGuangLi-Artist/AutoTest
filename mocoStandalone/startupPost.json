@@ -79,5 +79,26 @@
         "result": "请求参数是application/json类型"
       }
     }
+  },
+  {
+    "description": "请求文件是file",
+    "request": {
+      "uri": "/post/filejson",
+      "method": "post",
+      "headers": {
+        "Content-Typ":"multipart/form-data"
+      },
+      "file": {
+        "json": "test.json"
+      }
+    },
+    "response": {
+      "json": {
+      "code": 200,
+      "status": "success",
+      "result": "请求参数是json文件类型"
+    }
   }
+  }
+
 ]

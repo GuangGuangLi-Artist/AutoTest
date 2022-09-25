@@ -7,7 +7,11 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicHeader;
@@ -15,6 +19,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,7 @@ import java.util.List;
  */
 public class HttpClientPostDemo {
 
+    //httpclient发送application/x-www-form-urlencoded的post请求
     @Test
     public void postForm(){
 
@@ -136,6 +142,62 @@ public class HttpClientPostDemo {
                 }
             }
         }
+    }
+
+    //请求参数是File类型
+    @Test
+    public void postFile(){
+
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        String url = "http://localhost:8888/post/filejson";
+        HttpPost post = new HttpPost(url);
+        post.setHeader("User-Agent","Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) " +
+                "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Mobile Safari/537.36");
+        //post.setHeader("content-type","multipart/form-data");
+
+
+        FileBody fileBody = new FileBody(new File("F:\\ideaWorkspace\\AutoTest\\HttpClientLearn\\src\\main\\java\\com\\course\\code\\imagedesc\\test.json"));
+        //构造上传文件的entity
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+        builder.setCharset(Consts.UTF_8);
+        builder.setContentType(ContentType.MULTIPART_FORM_DATA);
+        builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);//设置浏览器模式
+        HttpEntity httpEntity = builder.addPart("json", fileBody).build();
+        post.setEntity(httpEntity);
+        CloseableHttpResponse response = null;
+        try {
+            response = httpClient.execute(post);
+            HttpEntity responseEntity = response.getEntity();
+            String resString = EntityUtils.toString(responseEntity,Consts.UTF_8);
+
+            //将字符串转成json
+            JSONObject jsonObject;
+            jsonObject = JSONObject.parseObject(resString);
+            System.out.println(jsonObject);
+            EntityUtils.consume(responseEntity);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            if(response != null){
+                try {
+                    response.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if(httpClient!= null){
+                try {
+                    httpClient.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+
+
     }
 
 }
