@@ -42,7 +42,7 @@ public class LoginCase {
     //用数组接收从TestData中读取的数据,这里要注意，一个xlsx文件可能有很多sheet表，所以sheetName要对应
     @DataProvider(name = "Login")
     public Object[][] Login() throws IOException {
-        return ReadExcel.getData("src\\main\\java\\com\\course\\code\\datas","TestData.xlsx","login");
+        return ReadExcel.getData("src\\main\\java\\com\\course\\code\\datas","TestData.xlsx","Login");
     }
 
     //测试用例，传入参数是从DataProvider中遍历获取的数据
