@@ -4,6 +4,7 @@ package com.course.code.cases;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -140,7 +141,8 @@ public class ElementOptions {
     /**
      * 设置元素等待
      * timeouts 方法
-             *  implicitlyWait。识别对象时的超时时间。过了这个时间如果对象还没找到的话就会抛出NoSuchElement 异常。
+             *  implicitlyWait。识别对象时的超时时间。过了这个时间如果对象还没找到的话就会抛出NoSuchElement 异常。隐式等待
+             * 显示等待使用WebDriverWait和ExpectedCondition类完成
              * setScriptTimeout。异步脚本的超时时间。WebDriver 可以异步执行脚本，这个是设置异步执行脚本脚本返回结果的超时时间。
              * pageLoadTimeout。页面加载时的超时时间。因为 WebDriver 会等页面加载完毕再进行后面的操作，所以如果页面超过设置时间依然没有加载完成，那么 WebDriver 就会抛出异常。
      *
@@ -152,6 +154,8 @@ public class ElementOptions {
     public void timeOut(){
         System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
+        //设置显式等待
+        WebDriverWait driverWait = new WebDriverWait(driver,5000);
         try {
 
             //driver.manage().window().setSize(new Dimension(1500,2000));//尺寸 单元
