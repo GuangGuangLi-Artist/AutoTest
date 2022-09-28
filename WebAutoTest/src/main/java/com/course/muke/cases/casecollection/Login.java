@@ -9,6 +9,8 @@ import org.testng.annotations.Test;
 import org.testng.reporters.Files;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Login {
     private WebDriver driver;
@@ -48,10 +50,18 @@ public class Login {
 
     public void getScreenImg() throws FileNotFoundException {
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_ss");
+        String curTime = dateFormat.format(new Date());
+
+        //String clsName = this.getClass().getName();
+        String pngName = curTime + ".png";
+
+        String curPath = System.getProperty("user.dir");
+        System.out.println(curPath);
         File logFile = ((RemoteWebDriver)driver).getScreenshotAs(OutputType.FILE);
         FileInputStream fis = new FileInputStream(logFile);
         try {
-            Files.copyFile(fis,new File("src/main/java/com/course/muke/cases/log/log.png"));
+            Files.copyFile(fis,new File("src/main/java/com/course/muke/cases/log/" + pngName));
         } catch (IOException e) {
             e.printStackTrace();
         }
