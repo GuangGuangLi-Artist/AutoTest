@@ -1,15 +1,15 @@
 package com.course.muke.cases.casecollection;
 
 import com.course.muke.cases.utils.ProUtil;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
+import org.testng.reporters.Files;
 
+import java.io.*;
 import java.util.Properties;
 
 public class Login {
@@ -49,8 +49,20 @@ public class Login {
         return element;
     }
 
+    public void getScreenImg() throws FileNotFoundException {
+
+        File logFile = ((RemoteWebDriver)driver).getScreenshotAs(OutputType.FILE);
+        FileInputStream fis = new FileInputStream(logFile);
+        try {
+            Files.copyFile(fis,new File("D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\java\\com" +
+                    "\\course\\muke\\cases\\log\\log.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
-    public void userLogin(){
+    public void userLogin() throws FileNotFoundException {
 
         //加载user的配置信息
         ProUtil userProUtil = new ProUtil("D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\java\\com\\course" +
@@ -72,6 +84,7 @@ public class Login {
             emailElement.sendKeys(userPro_name);
             passWordElement.sendKeys(userPro_password);
             loginButtonElement.click();
+            getScreenImg();
             try {
                 Thread.sleep(5000);
             }catch (Exception e){
@@ -105,11 +118,11 @@ public class Login {
     }
 
 
-    public static void main(String[] args) {
-        //Login login = new Login();
-        //login.userLogin();
+/*    public static void main(String[] args) {
+        Login login = new Login();
+        login.userLogin();
 
-    }
+    }*/
 
 
 
