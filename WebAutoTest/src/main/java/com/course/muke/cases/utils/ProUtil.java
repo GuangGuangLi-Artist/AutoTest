@@ -52,10 +52,10 @@ public class ProUtil {
 
     public static void main(String[] args) throws IOException {
 
-        String proPath = "F:\\ideaWorkspace\\AutoTest\\WebAutoTest\\src\\main\\java\\com\\course\\muke\\cases" +
-                "\\config\\element.properties";
+        String proPath = "D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\java\\com\\course\\muke" +
+                "\\cases\\config\\element.properties";
         ProUtil pt = new ProUtil(proPath);
-        String value = pt.getPro("username");
+        String value = pt.getPro("loginbutton");
         System.out.println(value);
 
     }
