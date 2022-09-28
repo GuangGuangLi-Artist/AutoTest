@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="seleniumWeb测试">
+    <test name="用户登录">
+        <classes>
+            <class name="com.course.muke.cases.casecollection.Login">
+                <methods>
+                    <include name="userLogin"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

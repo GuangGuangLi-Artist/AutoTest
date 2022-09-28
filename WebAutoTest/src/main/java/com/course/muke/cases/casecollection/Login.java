@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
 
 import java.util.Properties;
 
@@ -48,6 +49,7 @@ public class Login {
         return element;
     }
 
+    @Test
     public void userLogin(){
 
         //加载user的配置信息
@@ -104,8 +106,8 @@ public class Login {
 
 
     public static void main(String[] args) {
-        Login login = new Login();
-        login.userLogin();
+        //Login login = new Login();
+        //login.userLogin();
 
     }
 
