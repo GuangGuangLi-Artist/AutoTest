@@ -3,19 +3,17 @@ package com.course.muke.cases.casecollection;
 import com.course.muke.cases.utils.ProUtil;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
 import org.testng.reporters.Files;
 
 import java.io.*;
-import java.util.Properties;
 
 public class Login {
     private WebDriver driver;
     public void initDriver(){
-        System.setProperty("webdriver.chrome.driver","D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://www.imooc.com/user/newlogin");
         driver.manage().window().setSize(new Dimension(1500,2000));
@@ -25,8 +23,7 @@ public class Login {
 
     //获取定位元素的值
     public By getByByLocal(String key){
-        ProUtil proUtil = new ProUtil("D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\java\\com\\course" +
-                "\\muke\\cases\\config\\element.properties");
+        ProUtil proUtil = new ProUtil("src/main/java/com/course/muke/cases/config/element.properties");
         String locator = proUtil.getPro(key);//name>email
 
         String locatorBy = locator.split(">")[0];//name
@@ -54,8 +51,7 @@ public class Login {
         File logFile = ((RemoteWebDriver)driver).getScreenshotAs(OutputType.FILE);
         FileInputStream fis = new FileInputStream(logFile);
         try {
-            Files.copyFile(fis,new File("D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\java\\com" +
-                    "\\course\\muke\\cases\\log\\log.png"));
+            Files.copyFile(fis,new File("src/main/java/com/course/muke/cases/log/log.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,8 +61,7 @@ public class Login {
     public void userLogin() throws FileNotFoundException {
 
         //加载user的配置信息
-        ProUtil userProUtil = new ProUtil("D:\\javaproject\\AutoTest\\WebAutoTest\\src\\main\\java\\com\\course" +
-                "\\muke\\cases\\config\\user.properties");
+        ProUtil userProUtil = new ProUtil("src/main/java/com/course/muke/cases/config/user.properties");
         //获取user.properties的数据条数
         int userLines = userProUtil.properties.size();
         for (int i = 0; i <userLines ; i++) {
