@@ -95,6 +95,11 @@
             <artifactId>httpclient</artifactId>
             <version>${httpclient.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-email</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>${eamil.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

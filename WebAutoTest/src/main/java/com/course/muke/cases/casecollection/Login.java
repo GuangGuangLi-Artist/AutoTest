@@ -1,6 +1,8 @@
 package com.course.muke.cases.casecollection;
 
 import com.course.muke.cases.utils.ProUtil;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -120,6 +122,33 @@ public class Login {
 
 
 
+    }
+
+
+    /**
+     * 发送邮箱
+     */
+    @Test
+    public void sendToEmail(){
+
+
+        SimpleEmail email = new SimpleEmail();
+        email.setHostName("smtp.163.com");
+        //xxx的获取方式
+        // 电脑Web端登录163邮箱：https://mail.163.com/。
+        //进入“设置 > POP3/SMTP/IMAP”，确认对应服务已开启。若未开启，请勾选并保存
+        email.setAuthentication("15607521232@163.com","xxxx");
+
+        try {
+            email.setFrom("15607521232@163.com");
+            email.addTo("xxx@qq.com");
+            email.setCharset("utf-8");
+            email.setSubject("这是设置主题");
+            email.setMsg("测试使用commons-email发送邮件");
+            email.send();
+        } catch (EmailException e) {
+            e.printStackTrace();
+        }
     }
 
 

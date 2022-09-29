@@ -5,8 +5,11 @@
         <classes>
             <class name="com.course.muke.cases.casecollection.Login">
                 <methods>
-                    <include name="userLogin"></include>
+                    <exclude name="userLogin"></exclude>
                 </methods>
+            </class>
+            <class name="com.course.muke.cases.casecollection.TestNgUseTest">
+
             </class>
         </classes>
     </test>
