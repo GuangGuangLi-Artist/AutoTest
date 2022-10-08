@@ -8,30 +8,34 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Listeners;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 @Listeners(TestNgListenerScreen.class)
-public class LoginCase {
+public class LoginCase extends InitDriver {
 
     public WebDriver driver;
     public LoginHandle loginHandle;
     public static Logger logger =Logger.getLogger(LoginCase.class);
 
+    @Parameters({"uri","browser"})
     @BeforeClass
-    public void beforeLogin(){
+    public void beforeLogin(String uri,String browser){
 
 
         PropertyConfigurator.configure("src/main/java/com/course/muke/cases/config/log4j.properties");
         logger.debug("初始化浏览器");
-        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.get("https://www.imooc.com/user/newlogin");
+        driver = getDriver(browser);
+        driver.get(uri);
         driver.manage().window().setSize(new Dimension(1500,2000));
 
         loginHandle = new LoginHandle(driver);
+        loginHandle.clickSignButton();
+        try {
+            loginHandle.clickSignButton();
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -41,11 +45,12 @@ public class LoginCase {
 
     }
 
+    @Parameters({"username","password"})
     @Test
-    public void loginSuccess(){
+    public void loginSuccess(String username,String password){
 
-        loginHandle.sendEmail("940102569@qq.com");
-        loginHandle.sendPassword("");
+        loginHandle.sendEmail(username);
+        loginHandle.sendPassword(password);
 
         try {
             loginHandle.clickLgbtn();

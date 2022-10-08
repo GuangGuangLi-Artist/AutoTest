@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="seleniumWeb测试">
+    <parameter name="username" value="940102569@qq.com"></parameter>
+    <parameter name="password" value="Safe"></parameter>
+    <parameter name="uri" value="https://www.imooc.com"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
     <test name="用户登录">
         <classes>
             <class name="com.course.muke.cases.casecollection.Login">
                 <methods>
                     <exclude name="userLogin"></exclude>
+                    <exclude name="sendToEmail"></exclude>
                 </methods>
             </class>
             <class name="com.course.muke.cases.casecollection.TestNgUseTest">
 
             </class>
+
+            <class name="com.course.pageobject.cases.LoginCase">
+                <methods>
+                    <include name="loginSuccess"></include>
+                </methods>
+            </class>
         </classes>
     </test>
+
+    <!-- 配置测试报告监听器-->
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"></listener>
+    </listeners>
 </suite>

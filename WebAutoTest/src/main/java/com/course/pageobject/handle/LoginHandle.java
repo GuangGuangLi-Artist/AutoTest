@@ -33,4 +33,8 @@ public class LoginHandle {
         String userText = loginPage.getUserinfoElement().getText();
         return userText;
     }
+
+    public void clickSignButton(){
+        loginPage.getSignButton().click();
+    }
 }

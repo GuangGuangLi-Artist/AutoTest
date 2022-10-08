@@ -44,5 +44,9 @@ public class LoginPage extends Basepage {
         return getElement("userinfo");
     }
 
+    public WebElement getSignButton(){
+        return getElement("signinbutton");
+    }
+
 
 }
