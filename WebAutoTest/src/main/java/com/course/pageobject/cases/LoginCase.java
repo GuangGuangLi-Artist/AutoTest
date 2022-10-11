@@ -23,7 +23,7 @@ public class LoginCase extends InitDriver {
 
 
         PropertyConfigurator.configure("src/main/java/com/course/muke/cases/config/log4j.properties");
-        logger.debug("初始化浏览器");
+        //logger.debug("初始化浏览器");
         driver = getDriver(browser);
         driver.get(uri);
         driver.manage().window().setSize(new Dimension(1500,2000));

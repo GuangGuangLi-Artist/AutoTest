@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="mukeTst">
+    <test name="mukeaddcourse">
+        <parameter name="browser" value="chrome"></parameter>
+        <parameter name="uri" value="https://coding.imooc.com/class/607.html"></parameter>
+        <classes>
+            <class name="com.course.pageobject.cases.AddCourse">
+                <methods>
+                    <include name="noCookieAddCourse"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

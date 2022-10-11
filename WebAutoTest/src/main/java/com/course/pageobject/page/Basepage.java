@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 public class Basepage {
     private  WebDriver driver;
 
@@ -27,12 +30,16 @@ public class Basepage {
         System.out.println(locatorValue);
         if(locatorBy.equals("id")){
             return By.id(locatorValue);
+
         }else if(locatorBy.equals("name")){
             return By.name(locatorValue);
+
         }else if(locatorBy.equals("className")){
             return By.className(locatorValue);
+
         }else {
             return By.xpath(locatorValue);
+
         }
     }
 
