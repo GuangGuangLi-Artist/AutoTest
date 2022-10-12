@@ -4,10 +4,12 @@
     <test name="mukeaddcourse">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="uri" value="https://coding.imooc.com/class/607.html"></parameter>
+        <parameter name="cookie" value=""></parameter>
         <classes>
             <class name="com.course.pageobject.cases.AddCourse">
                 <methods>
-                    <include name="noCookieAddCourse"></include>
+                    <exclude name="noCookieAddCourse"></exclude>
+                    <include name="haveCookieAddCourse"></include>
                 </methods>
             </class>
         </classes>

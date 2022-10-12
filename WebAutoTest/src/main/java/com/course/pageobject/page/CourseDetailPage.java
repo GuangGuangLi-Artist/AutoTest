@@ -20,5 +20,11 @@ public class CourseDetailPage extends Basepage {
         return getElement("activeTitle");
     }
 
+    public WebElement getHaveCourse(){
+        return getElement("haveCourse");
+    }
+
+
+
 
 }

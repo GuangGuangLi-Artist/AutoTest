@@ -39,10 +39,21 @@ public class AddCourse  extends InitDriver{
 
 
     }
-
+    @Parameters({"cookie"})
     @Test
-    public void haveCookieAddCourse(){
+    public void haveCookieAddCourse(String cookie) throws InterruptedException {
         //点击加入购物车
+        AddCourseHandle courseHandle = new AddCourseHandle(driver);
+        //添加用户登录Cookie
+        courseHandle.addCookie(driver,cookie);
+        courseHandle.clickAddcart();
+        courseHandle.clickAddcart();
+        Thread.sleep(5000);
+        String content = courseHandle.getHaveCourse();
+
+        Assert.assertEquals(content,"商品已经在购物车内");
+
+
 
     }
 
