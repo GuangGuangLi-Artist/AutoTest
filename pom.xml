@@ -23,6 +23,7 @@
       <module>JavaSeReview</module>
       <module>JmeterPlugins</module>
     <module>HttpClientLearn</module>
+      <module>AlgorithmsLearn</module>
   </modules>
 
   <name>AutoTest</name>
