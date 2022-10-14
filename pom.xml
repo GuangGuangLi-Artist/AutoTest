@@ -24,6 +24,7 @@
       <module>JmeterPlugins</module>
     <module>HttpClientLearn</module>
       <module>AlgorithmsLearn</module>
+      <module>HuaWeiSuanFa</module>
   </modules>
 
   <name>AutoTest</name>
