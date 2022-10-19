@@ -24,6 +24,7 @@ public class LoginTest {
     @BeforeTest(groups = "loginTrue",description = "测试准备工作")
     public void beforeTest(){
 
+        //从TestCofig配置类中加载到配置信息  TestCofig使用公共的util方法读取配置信息
         TestConfig.getUserInfoUrl = ConfigFile.getUrl(InterfaceName.GETUSERINFO);
         TestConfig.getUserListUrl = ConfigFile.getUrl(InterfaceName.GETUSERLIST);
         TestConfig.addUserUrl = ConfigFile.getUrl(InterfaceName.ADDUSER);
@@ -37,6 +38,7 @@ public class LoginTest {
 
     @Test(groups = "loginTrue",description = "用户登录成功接口测试")
     public void loginTrue() throws IOException {
+        //读取信息获取sql执行的session
         SqlSession session = DatabaseUtil.getSqlSession();
         LoginCase loginCase = session.selectOne("logingCase",1);
         System.out.println(loginCase.toString());
