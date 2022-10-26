@@ -22,6 +22,7 @@ public class HuaWeiJinZhiZhuanHuan {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()){
             String sLine = scanner.nextLine();
+            //parseInt()使用第二个参数指定的基数，将字符串参数解析为有符号的整数。
             System.out.println(Integer.parseInt(sLine.substring(2,sLine.length()),16));  //java语言中 16进制的数字以0x开头
 
         }
