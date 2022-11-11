@@ -23,6 +23,7 @@ package com.course.code;
  * 输出：0 3
  *      1 2
  *      3 4
+ *
  */
 
 public class HuaWeiMergeList {
