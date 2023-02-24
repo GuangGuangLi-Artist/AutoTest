@@ -1,6 +1,13 @@
 package com.course.code;
 
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
+
+import static java.util.Collections.reverse;
 
 /**
  * 将输入的字符串（字符串仅包含小写字母‘a’到‘z’），按照如下规则，循环转换后输出： a->b,b->c,…,y->z,z->a；若输入的字符串连续出现两个
@@ -14,10 +21,14 @@ public class HuaWeiStringConvert {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextLine()){
-            String str = scanner.nextLine();
-            char [] chars = str.toCharArray();
+        String s = scanner.nextLine();
+        String[] strings = s.split(" ");
+        ArrayList<String> al = new ArrayList<String>(Arrays.asList(strings));
+    }
 
-        }
+
+    @Test
+    public void sortString(){
+        System.out.println("test");
     }
 }
