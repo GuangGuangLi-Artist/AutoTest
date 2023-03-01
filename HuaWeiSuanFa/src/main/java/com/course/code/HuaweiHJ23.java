@@ -28,6 +28,8 @@ public class HuaweiHJ23 {
             Collection<Integer> integerCollection = chsMap.values();
             Integer min = Collections.min(integerCollection);
 
+            //Integer integermin = chsMap.values().stream().min(Integer::compareTo).get();
+
             for(Character c: chsMap.keySet()){
                 if(chsMap.get(c)  == min){
                     resource = resource.replaceAll(String.valueOf(c),"");
