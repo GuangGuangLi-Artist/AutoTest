@@ -21,7 +21,7 @@ public class HuaweiHJ102_2 {
         //Set<Map.Entry<Character, Integer>> set = newMap.entrySet();
         //System.out.println(set.toString());[a=2, b=3, c=3]
         List<Map.Entry<Character,Integer>> list = new ArrayList<>(newMap.entrySet());
-        //System.out.println(list.toString());[a=2, b=3, c=3]
+        //System.out.println(list.toString());//[a=4, b=5, c=2]
         Collections.sort(list, new Comparator<Map.Entry<Character, Integer>>() {
             @Override
             public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
