@@ -25,7 +25,6 @@
     <module>HttpClientLearn</module>
       <module>AlgorithmsLearn</module>
       <module>HuaWeiSuanFa</module>
-      <module>springMybatis</module>
   </modules>
 
   <name>AutoTest</name>
