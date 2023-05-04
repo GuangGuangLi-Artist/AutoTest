@@ -25,39 +25,6 @@ import java.util.Set;
 public class HuaWeiHJ36 {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()){
-            String key = sc.nextLine();
-            String msg = sc.nextLine();
-
-            //将key添加到set中
-            Set<Character> setKey = new LinkedHashSet<>();
-            for (int i = 0; i < key.length(); i++) {
-                setKey.add(key.charAt(i));
-            }
-
-            //补齐剩余字母 因为LinkedHashSet有序 所以是顺序不变
-            char c = 'a';
-            while (setKey.size()<26){
-                setKey.add(c++);
-            }
-
-            StringBuffer stringBuffer = new StringBuffer();
-            char[] charArr = msg.toCharArray();
-            ArrayList<Character> arrayList = new ArrayList<>(setKey);
-
-            for (int i = 0; i < msg.length(); i++) {
-                if(msg.charAt(i) >= 'A' && msg.charAt(i) <= 'Z'){
-                    int tmp = charArr[i] - 'A';
-                    stringBuffer.append(String.valueOf(arrayList.get(tmp)).toUpperCase());
-                }else {
-                    int tmp = charArr[i] - 'a';
-                    stringBuffer.append(String.valueOf(arrayList.get(tmp)).toLowerCase());
-                }
-            }
-
-            System.out.println(stringBuffer.toString());
-        }
 
     }
 }
