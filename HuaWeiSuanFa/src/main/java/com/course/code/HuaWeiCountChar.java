@@ -22,7 +22,7 @@ import java.util.Scanner;
  * 2
  */
 
-public class HuaWeiCountChar {
+public class     HuaWeiCountChar {
 
     public static void main(String[] args) {
 
