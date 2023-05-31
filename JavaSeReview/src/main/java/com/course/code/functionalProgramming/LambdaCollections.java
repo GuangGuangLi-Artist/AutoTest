@@ -3,8 +3,7 @@ package com.course.code.functionalProgramming;
 
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
 
 /**
  * Collection:removeIf() spliterator() stream() parallelStream() forEach()
@@ -67,6 +66,29 @@ public class LambdaCollections {
         //1.Spliterator既可以像Iterator那样逐个迭代，也可以批量迭代。批量迭代可以降低迭代的开销。
         //2.Spliterator是可拆分的，一个Spliterator可以通过调用Spliterator<T> trySplit()方法来尝试分成两个。一个是this，另一个是新返回的那个，这两个迭代器代表的元素没有重叠。
     }
+
+    @Test
+    public void testMap_forEach(){
+
+        //作用是对Map中的每个映射执行action指定的操作
+        HashMap<Integer,String> map = new HashMap<>();
+        map.put(1,"one");
+        map.put(2,"two");
+        map.put(3,"three");
+
+
+        Set<Map.Entry<Integer, String>> entrySet = map.entrySet();
+        for (Map.Entry<Integer, String> entry:entrySet){
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+        System.out.println("----");
+        map.forEach((k,v) ->{
+            System.out.println(k + "=" + v);
+        });
+
+
+    }
+
 
 
 
