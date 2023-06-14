@@ -1,9 +1,12 @@
 package com.course.code.java8action;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * 方法引用
@@ -75,12 +78,26 @@ public class MethodReference_1 {
         studentsList.forEach(student -> System.out.println(student));
         System.out.println("---------------");
 
+        List<String> cities = Arrays.asList("qingdao","chongqing","tianjing","beijing");
+        Collections.sort(cities,String::compareToIgnoreCase);
+        cities.forEach(System.out::println);
+        System.out.println("---------------");
+
         //4 类名::new
         MethodReference_1 m1 = new MethodReference_1();
         System.out.println(m1.getString(String::new));
         System.out.println("---------------");
         System.out.println(m1.getString2("hello",String::new));
         System.out.println("---------------");
+
+
+        //默认方法  default method
+
+        //实现类的优先级要比接口的优先级要更高一些
+
+
+
+
 
 
 
