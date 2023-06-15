@@ -1,8 +1,7 @@
 package com.course.code.java8action;
 
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -64,6 +63,50 @@ public class StreamLearn {
         Stream<String> streamConvertList = Stream.of("hello","toList","convert");
         List<String> streamList = streamConvertList.collect(Collectors.toList());
         streamList.forEach(System.out::println);
+        System.out.println("--------------");
+        Stream<String> streamCList = Stream.of("hello","toList","convert");
+        ArrayList<String> list1 = streamCList.collect(Collectors.toCollection(ArrayList::new));
+        list1.forEach(s -> System.out.println(s));
+        System.out.println("--------------");
+
+        //转换为set
+        Stream<String> streamCSet = Stream.of("hello","toSet","convert");
+        TreeSet<String> stringTreeSet = streamCSet.collect(Collectors.toCollection(TreeSet::new));
+        stringTreeSet.forEach(s -> System.out.println(s));
+        System.out.println("--------------");
+
+        //将元素拼接为字符串
+        Stream<String> streamnewString = Stream.of("hello","genererate","newStream","String");
+        String upperString = streamnewString.collect(Collectors.joining(",")).toUpperCase().toString();
+        System.out.println(upperString);
+
+        System.out.println("--------------");
+
+        //对其集合中的所有字符串元素转换成大写，然后再输出出来
+        Stream<String> streamnewUpperString = Stream.of("hello","genererate","newStream","String");
+        streamnewUpperString.map(String::toUpperCase).forEach(System.out::println);
+        System.out.println("--------------");
+
+        //将一个整数集合中的元素进行平方之后再打印出来
+        Stream<Integer> streamPow = Stream.of(1,2,3,4,5);
+        streamPow.map( x -> x * x).forEach(System.out::println);
+        System.out.println("--------------");
+
+        //将多个个整数集合中的元素进行乘以3之后再打印出来
+        Stream<List<Integer>> flatMapUse = Stream.of(Arrays.asList(1),Arrays.asList(2,3),Arrays.asList(4,5,6));
+        flatMapUse.flatMap( theList -> theList.stream()).map(item -> item * 3).forEach(System.out::println);
+        System.out.println("--------------");
+
+
+        //生成一个UUId  generate  findFirst
+        Stream<String> streamUUid = Stream.generate(UUID.randomUUID()::toString);
+        //System.out.println(streamUUid.findFirst().get());
+        streamUUid.findFirst().ifPresent(System.out::println);
+
+
+        //生成一个指定规则生成的数列
+        Stream.iterate(1,item -> item + 2).limit(6).forEach(System.out::println);
+
 
 
     }
