@@ -2,6 +2,7 @@ package com.course.code.java8action;
 
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -106,6 +107,41 @@ public class StreamLearn {
 
         //生成一个指定规则生成的数列
         Stream.iterate(1,item -> item + 2).limit(6).forEach(System.out::println);
+
+        System.out.println("--------------");
+
+        //Stream陷阱剖析
+        /**
+         * 1 用stream.iterate()生成了6个奇数
+         * 2 找出该流中大于2的元素，然后再将每个元素乘以2，然后忽略掉流中的前两个元素，然后再取流中的前两个元素，最后求出流中元素的总和。
+         */
+
+        System.out.println(
+                Stream.iterate(1, item -> item + 2).limit(6)
+                .filter(item -> item > 2)//找出大于2
+                .mapToInt(item -> item * 2)//每个元素乘以2
+                .skip(2)//忽略流中前两个元素
+                .limit(2)//再取流中的前两个元素
+                .sum()//最后求出流中元素的总和
+        );
+
+        System.out.println("--------------");
+
+        Stream.iterate(1,item -> item + 2)
+                .filter(item -> item > 2)
+                .mapToInt(item ->item * 2)
+                .skip(2)
+                .limit(2)
+                .min()
+                .ifPresent(System.out::println);
+
+
+        System.out.println("--------------");
+
+        Stream.iterate(0,i -> (i+1) % 2).distinct().limit(6).forEach(System.out::println);
+
+
+      
 
 
 
