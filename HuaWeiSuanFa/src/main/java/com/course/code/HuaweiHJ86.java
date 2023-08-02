@@ -24,7 +24,7 @@ public class HuaweiHJ86 {
         int max = 0;
         for (String str: sArr){
             if(str.contains("1")){
-                max = Math.max(max,str.length());
+                max = Math.max(max,str.length());//获取2的长度个数
 
             }
         }
