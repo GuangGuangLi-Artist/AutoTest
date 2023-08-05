@@ -25,6 +25,7 @@
     <module>HttpClientLearn</module>
       <module>AlgorithmsLearn</module>
       <module>HuaWeiSuanFa</module>
+      <module>CodeCaprice</module>
   </modules>
 
   <name>AutoTest</name>
