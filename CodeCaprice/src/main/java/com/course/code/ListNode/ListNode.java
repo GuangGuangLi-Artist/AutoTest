@@ -1,6 +1,6 @@
 package com.course.code.ListNode;
 
-public class ListNode {
+public class    ListNode {
     //节点的值
     int val;
 

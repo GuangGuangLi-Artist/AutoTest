@@ -1,6 +1,8 @@
 package com.course.code.ListNode;
 
 
+import org.testng.annotations.Test;
+
 /**
  *  203 移除链表元素
  *  题意：删除链表中等于给定值 val 的所有节点。
@@ -12,6 +14,36 @@ public class RemoveElements {
 
     public static void main(String[] args) {
 
+    }
+
+
+    @Test
+    public void testListNode() {
+        ListNode nodeSta = new ListNode(0);//创建首节点
+        ListNode nextNode;//声明一个变量用来在移动过程中指向当前节点
+        nextNode = nodeSta; //指向首节点
+
+        //创建链表
+        for (int i = 1; i < 10; i++) {
+            ListNode node = new ListNode(i);
+            nextNode.next = node;
+            nextNode = nextNode.next;
+        }
+
+        nextNode = nodeSta;
+        print(nextNode);
+
+
+
+    }
+
+    public static void print(ListNode listNode) {
+        //创建链表节点
+        while (listNode != null) {
+            System.out.println("listNode:" + listNode.val);
+            listNode = listNode.next;
+        }
+        System.out.println();
     }
 
 
@@ -34,5 +66,8 @@ public class RemoveElements {
         }
         return dummy.next;
     }
+
+
+
 
 }
