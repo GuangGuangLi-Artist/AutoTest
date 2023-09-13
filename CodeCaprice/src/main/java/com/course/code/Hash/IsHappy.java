@@ -19,7 +19,7 @@ import java.util.Set;
  */
 public class IsHappy {
     public static void main(String[] args) {
-        boolean happy = isHappy(19);
+        boolean happy = isHappy(19); 
         System.out.println(happy);
     }
 
