@@ -1,4 +1,4 @@
-package stringOption;
+package com.course.code.stringOption;
 
 
 /**

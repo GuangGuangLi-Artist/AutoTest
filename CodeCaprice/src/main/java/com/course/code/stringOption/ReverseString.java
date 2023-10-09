@@ -1,4 +1,4 @@
-package stringOption;
+package com.course.code.stringOption;
 
 
 import org.testng.annotations.Test;

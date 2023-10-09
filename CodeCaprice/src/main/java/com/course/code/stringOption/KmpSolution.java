@@ -1,4 +1,4 @@
-package stringOption;
+package com.course.code.stringOption;
 
 
 /**
@@ -55,7 +55,7 @@ public class KmpSolution {
         int j = 0;//前缀末尾位置
         // i 后缀末尾位置
         next[0] = 0;
-        for (int i = 1; i < s.length(); i++) {
+        for (int i = 1; i < s.length(); i++) {  // i 是后缀末尾位置
             while (j > 0 && s.charAt(j) != s.charAt(i)) j = next[j - 1];  // 前后缀不相同了 向前回退
             if(s.charAt(j) == s.charAt(i)) j++; //找到相同的前后缀
             next[i] = j; // 将j（前缀的长度）赋给next[i]
