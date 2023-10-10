@@ -1,6 +1,7 @@
 package com.course.code.test.controller;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.course.code.test.domain.User;
 import com.course.code.test.service.UserService;
 import io.swagger.annotations.Api;
@@ -9,6 +10,8 @@ import lombok.extern.log4j.Log4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Log4j
@@ -53,6 +56,17 @@ public class GetUserCount {
     @ApiOperation(value = "刪除user",httpMethod = "GET")
     public void deleteUser(@RequestParam int id){
         userService.deleteUser(id);
+    }
+
+    //获取用户列表
+    @RequestMapping(value = "/getAllUser",method = RequestMethod.GET)
+    @ApiOperation(value = "获取所有用户信息",httpMethod = "GET")
+    public List<User> getAllUser() {
+        List<User> userList = userService.getAllUser();
+        for (User u:userList){
+            System.out.println(u);
+        }
+        return  userList;
     }
 
 

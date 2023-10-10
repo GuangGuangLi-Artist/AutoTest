@@ -51,7 +51,7 @@ public class SpringBootPost {
                 user1.setSex("男");
                 JSONObject jsonObject = (JSONObject) JSONObject.toJSON(user1);
                 System.out.println(jsonObject);
-                return user.toString();
+                return user1.toString();
 
 
 
