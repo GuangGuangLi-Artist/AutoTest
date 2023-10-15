@@ -1,5 +1,6 @@
 package com.course.code.stackQueue;
 
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -7,8 +8,17 @@ import java.util.LinkedList;
  * 239 滑动窗口最大值
  * 给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。
  * 返回滑动窗口中的最大值。
+ *
+ *
  */
 public class MaxSlidingWindow {
+
+    public static void main(String[] args) {
+        int [] nums = {1,3,-1,-3,5,3,6,7};
+        int k = 3;
+        int[] window = maxSlidingWindow(nums, k);
+        System.out.println(Arrays.toString(window));
+    }
 
     public static int[] maxSlidingWindow(int[] nums,int k) {
         if(nums.length == 1) {
@@ -26,7 +36,7 @@ public class MaxSlidingWindow {
         }
 
         res[num++] = myQueueSingle.peek();
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = k; i < nums.length; i++) {
             //滑动窗口移除最前面的元素，移除是判断该元素是否放入队列
             myQueueSingle.poll(nums[i - k]);
             //滑动窗口加入最后面的元素
@@ -40,12 +50,18 @@ public class MaxSlidingWindow {
 }
 
 class MyQueueSingle{
+
+    /**
+     * 设计单调队列的时候，pop，和push操作要保持如下规则：
+     *     pop(value)：如果窗口移除的元素value等于单调队列的出口元素，那么队列弹出元素，否则不用任何操作
+     *     push(value)：如果push的元素value大于入口元素的数值，那么就将队列入口的元素弹出，直到push元素的数值小于等于队列入口元素的数值为止
+     */
     Deque<Integer> deque = new LinkedList<>();
     //弹出元素时，比较当前要弹出的数值是否等于队列出口的数值，如果相等则弹出
     //同时判断队列当前是否为空
     void poll (int val) {
         if( !deque.isEmpty() && val == deque.peek()) {
-            deque.poll();
+            deque.poll();//删除队列开头的元素
         }
     }
 
