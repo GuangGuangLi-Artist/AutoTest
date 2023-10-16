@@ -1,4 +1,4 @@
-package com.course.code.ListNode;
+package com.course.code.listNode;
 
 
 import org.testng.annotations.Test;

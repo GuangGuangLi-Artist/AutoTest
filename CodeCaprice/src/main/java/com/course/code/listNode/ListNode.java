@@ -1,4 +1,4 @@
-package com.course.code.ListNode;
+package com.course.code.listNode;
 
 public class    ListNode {
     //节点的值

@@ -1,4 +1,4 @@
-package com.course.code.Hash;
+package com.course.code.hash;
 
 import java.util.HashSet;
 import java.util.Set;
