@@ -3,6 +3,7 @@ package com.course.code.test.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.course.code.test.domain.User;
+import com.course.code.test.domain.UserQueryVo;
 import com.course.code.test.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -11,6 +12,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -67,6 +69,20 @@ public class GetUserCount {
             System.out.println(u);
         }
         return  userList;
+    }
+
+    //逐个获取用户信息
+    @RequestMapping(value = "getUserDetail",method = RequestMethod.GET)
+    @ApiOperation(value = "获取所有用户详情",httpMethod = "GET")
+    public List<User> getUserDetail() {
+        UserQueryVo queryVo = new UserQueryVo();
+        List<Integer> ids = new ArrayList<>();
+        ids.add(1);
+        ids.add(31);
+        ids.add(32);
+        queryVo.setIds(ids);
+        List<User> userList = userService.getUserDetail(queryVo);
+        return userList;
     }
 
 

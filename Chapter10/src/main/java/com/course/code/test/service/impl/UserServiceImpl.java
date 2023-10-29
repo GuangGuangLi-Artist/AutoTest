@@ -2,6 +2,7 @@ package com.course.code.test.service.impl;
 
 import com.course.code.test.dao.UserDao;
 import com.course.code.test.domain.User;
+import com.course.code.test.domain.UserQueryVo;
 import com.course.code.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class UserServiceImpl implements UserService {
 
     public List<User> getAllUser() {
          return  userDao.getAllUser();
+    }
+
+    @Override
+    public List<User> getUserDetail(UserQueryVo queryVo) {
+        return userDao.getUserDetail(queryVo);
     }
 }

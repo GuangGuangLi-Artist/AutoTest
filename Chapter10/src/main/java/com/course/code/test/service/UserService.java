@@ -1,6 +1,7 @@
 package com.course.code.test.service;
 
 import com.course.code.test.domain.User;
+import com.course.code.test.domain.UserQueryVo;
 
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface UserService {
     public void deleteUser(int id);
 
     public List<User> getAllUser();
+
+    public List<User> getUserDetail(UserQueryVo queryVo);
 }
