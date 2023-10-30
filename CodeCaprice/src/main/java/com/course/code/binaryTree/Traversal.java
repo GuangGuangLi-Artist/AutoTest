@@ -74,17 +74,6 @@ public class Traversal {
     @Test
     public void testBianLi() {
         TreeNode treeNode = new TreeNode();
-        treeNode.val = 5;
-        treeNode.add(4);
-        treeNode.add(1);
-        treeNode.add(2);
-        treeNode.add(6);
-        treeNode.add(7);
-        treeNode.add(8);
-
-        List<Integer> preorderList = inorderTraversal(treeNode);
-        System.out.println(Arrays.asList(preorderList).toString());
-
     }
 
 

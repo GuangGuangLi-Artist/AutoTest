@@ -20,21 +20,4 @@ public class TreeNode {
         this.right = right;
     }
 
-    //添加节点
-    public void add (int data) {
-        if (this.val > data) {
-            if(this.left == null) {
-                this.left = new TreeNode(data);
-            }else {
-                this.left.add(data);
-            }
-
-        }else if (this.val < data){
-            if (this.right == null) {
-                this.right = new TreeNode(data);
-            }else {
-                this.right.add(data);
-            }
-        }
-    }
 }
