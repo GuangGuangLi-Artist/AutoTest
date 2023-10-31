@@ -73,7 +73,10 @@ public class Traversal {
 
     @Test
     public void testBianLi() {
-        TreeNode treeNode = new TreeNode();
+        TreeUtils t = new TreeUtils();
+        TreeNode node = t.buildTree("[5,4,6,1,2,7,8]");
+        List<Integer> inOrderList = inorderTraversal(node);
+        System.out.println(Arrays.asList(inOrderList));
     }
 
 
