@@ -75,8 +75,24 @@ public class Traversal {
     public void testBianLi() {
         TreeUtils t = new TreeUtils();
         TreeNode node = t.buildTree("[5,4,6,1,2,7,8]");
-        List<Integer> inOrderList = inorderTraversal(node);
-        System.out.println(Arrays.asList(inOrderList));
+        List<Integer> postorder = preorderTraversal(node);
+        System.out.println(Arrays.asList(postorder));
+    }
+
+    @Test
+    public void testDiGui() {
+        int res = fib(5);
+        System.out.println(res);
+    }
+
+    public int fib(int n) {
+        if (n == 1) {
+            return 1;
+        }else {
+             return  n * fib(n - 1);
+        }
+
+
     }
 
 
