@@ -95,5 +95,16 @@ public class Traversal {
 
     }
 
+    @Test
+    public void testReturn() {
+
+        for (int i = 0; i < 5; i++) {
+            if (i == 2) {
+                return;
+            }
+            System.out.println(i);
+        }
+    }
+
 
 }
