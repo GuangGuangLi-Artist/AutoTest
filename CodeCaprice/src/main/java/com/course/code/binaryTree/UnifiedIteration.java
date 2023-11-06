@@ -1,6 +1,9 @@
 package com.course.code.binaryTree;
 
+import org.testng.annotations.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -20,7 +23,7 @@ public class UnifiedIteration {
         }
 
         while (!st.isEmpty()) {
-            TreeNode node = st.peek();
+            TreeNode node = st.peek();//查看堆顶对象而不删除
             if(node != null) {
                 st.pop();// 将该节点弹出，避免重复操作，下面再将右中左节点添加到栈中
                 if(node.right != null) {
@@ -91,6 +94,15 @@ public class UnifiedIteration {
             }
         }
         return res;
+    }
+
+
+    @Test
+    public void testPreorderTraversal() {
+        TreeUtils t = new TreeUtils();
+        TreeNode node = t.buildTree("[5,4,6,1,2,7,8]");
+        List<Integer> preorder = preorderTraversal(node);
+        System.out.println(Arrays.asList(preorder));
     }
 
 }
