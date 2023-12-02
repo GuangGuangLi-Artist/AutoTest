@@ -1,6 +1,8 @@
 package com.course.code.binaryTree;
 
 
+import org.testng.annotations.Test;
+
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -46,11 +48,11 @@ public class IsSymmetric {
     //迭代法
     public boolean isSymmetric2(TreeNode root) {
         Deque<TreeNode> deque = new LinkedList<>();
-        deque.offerFirst(root.left);
-        deque.offerLast(root.right);
+        deque.offerFirst(root.left);//在此deque的前面插入指定的元素，除非它会违反容量限制。
+        deque.offerLast(root.right);//在此deque的末尾插入指定的元素，除非它会违反容量限制。
         while (!deque.isEmpty()) {
-            TreeNode leftNode = deque.pollFirst();
-            TreeNode rightNode = deque.pollLast();
+            TreeNode leftNode = deque.pollFirst();//检索并删除此deque的第一个元素，如果此deque为空，则返回 null
+            TreeNode rightNode = deque.pollLast();//检索并删除此deque的最后一个元素，如果此deque为空，则返回 null 。
             if(leftNode == null && rightNode == null) {
                 continue;
             }
@@ -91,6 +93,15 @@ public class IsSymmetric {
         return true;
 
 
+    }
+
+    @Test
+    public void testIsSymmetric() {
+        TreeUtils utils = new TreeUtils();
+        //TreeNode treeNode = utils.buildTree("[4,2,7,1,3,6,9]");
+        TreeNode treeNode = utils.buildTree("[1,2,3,4,5,6,2,4,3,6,5]");
+        boolean b = isSymmetric(treeNode);
+        System.out.println(b);
     }
 
 }
