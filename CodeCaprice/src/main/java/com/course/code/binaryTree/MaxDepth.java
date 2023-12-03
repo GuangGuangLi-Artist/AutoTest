@@ -34,7 +34,7 @@ public class MaxDepth {
         TreeNode tree = treeUtils.buildTree("[3,9,20,null,null,15,7]");
         System.out.println(maxDepth1(tree));
         System.out.println("----------");
-        System.out.println(maxDepth2(tree));
+//        System.out.println(maxDepth2(tree));
 
 
     }
@@ -49,11 +49,6 @@ public class MaxDepth {
         return Math.max(leftDepth,rightDepth) + 1;
     }
 
-    @Test
-    public void testMaxDepth2() {
-        //迭代法  层序遍历
-
-    }
 
     public int maxDepth2(TreeNode root) {
         if (root == null) {
