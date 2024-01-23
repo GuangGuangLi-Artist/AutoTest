@@ -1,6 +1,12 @@
 package com.course.code.binaryTree;
 
 
+import org.apache.commons.lang3.StringUtils;
+import org.testng.annotations.Test;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -73,6 +79,98 @@ public class Haspathsum {
             }
         }
     return false;
+    }
+
+
+    public List<List<Integer>> pathSum(TreeNode root,int targetSum) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        List<Integer> path = new LinkedList<>();
+        preOrderDfs(root,targetSum,res,path);
+        return res;
+    }
+
+    private void preOrderDfs(TreeNode root, int targetSum, List<List<Integer>> res, List<Integer> path) {
+        path.add(root.val);
+
+        //遇到了叶子节点
+        if(root.left == null && root.right == null) {
+            //找到了和为targetSum的路径
+            if(targetSum - root.val == 0) {
+                res.add(new ArrayList<>(path));
+            }
+            return;//和不为targetSum 返回
+        }
+
+        if(root.left != null) {
+            preOrderDfs(root.left,targetSum - root.val,res,path);
+            path.remove(path.size() - 1); // 回溯
+        }
+
+        if(root.right != null) {
+            preOrderDfs(root.right,targetSum - root.val,res,path);
+            path.remove(path.size() - 1); // 回溯
+        }
+
+    }
+
+    public  List<List<Integer>> pathSumByIter(TreeNode root,int targetSum) {
+        List<List<Integer>> res = new ArrayList<>();
+        Stack<TreeNode> nodeStack = new Stack<>();
+        Stack<Integer> sumStack = new Stack<>();
+        Stack<ArrayList<Integer>> pathStack = new Stack<>();
+        if(root== null) return res;
+        nodeStack.push(root);
+        sumStack.push(root.val);
+        pathStack.push(new ArrayList<>());
+        while (!nodeStack.isEmpty()) {
+            TreeNode curNode = nodeStack.peek();
+            int curSum = sumStack.pop();
+            ArrayList<Integer> curPath = pathStack.pop();
+            if(curNode != null) {
+                nodeStack.pop();
+                nodeStack.add(curNode);
+                nodeStack.add(null);
+                sumStack.add(curSum);
+                curPath.add(curNode.val);
+                pathStack.add(new ArrayList<>(curPath));
+
+                if(curNode.right != null) {
+                    nodeStack.add(curNode.right);
+                    sumStack.add(curSum + curNode.right.val);
+                    pathStack.add(new ArrayList<>(curPath));
+                }
+
+                if(curNode.left != null) {
+                    nodeStack.add(curNode.left);
+                    sumStack.add(curSum + curNode.left.val);
+                    pathStack.add(new ArrayList<>(curPath));
+                }
+            }else {
+                nodeStack.pop();
+                TreeNode temp = nodeStack.pop();
+                if (temp.left == null && temp.right == null && curSum == targetSum) {
+                    res.add(new ArrayList<>(curPath));
+                }
+            }
+        }
+        return res;
+
+    }
+
+
+    @Test
+    public void testHasPathSum() {
+        TreeUtils treeUtils = new TreeUtils();
+        TreeNode treeNode = treeUtils.buildTree("[5,4,8,11,null,13,4,7,2,null,null,null,1]");
+        boolean b = hasPathSumByRecursion(treeNode, 22);
+        List<List<Integer>> lists = pathSum(treeNode, 22);
+        System.out.println(b);
+        System.out.println("------");
+        System.out.println(StringUtils.join("",lists));
+        System.out.println("------");
+        List<List<Integer>> listByIte = pathSumByIter(treeNode, 22);
+        System.out.println(StringUtils.join("",listByIte));
     }
 
 
