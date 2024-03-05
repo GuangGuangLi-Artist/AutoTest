@@ -1,6 +1,8 @@
 package com.course.code.binaryTree;
 
 
+import org.testng.annotations.Test;
+
 /**
  * 236. 二叉树的最近公共祖先
  *
@@ -32,5 +34,15 @@ public class LowestCommonAncestor {
         }else { // 若找到两个节点
             return root;
         }
+    }
+
+    @Test
+    public void testLowestCommonAncestor() {
+        TreeUtils utils = new TreeUtils();
+        TreeNode root = utils.buildTree("[3,5,1,6,2,0,8,null,null,7,4]");
+        TreeNode node = lowestCommonAncestor(root, root.left.right.left, root.left.right.right);
+        System.out.println(node.val);
+
+
     }
 }

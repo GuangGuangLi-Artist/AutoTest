@@ -1,7 +1,10 @@
 package com.course.code.binaryTree;
 
 
+import org.testng.annotations.Test;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -104,5 +107,14 @@ public class FindMode {
             }
         }
         return result.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    @Test
+    public void testFindMode() {
+        TreeUtils utils = new TreeUtils();
+        TreeNode root = utils.buildTree("[1,null,2,2]");
+        FindMode fm = new FindMode();
+        int[] mode = fm.findMode(root);
+        System.out.println(Arrays.toString(mode));
     }
 }

@@ -1,5 +1,7 @@
 package com.course.code.binaryTree;
 
+import org.testng.annotations.Test;
+
 import java.util.Stack;
 
 /**
@@ -65,5 +67,14 @@ public class GetMinimumDifference {
             }
         }
         return result;
+    }
+
+    @Test
+    public void testGetMin() {
+        TreeUtils utils = new TreeUtils();
+        TreeNode root = utils.buildTree("[8,4,10,1,7,null,15]");
+        GetMinimumDifference gd = new GetMinimumDifference();
+        int difference = gd.getMinimumDifference(root);
+        System.out.println(difference);
     }
 }
