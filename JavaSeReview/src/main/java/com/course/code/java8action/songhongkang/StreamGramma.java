@@ -104,6 +104,45 @@ public class StreamGramma {
                 .distinct()
                 .forEach(System.out::println);
 
+
+        List<String> stringList = Arrays.asList("aaa","eee","ccc","ddd");
+        System.out.println("*************** map");
+        stringList.stream()
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+
+        System.out.println("*************** flatMap");
+        stringList.stream()
+                .flatMap( x -> getcharacterStream(x))
+                .forEach(System.out::println);
+
+
+        System.out.println("*************** sorted() 自然顺序排序");
+        stringList.stream()
+                .sorted()
+                .forEach(System.out::println);
+
+        System.out.println("*************** sorted(Comparator comp) 比较器顺序排序");
+        eightObjects.stream()
+                .sorted((o1,o2) -> {
+                    if(o1.getAge() == o2.getAge()) {
+                        return -o1.getName().compareTo(o2.getName());
+                    }else {
+                        return o1.getAge() - o2.getAge();
+                    }
+                })
+                .forEach(System.out::println);
+
+
+
+    }
+
+    public Stream<Character> getcharacterStream(String str) {
+        List<Character> characterList = new ArrayList<>();
+        for (char c : str.toCharArray()) {
+            characterList.add(c);
+        }
+        return characterList.stream();
     }
 
 
