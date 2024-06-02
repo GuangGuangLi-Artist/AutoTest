@@ -2,9 +2,8 @@ package com.course.code.java8action.songhongkang;
 
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -134,8 +133,27 @@ public class StreamGramma {
                 .forEach(System.out::println);
 
 
+        System.out.println("*************** 元素按照属性去重");
+        List<JavaEightObject> newJeoList = Arrays.asList(new JavaEightObject("x001", 35),
+                new JavaEightObject("x001", 36), new JavaEightObject("y002", 35),
+                new JavaEightObject("x002", 20));
+
+        //筛选对象 生成新的对象集合 姓名不相同 就是不同的对象 遇到姓名相同的 取年龄小的
+        List<String> nameList = new ArrayList<>();
+        List<JavaEightObject> eightObjectList = newJeoList.stream()
+                .sorted(Comparator.comparing(JavaEightObject::getAge))
+                .filter(javaEightObject -> {
+                    boolean b = !nameList.contains(javaEightObject.getName());
+                    nameList.add(javaEightObject.getName());
+                    return b;
+                }).collect(Collectors.toList());
+
+        eightObjectList.forEach(System.out::println);
+
 
     }
+
+
 
     public Stream<Character> getcharacterStream(String str) {
         List<Character> characterList = new ArrayList<>();
@@ -144,6 +162,122 @@ public class StreamGramma {
         }
         return characterList.stream();
     }
+
+    // Stream的终止操作
+
+    @Test
+    public void testStreamThree() {
+        /**
+         * 1 查找与匹配
+         *     allMatch(Predicate p)  检查是否匹配所有元素
+         *     anyMatch(Predicate p)  检查是否至少匹配一个元素
+         *     noneMatch(Predicate p)  检查是否没有匹配所有元素
+         *     findFirst()  返回第一个元素
+         *     findAny()    返回当前流中的任意元素
+         *     count()      返回流中元素总数
+         *     max(Comparator c)      返回流中最大值
+         *     min(Comparator c)      返回流中最小值
+         *     forEach(Consumer c)      内部迭代(使用 Collection 接口需要用户去做迭代，称为外部迭代。相反，Stream API 使用内部迭代——它帮你把迭代做了)
+         *
+         * 2 归约
+         *     reduce(T iden, BinaryOperator b)     可以将流中元素反复结合起来，得到一个值。
+         *     reduce(BinaryOperator b)     可以将流中元素反复结合起来，得到一个值。返回 Optional<T>
+         *
+         *
+         * 3 收集
+         *     collect(Collector c)     将流转换为其他形式。接收一个 Collector接口的实现，用于给Stream中元素做汇总的方法
+         *     具体方法
+         *         toList  List<T>    把流中元素收集到List    List<Employee> emps= list.stream().collect(Collectors.toList());
+         *         toSet  Set<T>      把流中元素收集到Set     Set<Employee> emps= list.stream().collect(Collectors.toSet());
+         *         toCollection    Collection<T>    把流中元素收集到创建的集合     Collection<Employee>emps=list.stream().collect(Collectors.toCollection(ArrayList::new));
+         *         counting  Long    计算流中元素的个数    long count = list.stream().collect(Collectors.counting());
+         *         summingInt  Integer    对流中元素的整数属性求和    inttotal=list.stream().collect(Collectors.summingInt(Employee::getSalary));
+         *         averagingInt  Double    计算流中元素Integer属性的平均值    doubleavg= list.stream().collect(Collectors.averagingInt(Employee::getSalary));
+         *         summarizingInt  IntSummaryStatistics    收集流中Integer属性的统计值。    IntSummaryStatisticsiss= list.stream().collect(Collectors.summarizingInt(Employee::getSalary));
+         *         joining  String    连接流中每个字符串    String str= list.stream().map(Employee::getName).collect(Collectors.joining());
+         *         maxBy  Optional<T>    根据比较器选择最大值    Optional<Emp>max= list.stream().collect(Collectors.maxBy(comparingInt(Employee::getSalary)));
+         *         minBy  Optional<T>    根据比较器选择最小值    Optional<Emp> min = list.stream().collect(Collectors.minBy(comparingInt(Employee::getSalary)));
+         *         reducing 归约产生的类型    从一个作为累加器的初始值开始，利用BinaryOperator与流中元素逐个结合，从而归约成单个值    inttotal=list.stream().collect(Collectors.reducing(0, Employee::getSalar, Integer::sum));
+         *         collectingAndThen  转换函数返回的类型    包裹另一个收集器，对其结果转换函数    inthow= list.stream().collect(Collectors.collectingAndThen(Collectors.toList(), List::size));
+         *         groupingBy Map<K, List<T>>    根据某属性值对流分组，属性为K，结果为V    Map<Emp.Status, List<Emp>> map= list.stream().collect(Collectors.groupingBy(Employee::getStatus));
+         *         partitioningBy  Map<Boolean, List<T>>    根据true或false进行分区    Map<Boolean,List<Emp>>vd= list.stream().collect(Collectors.partitioningBy(Employee::getManage));
+         */
+
+        List<JavaEightObject> eightTerminate = Arrays.asList(new JavaEightObject("许巍", 35, JavaEightObject.Status.BUSY),
+                new JavaEightObject("窦唯", 28, JavaEightObject.Status.FREE),
+                new JavaEightObject("汪峰", 28, JavaEightObject.Status.VOCATION),
+                new JavaEightObject("李志", 20,JavaEightObject.Status.BUSY),
+                new JavaEightObject("崔永元", 40, JavaEightObject.Status.VOCATION),
+                new JavaEightObject("崔永元", 40, JavaEightObject.Status.FREE),
+                new JavaEightObject("柴静", 18,JavaEightObject.Status.BUSY));
+
+        System.out.println("*************** allMatch(Predicate p)  检查是否匹配所有元素");
+        boolean allMatch = eightTerminate.stream()
+                .allMatch(e -> e.getStatus().equals(JavaEightObject.Status.BUSY));
+        System.out.println(allMatch);
+
+        System.out.println("*************** anyMatch(Predicate p)  检查是否至少匹配一个元素");
+        boolean anyMatch = eightTerminate.stream()
+                .anyMatch(e -> e.getStatus().equals(JavaEightObject.Status.BUSY));
+        System.out.println(anyMatch);
+
+
+        System.out.println("noneMatch(Predicate p)  检查是否没有匹配所有元素");
+        boolean noneMatch = eightTerminate.stream()
+                .noneMatch(e -> e.getStatus().equals(JavaEightObject.Status.BUSY));
+        System.out.println(noneMatch);
+
+
+        System.out.println("findFirst()  返回第一个元素");
+        Optional<JavaEightObject> first = eightTerminate.stream()
+                .sorted(Comparator.comparing(JavaEightObject::getAge))
+                .findFirst();
+        System.out.println(first);
+
+        System.out.println("findAny()    返回当前流中的任意元素");
+        Optional<JavaEightObject> findAny = eightTerminate.stream()
+                .filter(e -> e.getStatus().equals(JavaEightObject.Status.FREE))
+                .findAny();
+        System.out.println(findAny);
+
+        System.out.println("count()      返回流中元素总数");
+        Long count = eightTerminate.stream()
+                .count();
+        System.out.println(count);
+
+
+        System.out.println("max(Comparator c)      返回流中最大值");
+        Optional<JavaEightObject> max = eightTerminate.stream()
+                .max(Comparator.comparing(JavaEightObject::getAge));
+        System.out.println(max);
+
+        System.out.println("min(Comparator c)      返回流中最小值");
+        Optional<JavaEightObject> min = eightTerminate.stream()
+                .min(Comparator.comparing(JavaEightObject::getAge));
+        System.out.println(min);
+
+        System.out.println("reduce(T iden, BinaryOperator b)     可以将流中元素反复结合起来，得到一个值。");
+        Integer reduce = eightTerminate.stream()
+                .map(JavaEightObject::getAge)
+                .reduce(0, (x, y) -> x + y);
+        System.out.println(reduce);
+
+        Optional<Integer> map_reduce = eightTerminate.stream()
+                .map(JavaEightObject::getAge)
+                .reduce(Integer::sum);
+        System.out.println(map_reduce);
+
+
+
+    }
+
+
+
+
+
+
+
+
 
 
 

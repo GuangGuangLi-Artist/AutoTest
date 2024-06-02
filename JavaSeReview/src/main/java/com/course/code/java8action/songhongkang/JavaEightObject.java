@@ -8,6 +8,8 @@ public class JavaEightObject {
 
     private int age;
 
+    private Status status;
+
     public String getName() {
         return name;
     }
@@ -24,14 +26,32 @@ public class JavaEightObject {
         this.age = age;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+
     public JavaEightObject(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
+    public JavaEightObject(String name, int age, Status status) {
+        this.name = name;
+        this.age = age;
+        this.status = status;
+    }
+
+
     public JavaEightObject(int age) {
         this.age = age;
     }
+
+
 
     public JavaEightObject() {
     }
@@ -41,6 +61,7 @@ public class JavaEightObject {
         return "JavaEightObject{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", status=" + status +
                 '}';
     }
 
@@ -49,11 +70,18 @@ public class JavaEightObject {
         if (this == o) return true;
         if (!(o instanceof JavaEightObject)) return false;
         JavaEightObject that = (JavaEightObject) o;
-        return age == that.age && name.equals(that.name);
+        return age == that.age && name.equals(that.name) && status == that.status;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(name, age);
+    }
+
+    public enum Status {
+        FREE,
+        BUSY,
+        VOCATION,
+
     }
 }
