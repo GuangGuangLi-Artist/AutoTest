@@ -1,10 +1,13 @@
 package com.course.code.java8action.songhongkang;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.annotations.Test;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 
 /**
@@ -146,7 +149,7 @@ public class StreamGramma {
                     boolean b = !nameList.contains(javaEightObject.getName());
                     nameList.add(javaEightObject.getName());
                     return b;
-                }).collect(Collectors.toList());
+                }).collect(toList());
 
         eightObjectList.forEach(System.out::println);
 
@@ -267,6 +270,78 @@ public class StreamGramma {
                 .reduce(Integer::sum);
         System.out.println(map_reduce);
 
+        System.out.println("toList  List<T>    把流中元素收集到List");
+        List<String> nameList= eightTerminate.stream()
+                .map(JavaEightObject::getName)
+                .collect(toList());
+        nameList.forEach(System.out::println);
+
+        System.out.println("toSet  Set<T>      把流中元素收集到Set");
+        Set<String> nameSet= eightTerminate.stream()
+                .map(JavaEightObject::getName)
+                .collect(Collectors.toSet());
+        nameSet.forEach(System.out::println);
+
+
+        System.out.println("toCollection    Collection<T>    把流中元素收集到创建的集合");
+        HashSet<String> nameHashSet = eightTerminate.stream()
+                .map(JavaEightObject::getName)
+                .collect(Collectors.toCollection(HashSet::new));
+        nameHashSet.forEach(System.out::println);
+
+
+        System.out.println("counting  Long    计算流中元素的个数");
+        Long eBoCountLong = eightTerminate.stream()
+                .collect(Collectors.counting());
+        System.out.println(eBoCountLong);
+
+
+        System.out.println("summingInt  Integer    对流中元素的整数属性求和");
+        Integer ageSum = eightTerminate.stream()
+                .collect(Collectors.summingInt(JavaEightObject::getAge));
+        System.out.println(ageSum);
+        System.out.println("averagingInt  Double    计算流中元素Integer属性的平均值");
+        Double ageAverage =  eightTerminate.stream()
+                .collect(Collectors.averagingInt(JavaEightObject::getAge));
+        System.out.println(ageAverage);
+        System.out.println("summarizingInt  IntSummaryStatistics    收集流中Integer属性的统计值。");
+        IntSummaryStatistics ageSummaryStatistics = eightTerminate.stream()
+                .collect(Collectors.summarizingInt(JavaEightObject::getAge));
+        System.out.println(ageSummaryStatistics);
+        System.out.println("joining  String    连接流中每个字符串");
+        String nameStringJoin = eightTerminate.stream()
+                .map(JavaEightObject::getName)
+                .collect(Collectors.joining(","));
+        System.out.println(nameStringJoin);
+        System.out.println("maxBy  Optional<T>    根据比较器选择最大值");
+        Optional<JavaEightObject> maxBy = eightTerminate.stream()
+                .collect(Collectors.maxBy(Comparator.comparing(JavaEightObject::getAge)));
+        System.out.println(maxBy);
+        System.out.println("minBy  Optional<T>    根据比较器选择最小值");
+        Optional<JavaEightObject> minBy = eightTerminate.stream()
+                .collect(Collectors.minBy(Comparator.comparing(JavaEightObject::getAge)));
+        System.out.println(minBy);
+        System.out.println("reducing 归约产生的类型    从一个作为累加器的初始值开始，利用BinaryOperator与流中元素逐个结合，从而归约成单个值");
+        Integer ageCollectReduce = eightTerminate.stream()
+                .map(JavaEightObject::getAge)
+                .collect(Collectors.reducing(0, (x, y) -> x + y));
+        System.out.println(ageCollectReduce);
+        System.out.println("collectingAndThen  转换函数返回的类型    包裹另一个收集器，对其结果转换函数 ");
+        List<JavaEightObject> objectsCollectingAndThen = eightTerminate.stream()
+                .collect(Collectors.collectingAndThen(toList(), Collections::unmodifiableList));
+        objectsCollectingAndThen.forEach(System.out::println);
+        System.out.println("groupingBy Map<K, List<T>>    根据某属性值对流分组，属性为K，结果为V");
+        Map<String, List<JavaEightObject>> nameMap = eightTerminate.stream()
+                .collect(Collectors.groupingBy(JavaEightObject::getName));
+        nameMap.forEach((name,list) -> {
+            System.out.println(name + "-------" + StringUtils.join(",",list));
+        });
+        System.out.println("partitioningBy  Map<Boolean, List<T>>    根据true或false进行分区");
+        Map<Boolean, List<JavaEightObject>> partitioningMap = eightTerminate.stream()
+                .collect(Collectors.partitioningBy(e -> e.getAge() > 35));
+        partitioningMap.forEach((name,list) -> {
+            System.out.println(name + "-------" + StringUtils.join(",",list));
+        });
 
 
     }
