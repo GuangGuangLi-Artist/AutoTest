@@ -26,6 +26,8 @@
       <module>AlgorithmsLearn</module>
       <module>HuaWeiSuanFa</module>
       <module>CodeCaprice</module>
+    <module>temp</module>
+    <!--<module>ApiAutoPro</module>-->
   </modules>
 
   <name>AutoTest</name>

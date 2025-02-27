@@ -126,6 +126,18 @@ public class StringTest {
     }
 
 
+    @Test
+    public void testChar(){
+        char ch = 'a';
+        int aNum = (int) ch;
+        System.out.println(aNum);
+
+        char chb = 'b';
+        int bNum = chb;
+        System.out.println(bNum);
+    }
+
+
 
 
 

@@ -7,6 +7,6 @@
         <package name="com.course.code.domain"/>
     </typeAliases>
     <mappers>
-        <mapper resource="mapper/***.xml"></mapper>
+        <mapper resource="com/**/*.xml"></mapper>
     </mappers>
 </configuration>

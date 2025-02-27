@@ -15,6 +15,6 @@ spring:
     password: 123456
 
 mybatis:
-  type-aliases-package: com.course.code.test.controller.dao
+  type-aliases-package: com.course.code.test.dao
   mapper-locations:
     - mapper/*
