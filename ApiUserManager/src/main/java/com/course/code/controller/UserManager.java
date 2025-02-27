@@ -23,6 +23,8 @@ import java.util.Objects;
 @RequestMapping("/v1")
 public class UserManager {
 
+    //http://localhost:8083/swagger-ui.html#!/user-manager/
+
     @Autowired
     private SqlSessionTemplate template;
 
