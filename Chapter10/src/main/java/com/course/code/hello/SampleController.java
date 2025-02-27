@@ -18,7 +18,12 @@ public class SampleController {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(SampleController.class,args);
+        try {
+            SpringApplication.run(SampleController.class,args);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
