@@ -16,4 +16,4 @@ spring:
 
 mybatis:
   type-aliases-package: com.course.code.domain
-  mapper-locations: classpath:com/course/code/dao/*.xml
+  mapper-locations: classpath:com/course/code/domain/*.xml

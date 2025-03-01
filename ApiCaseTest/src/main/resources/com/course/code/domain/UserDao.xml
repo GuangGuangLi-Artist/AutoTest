@@ -2,11 +2,7 @@
 <!DOCTYPE mapper PUBLIC
         "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.course.code.dao.UserDao">
-    <select id="getUserCount" resultType="int">
-        select count(*) from test_user;
-    </select>
-
+<mapper namespace="com.course.code.domain">
     <select id="logingCase" parameterType="Integer" resultType="com.course.code.domain.LoginCase" >
         select * from test_logincase where id=#{id};
     </select>
@@ -31,7 +27,7 @@
 
     <select id="addUser" parameterType="com.course.code.domain.AddUserCase" resultType="com.course.code.domain.User" flushCache="false" useCache="false">
         select * from test_user where
-            userName= #{userName}and password=#{password} and age=#{age} and sex=#{sex}  and permission=#{permission} and isDelete=#{isDelete}
+            userName= #{userName} and password=#{password} and age=#{age} and sex=#{sex}  and permission=#{permission} and isDelete=#{isDelete}
     </select>
 
     <!--    获取用户信息-->

@@ -31,7 +31,7 @@
 
     <!-- 注册映射文件：java对象与数据库之间的xml文件路径！ -->
     <mappers>
-        <mapper resource="com/course/code/dao/UserDao.xml"/>
+        <mapper resource="com/course/code/domain/UserDao.xml"/>
     </mappers>
 
 </configuration>

@@ -49,6 +49,7 @@ public class AddUserCaseTest {
         param.put("sex",addUserCase.getSex());
         param.put("permission",addUserCase.getPermission());
         param.put("isDelete",addUserCase.getIsDelete());
+        param.put("expected",addUserCase.getExpected());
 
         //设置头信息
         post.setHeader("content-type","application/json");

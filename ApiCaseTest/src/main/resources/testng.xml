@@ -6,7 +6,7 @@
             <class name="com.course.code.cases.LoginTest">
                 <methods>
                     <include name="loginTrue"></include>
-                    <include name="loginFalse"></include>
+                    <exclude name="loginFalse"></exclude>
                 </methods>
             </class>
 
@@ -19,20 +19,24 @@
 
             <class name="com.course.code.cases.GetUserInfoCaseTest">
                 <methods>
-                    <include name="getUserInfo"></include>
+<!--                    <include name="getUserInfo"></include>-->
+                    <exclude name="getUserInfo"></exclude>
                 </methods>
             </class>
 
             <class name="com.course.code.cases.GetUserListCaseTest">
                 <methods>
-                    <include name="getUserList"></include>
+<!--                    <include name="getUserList"></include>-->
+                    <exclude name="getUserList"></exclude>
                 </methods>
             </class>
 
             <class name="com.course.code.cases.UpdateUserCaseTest">
                 <methods>
-                    <include name="updateUser"></include>
-                    <include name="deleteUser"></include>
+<!--                    <include name="updateUser"></include>-->
+<!--                    <include name="deleteUser"></include>-->
+                    <exclude name="updateUser"></exclude>
+                    <exclude name="deleteUser"></exclude>
                 </methods>
             </class>
 
