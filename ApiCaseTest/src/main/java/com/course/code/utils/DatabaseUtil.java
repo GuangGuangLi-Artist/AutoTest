@@ -16,7 +16,8 @@ public class DatabaseUtil {
 
         SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader);
 
-        SqlSession session = factory.openSession();
+        //factory.openSession(true) 解决了Setting autocommit to false on JDBC Connection
+        SqlSession session = factory.openSession(true);
 
 
         return session;

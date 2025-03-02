@@ -10,6 +10,9 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.util.EntityUtils;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -22,8 +25,8 @@ public class AddUserCaseTest {
     @Test(dependsOnGroups = "loginTrue",description = "添加用户接口测试")
     public void addUser() throws IOException, InterruptedException {
         SqlSession session = DatabaseUtil.getSqlSession();
-        AddUserCase addUserCase = session.selectOne("addUserCase",1);
-        System.out.println(addUserCase.toString());//{id=1, userName='李四', password='123456', sex='男', age='28', permission='0', isDelete='1', expected='true'}
+        AddUserCase addUserCase = session.selectOne("addUserCase",2);
+        System.out.println(addUserCase.toString());//{id=2, userName='王五', password='123456', sex='男', age='30', permission='1', isDelete='1', expected='true'}
         System.out.println(TestConfig.addUserUrl);//http://localhost:8083/v1/addUser
         //1, heh, 123, 15, 男, true, 1, true
 
@@ -31,13 +34,18 @@ public class AddUserCaseTest {
         //发请求获取结果
         String result = getResult(addUserCase);//true
         Thread.sleep(5000);
-      //{id=1, userName='李四', password='123456', sex='男', age='28', permission='0', isDelete='1', expected='true'}
+      //{id=2, userName='王五', password='123456', sex='男', age='30', permission='1', isDelete='1', expected='true'}
+
         User user = session.selectOne("addUser",addUserCase);
+        session.commit();
         System.out.println(user.toString());
         //验证返回结果
         Assert.assertEquals(addUserCase.getExpected(),result);
 
     }
+
+
+
 
     private String getResult(AddUserCase addUserCase) throws IOException {
 

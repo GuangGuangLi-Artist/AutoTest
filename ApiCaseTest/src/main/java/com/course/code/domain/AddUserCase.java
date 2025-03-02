@@ -6,7 +6,7 @@ public class AddUserCase {
     private String userName;
     private String password;
     private String sex;
-    private String age;
+    private int age;
     private String permission;
     private String isDelete;
     private String expected;
@@ -43,11 +43,11 @@ public class AddUserCase {
         this.sex = sex;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

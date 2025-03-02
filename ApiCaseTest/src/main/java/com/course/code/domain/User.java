@@ -4,7 +4,7 @@ public class User {
     private int id;
     private String userName;
     private String password;
-    private String age;
+    private int age;
     private String sex;
     private String permission;
     private String isDelete;
@@ -35,11 +35,11 @@ public class User {
         this.password = password;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
