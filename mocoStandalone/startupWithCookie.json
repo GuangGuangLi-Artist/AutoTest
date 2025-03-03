@@ -54,5 +54,35 @@
         "Content-Type": "application/json;charset=GBK"
       }
     }
+  },
+  {
+    "description": "这是一个必须带有Cookie的需要带有参数的get请求",
+    "request": {
+      "uri": "/getdemo/api1/getTest",
+      "method": "get",
+      "cookies": {
+        "email": "9999@123.com",
+        "login": "success"
+      },
+      "queries": {
+        "name": "getWithLi",
+        "password": "123321",
+        "postType": "comment"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-Type": "application/json;charset=UTF-8"
+      },
+      "json": {
+        "content": "success",
+        "msg": 200,
+        "result": {
+          "behind": "guang",
+          "before": "li"
+        }
+      }
+    }
   }
 ]
