@@ -3,6 +3,8 @@ package com.course.code.coreclass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.Arrays;
+
 public class StringTest {
 
 
@@ -138,7 +140,15 @@ public class StringTest {
     }
 
 
-
-
+    @Test
+    public void testRev(){
+        int[] arr = {8,5,3,4,2,6};
+        Arrays.sort(arr);
+        int [] res = new int[arr.length];
+        for (int i= arr.length -1 ; i >= 0; i--) {
+            res[i] = arr[i];
+        }
+        System.out.println(Arrays.toString(res));
+    }
 
 }

@@ -71,7 +71,7 @@
     },
     "response": {
       "headers": {
-        "Content-Typ":"application/json"
+        "content-Type":"application/json"
       },
       "json": {
         "code": 200,
@@ -86,7 +86,7 @@
       "uri": "/post/filejson",
       "method": "post",
       "headers": {
-        "Content-Typ":"multipart/form-data"
+        "content-Type":"multipart/form-data"
       },
       "file": {
         "json": "test.json"
@@ -99,6 +99,45 @@
       "result": "请求参数是json文件类型"
     }
   }
+  },
+
+  {
+    "description": "这是复习带有cookie的post请求",
+    "request": {
+      "uri": "/api2/postreview/json",
+      "method": "post",
+      "headers": {
+      "content-Type": "application/json"
+    },
+      "cookies": {
+        "email": "9999@123.com",
+        "login": "success"
+      },
+      "json": {
+        "name":"su",
+        "password":"biao"
+    }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-Type": "application/json"
+      },
+      "json": {
+        "description": "这是json请求返回的内容",
+        "name": "zhangsan",
+        "posts": [
+          {
+            "pass": "123",
+            "comm": "test1"
+          },
+          {
+            "pass": "321",
+            "comm": "test2"
+          }
+        ]
+      }
+    }
   }
 
 ]

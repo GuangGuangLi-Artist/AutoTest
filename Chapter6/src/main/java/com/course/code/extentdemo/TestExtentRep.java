@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
-public class TestExtentRep {
+public class  TestExtentRep {
 
     @Test
     public void testFalse(){

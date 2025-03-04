@@ -1,16 +1,23 @@
 package com.course.code.httpclientdemo;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpVersion;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicHeader;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONObject;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -95,13 +102,53 @@ public class HttpClientPost {
 
         //将String res 转化为 Json
 
-        JSONObject jsRes = new JSONObject(res);
+        JSONObject jsRes = JSON.parseObject(res);
 
 
         //判断结果
         String content = (String) jsRes.get("content");
         System.out.println(jsRes);
         Assert.assertEquals("这是一个必须带有Cookies的post请求",content);
+
+
+    }
+
+    @Test
+    public void testReviewPost() throws IOException {
+        String uri = bundle.getString("test.postdemo.api2.review");
+        String testUrl = this.url + uri;
+        System.out.println(testUrl);
+
+        CloseableHttpClient client = HttpClients.createDefault();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name","su");
+        jsonObject.put("password","biao");
+        HttpPost httpPost = new HttpPost(testUrl);
+        httpPost.addHeader(new BasicHeader("Cookie","email=9999@123.com;login=success"));
+        httpPost.addHeader("content-type","application/json;charset=UTF-8");
+//        httpPost.addHeader("Cookie","email=9999@123.com;login=success");
+
+        httpPost.setProtocolVersion(HttpVersion.HTTP_1_0);
+        httpPost.addHeader(HTTP.CONN_DIRECTIVE,HTTP.CONN_CLOSE);
+        StringEntity entity = new StringEntity(jsonObject.toString(),"GBK");
+        httpPost.setEntity(entity);
+//        int timeout = 60;
+//        RequestConfig.custom()
+//                .setSocketTimeout(timeout * 1000)
+//                .setConnectTimeout(timeout * 1000)
+//                .setConnectionRequestTimeout(timeout * 1000)
+//                .build();
+
+        CloseableHttpResponse response = client.execute(httpPost);
+
+        String stringEntity = EntityUtils.toString(response.getEntity(), "UTF-8");
+        response.close();
+        System.out.println(stringEntity);
+        JSONObject resJson = JSON.parseObject(stringEntity);
+        JSONArray posts = resJson.getJSONArray("posts");
+        resJson.getJSONArray("posts");
+        Object object = posts.get(0);
+        System.out.println(object.toString());
 
 
     }

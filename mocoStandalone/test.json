@@ -1,0 +1,14 @@
+{
+  "description": "这是测试上传文件接口的文件",
+  "name": "zhangsan",
+  "posts": [
+    {
+      "pass": "123",
+      "comm": "test1"
+    },
+    {
+      "pass": "321",
+      "comm": "test2"
+    }
+  ]
+}
