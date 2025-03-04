@@ -154,7 +154,7 @@ public class HttpClientPostDemo {
         HttpPost post = new HttpPost(url);
         post.setHeader("User-Agent","Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) " +
                 "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Mobile Safari/537.36");
-        //post.setHeader("content-type","multipart/form-data");
+        post.setHeader("content-type","multipart/form-data");
 
 
         FileBody fileBody = new FileBody(new File("F:\\ideaWorkspace\\AutoTest\\HttpClientLearn\\src\\main\\java\\com\\course\\code\\imagedesc\\test.json"));

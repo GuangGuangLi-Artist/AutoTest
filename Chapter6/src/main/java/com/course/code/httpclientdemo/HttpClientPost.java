@@ -3,10 +3,12 @@ package com.course.code.httpclientdemo;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
 import org.apache.http.client.CookieStore;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class HttpClientPost {
 
@@ -81,35 +84,71 @@ public class HttpClientPost {
         
         String uri = bundle.getString("test.postdemo.api1.cookies");
         String testUrl = this.url + uri;
-        HttpPost httpPost = new HttpPost(testUrl);
+        CloseableHttpClient client = HttpClients.createDefault();
 
         //添加post请求参数
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("name","dawei");
         jsonObject.put("age","28");
 
-        //设置请求头信息
-        httpPost.setHeader("content-type","application/json;charset=UTF-8");
+
+
         //将参数添加到方法中
-        StringEntity entity = new StringEntity(jsonObject.toString(),"UTF-8");
+        StringEntity entity = new StringEntity(jsonObject.toString(),Consts.UTF_8);
+        //设置请求头信息
+        entity.setContentType("application/json");
+        entity.setContentEncoding(Consts.UTF_8.name());
+
+        HttpPost httpPost = new HttpPost(testUrl);
+        //添加Cookie
+
+        CookieStore cookieStore1 = this.cookieStore;
+        List<Cookie> cookies = cookieStore1.getCookies();
+        String cookieStr = "";
+        for (Cookie cookie:cookies){
+            String name = cookie.getName();
+            String value = cookie.getValue();
+            cookieStr = name + "=" + value;
+        }
+
+        httpPost.setHeader("Cookie",cookieStr);
+        httpPost.setHeader("User-Agent","PostmanRuntime/7.43.0");
+
         httpPost.setEntity(entity);
 
+        CloseableHttpResponse response = null;
 
-        DefaultHttpClient client = new DefaultHttpClient();
-        client.setCookieStore(this.cookieStore);
-        CloseableHttpResponse response = client.execute(httpPost);
-        String res = EntityUtils.toString(response.getEntity(), "UTF-8");
+        try {
+            response = client.execute(httpPost);
+            HttpEntity responseEntity = response.getEntity();
+            String res = EntityUtils.toString(responseEntity, Consts.UTF_8);
+            System.out.println(res);
 
-        //将String res 转化为 Json
+            JSONObject jsRes = JSON.parseObject(res);
+            //判断结果
+            String content = (String) jsRes.get("content");
+            Assert.assertEquals("这是一个必须带有Cookies的post请求",content);
+            EntityUtils.consume(responseEntity);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (response != null) {
+                try {
+                    response.close();
+                }catch (Exception e){
 
-        JSONObject jsRes = JSON.parseObject(res);
+                    e.printStackTrace();
+                }
+            }
+        }
+        try {
+            if (client != null) {
+                client.close();
+            }
 
-
-        //判断结果
-        String content = (String) jsRes.get("content");
-        System.out.println(jsRes);
-        Assert.assertEquals("这是一个必须带有Cookies的post请求",content);
-
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
     }
 
@@ -124,32 +163,57 @@ public class HttpClientPost {
         jsonObject.put("name","su");
         jsonObject.put("password","biao");
         HttpPost httpPost = new HttpPost(testUrl);
-        httpPost.addHeader(new BasicHeader("Cookie","email=9999@123.com;login=success"));
-        httpPost.addHeader("content-type","application/json;charset=UTF-8");
-//        httpPost.addHeader("Cookie","email=9999@123.com;login=success");
+        StringEntity entity = new StringEntity(jsonObject.toString(), Consts.UTF_8);
+        httpPost.setHeader("Cookie","email=9999@123.com;login=success");
+        entity.setContentType("application/json");
+        entity.setContentEncoding(Consts.UTF_8.name());
+        httpPost.setHeader("User-Agent","PostmanRuntime/7.43.0");
 
-        httpPost.setProtocolVersion(HttpVersion.HTTP_1_0);
-        httpPost.addHeader(HTTP.CONN_DIRECTIVE,HTTP.CONN_CLOSE);
-        StringEntity entity = new StringEntity(jsonObject.toString(),"GBK");
         httpPost.setEntity(entity);
-//        int timeout = 60;
-//        RequestConfig.custom()
-//                .setSocketTimeout(timeout * 1000)
-//                .setConnectTimeout(timeout * 1000)
-//                .setConnectionRequestTimeout(timeout * 1000)
-//                .build();
+        CloseableHttpResponse response = null;
+        try {
+            response = client.execute(httpPost);
+            HttpEntity entity1 = response.getEntity();
+            String res = EntityUtils.toString(entity1, Consts.UTF_8);
+            System.out.println(res);
+            JSONObject jsRes = JSON.parseObject(res);
+            JSONArray posts = jsRes.getJSONArray("posts");
+            Object object = posts.get(0);
+            String objectString = object.toString();
+            JSONObject js = JSON.parseObject(objectString);
+            String comm0 = js.getString("comm");
+            Assert.assertEquals(comm0,"test1");
 
-        CloseableHttpResponse response = client.execute(httpPost);
 
-        String stringEntity = EntityUtils.toString(response.getEntity(), "UTF-8");
-        response.close();
-        System.out.println(stringEntity);
-        JSONObject resJson = JSON.parseObject(stringEntity);
-        JSONArray posts = resJson.getJSONArray("posts");
-        resJson.getJSONArray("posts");
-        Object object = posts.get(0);
-        System.out.println(object.toString());
+            String content = (String) jsRes.get("name");
+            Assert.assertEquals(content,"zhangsan");
+
+            EntityUtils.consume(entity1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(response != null){
+               try {
+                   response.close();
+               }catch (Exception e){
+                   e.printStackTrace();
+               }
+
+            }
+
+        }
+        if (client != null) {
+            try {
+                client.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+
 
 
     }
+
 }
