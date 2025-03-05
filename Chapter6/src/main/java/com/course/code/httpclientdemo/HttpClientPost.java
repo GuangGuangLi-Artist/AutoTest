@@ -7,6 +7,7 @@ import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -18,7 +19,9 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
@@ -26,6 +29,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -224,13 +228,10 @@ public class HttpClientPost {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
         FileBody fb = new FileBody(new File("D:\\test.png"));
-        StringBody comment = new StringBody("A binary file of some kind", ContentType.MULTIPART_FORM_DATA);
 
         HttpEntity reqEntity = MultipartEntityBuilder.create()
-                .addPart("fb", fb)
-                .addPart("comment",comment)
+                .addPart("fileNameFromRequest", fb)//其中name file 代表
                 .build();
-//        httpPost.setHeader("userAgent","PostmanRuntime/7.43.0");
         httpPost.setEntity(reqEntity);
         CloseableHttpResponse response = null;
         try {
@@ -239,6 +240,58 @@ public class HttpClientPost {
             HttpEntity responseEntity = response.getEntity();
             String res = EntityUtils.toString(responseEntity, Consts.UTF_8);
             System.out.println(res);
+            Assert.assertEquals(res,"success");
+            EntityUtils.consume(responseEntity);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (response != null) {
+                try {
+                    response.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (httpClient != null) {
+            try {
+                httpClient.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+    @Test
+    public void testPostParam(){
+        String uri = bundle.getString("test.testPostParam");
+        String testUrl = this.url + uri;
+
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+
+        //添加参数列表
+        List<BasicNameValuePair> params = new ArrayList<BasicNameValuePair>();
+        params.add(new BasicNameValuePair("name","guangguang"));
+        params.add(new BasicNameValuePair("password","guang"));
+
+        //设置参数列表编码
+        UrlEncodedFormEntity entityParams = new UrlEncodedFormEntity(params, Consts.UTF_8);
+
+        HttpPost httpPost = new HttpPost(testUrl);
+        httpPost.setHeader("content-type","application/x-www-form-urlencoded; charset=utf-8");
+        httpPost.setEntity(entityParams);
+
+        CloseableHttpResponse response = null;
+        try {
+            response = httpClient.execute(httpPost);
+            HttpEntity responseEntity = response.getEntity();
+            String res = EntityUtils.toString(responseEntity, Consts.UTF_8);
+            JSONObject jsRes = JSON.parseObject(res);
+            String content = (String) jsRes.get("status");
+            Assert.assertEquals(content,"success");
             EntityUtils.consume(responseEntity);
         }catch (Exception e){
             e.printStackTrace();
