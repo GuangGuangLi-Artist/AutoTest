@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite PUBLIC "--//beust.com//testng//testng 1.0//EN" "http://beust.com/testng/testng-1.0.dtd" >
 
 <suite  name="suitename">
     <test name="runAll">
@@ -10,7 +11,7 @@
     </test>
 
 
-    <test name="onleRunSrudent">
+    <test name="onleRunTeacher">
         <groups>
             <run>
                 <include name="teacher"></include>

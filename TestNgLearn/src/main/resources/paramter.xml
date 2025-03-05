@@ -4,7 +4,11 @@
         <classes>
             <parameter name="name" value="张三"></parameter>
             <parameter name="age" value="30"></parameter>
-            <class name="com.course.code.parameter.ParameterTest"></class>
+            <class name="com.course.code.parameter.ParameterTest">
+                <method>
+                    <include>ParamTest1</include>
+                </method>
+            </class>
         </classes>
     </test>
 </suite>

@@ -6,29 +6,29 @@ import com.alibaba.fastjson.JSONObject;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
 import org.apache.http.client.CookieStore;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.cookie.Cookie;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class HttpClientPost {
 
@@ -215,5 +215,53 @@ public class HttpClientPost {
 
 
     }
+
+
+    @Test
+    public void testUpfile() {
+        String url = "http://localhost:8083/upload";
+
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost(url);
+        FileBody fb = new FileBody(new File("D:\\test.png"));
+        StringBody comment = new StringBody("A binary file of some kind", ContentType.MULTIPART_FORM_DATA);
+
+        HttpEntity reqEntity = MultipartEntityBuilder.create()
+                .addPart("fb", fb)
+                .addPart("comment",comment)
+                .build();
+//        httpPost.setHeader("userAgent","PostmanRuntime/7.43.0");
+        httpPost.setEntity(reqEntity);
+        CloseableHttpResponse response = null;
+        try {
+            System.out.println("executing request " + httpPost.getRequestLine());
+            response = httpClient.execute(httpPost);
+            HttpEntity responseEntity = response.getEntity();
+            String res = EntityUtils.toString(responseEntity, Consts.UTF_8);
+            System.out.println(res);
+            EntityUtils.consume(responseEntity);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if (response != null) {
+                try {
+                    response.close();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        if (httpClient != null) {
+            try {
+                httpClient.close();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
 
 }

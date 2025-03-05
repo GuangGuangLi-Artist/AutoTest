@@ -14,7 +14,7 @@
   <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
   <modules>
-    <module>Chapter5</module>
+    <module>TestNgLearn</module>
     <module>Chapter6</module>
     <module>Chapter10</module>
     <module>ApiCaseTest</module>
