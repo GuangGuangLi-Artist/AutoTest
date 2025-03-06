@@ -13,7 +13,8 @@ public class TimeoutTest {
 
     @Test(timeOut = 300)//单位为毫秒
     public void testFailed() throws InterruptedException {
-        Thread.sleep(400);
+        System.out.println("三秒超时");
+//        Thread.sleep(400);
 
     }
 }

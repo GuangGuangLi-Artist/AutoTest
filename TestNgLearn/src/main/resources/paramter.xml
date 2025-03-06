@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite PUBLIC "--//beust.com//testng//testng 1.0//EN" "http://beust.com/testng/testng-1.0.dtd">
 <suite name="parameter">
+    <parameter name="className" value="beforeClass"></parameter>
+    <parameter name="method" value="beforeClass前的value"></parameter>
+    <parameter name="methodName" value="方法前"></parameter>
+    <parameter name="test" value="方法前的value"></parameter>
+    <parameter name="name" value="张三"></parameter>
+    <parameter name="age" value="30"></parameter>
+    <parameter name="sname" value="s李四"></parameter>
+    <parameter name="sage" value="s30"></parameter>
     <test name="param">
         <classes>
-            <parameter name="name" value="张三"></parameter>
-            <parameter name="age" value="30"></parameter>
-            <class name="com.course.code.parameter.ParameterTest">
-                <method>
-                    <include>ParamTest1</include>
-                </method>
-            </class>
+            <class name="com.course.code.parameter.ParameterTest"></class>
         </classes>
     </test>
 </suite>

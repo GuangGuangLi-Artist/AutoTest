@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite PUBLIC "--//beust.com//testng//testng 1.0//EN" "http://beust.com/testng/testng-1.0.dtd">
+<suite name="testIgnore">
+    <test name="测试忽略">
+        <classes>
+            <class name="com.course.code.testng.ignoreTest">
+                <methods>
+                    <include name="ignoreCase1"></include>
+                    <include name="ignoreCase2"></include>
+                    <include name="ignoreCase3"></include>
+                </methods>
+
+            </class>
+        </classes>
+    </test>
+</suite>
