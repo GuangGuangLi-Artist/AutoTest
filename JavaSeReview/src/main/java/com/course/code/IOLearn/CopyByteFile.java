@@ -93,4 +93,23 @@ public class CopyByteFile {
     }
 
 
+    //测试InputStreamReader、OutputStreamWriter作用
+    @Test
+    public void testInputStreamReader() throws IOException {
+        File src = new File("F:\\ideaWorkspace\\AutoTest\\JavaSeReview\\src\\main\\java\\FileDemo\\file1.txt");
+        File desc = new File("F:\\ideaWorkspace\\AutoTest\\JavaSeReview\\src\\main\\java\\FileDemo\\fileNew.txt");
+
+        InputStreamReader isr = new InputStreamReader(new FileInputStream(src));
+        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(desc));
+        int i = 0;
+        while ((i = isr.read()) != -1) {
+            osw.write(i);
+        }
+
+        osw.close();
+        isr.close();
+
+    }
+
+
 }
