@@ -4,7 +4,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.DoubleClickAction;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,7 +13,6 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -26,20 +24,9 @@ public class SeleniumFindElement {
 
 
 
-//    @BeforeMethod
-//    public void testBefore() {
-//        System.setProperty("webdriver.chrome.driver",driverPath);
-//        driver = new ChromeDriver();
-//        driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES); //隐式等待
-//        driver.get(URL);
-//        driver.manage().window().maximize();
-//
-//    }
-
-
     @Test
     public void testFindByCss() {
-        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("https://liushilive.github.io/html_example/index.html");
         driver.close();
@@ -47,39 +34,61 @@ public class SeleniumFindElement {
 
     /**
      * 隐式等待 隐式等待的理解，就是我们通过代码设置一个等待时间，如果在这个等待时间内，网页加载完成后就执行下一步，否则一直等待到时间截止。
-     *      driver.manage.timeouts.implicitlyWait(long time, TimeUtil unit);
+     * driver.manage.timeouts.implicitlyWait(long time, TimeUtil unit);
      * 显式等待 显示等待是等待指定元素设置的等待时间，在设置时间内，默认每隔0.5s检测一次当前的页面这个元素是否存在，如果在规定的时间内找到了元素
      * 则执行相关操作，如果超过设置时间检测不到则抛出异常。默认抛出异常为：NoSuchElementException。推荐使用显示等待。
      * WebDriberWait wait = new WebDriverWait(dirver, timeOutInSeconds);
      * wait.nutil(expectCondition);
      */
 
+
+    @Test
+    public void testWaitDunction() {//隐式等待
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        WebDriver driver = new ChromeDriver();
+        //隐式等待
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.get("https://liushilive.github.io/html_example/index.html");
+        driver.manage().window().maximize();
+
+        WebElement element = driver.findElement(By.xpath("//div[@id='D1']/div"));
+        String string = element.getText();
+        Assert.assertEquals(string, "我出来啦");
+        driver.close();
+
+    }
+
+    @Test
+    public void testWaitShow() {//显示等待
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver,15);
+        driver.get("https://liushilive.github.io/html_example/index.html");
+        driver.manage().window().maximize();
+        WebElement until = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='D1']/div")));
+        String text = until.getText();
+        Assert.assertEquals(text,"我出来啦");
+        driver.close();
+
+    }
+
     @Test
     public void testFindElement() throws MalformedURLException {
-        System.setProperty("webdriver.chrome.driver",driverPath);
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL_test);
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-//        WebDriverWait wait = new WebDriverWait(driver, 60);
-//        WebElement d1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("D1")));
-
-//        WebElement d1 = driver.findElement(By.id("D1"));
-//        String d1Text = d1.getText();
-//        System.out.println(d1Text);
-//        Assert.assertEquals(d1Text, "我出来啦");
         driver.findElement(By.id("uid")).sendKeys("liguang");
         driver.findElement(By.id("pwd")).sendKeys("123456");
         driver.findElement(By.xpath("//input[@type='submit']")).click();
         driver.close();
 
 
-
     }
 
     @Test
     public void testSelected() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver",driverPath);
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL_test);
         driver.manage().window().maximize();
@@ -104,13 +113,12 @@ public class SeleniumFindElement {
         driver.close();
 
 
-
     }
 
     //弹出框
     @Test
     public void testAlert() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver",driverPath);
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL_test);
         driver.manage().window().maximize();
@@ -152,7 +160,7 @@ public class SeleniumFindElement {
     //双击元素
     @Test
     public void doubleClick() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver",driverPath);
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL_test);
         driver.manage().window().maximize();
@@ -171,7 +179,7 @@ public class SeleniumFindElement {
 
     @Test
     public void testXuanfu() throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver",driverPath);
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL_test);
         driver.manage().window().maximize();
@@ -188,7 +196,7 @@ public class SeleniumFindElement {
         actions.moveToElement(menu_gpu).perform();
 
         //等待第三层出现并点击
-        WebElement xuanfu =wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='menu']/li/ul/li[1]/ul[1]/li[2]/a")));
+        WebElement xuanfu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='menu']/li/ul/li[1]/ul[1]/li[2]/a")));
         actions.moveToElement(xuanfu).click().perform();
         driver.close();
 
@@ -196,7 +204,7 @@ public class SeleniumFindElement {
 
     @Test
     public void testSlideBlock() throws InterruptedException, IOException {
-        System.setProperty("webdriver.chrome.driver",driverPath);
+        System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
         driver.get(URL_test);
         driver.manage().window().maximize();
@@ -211,7 +219,7 @@ public class SeleniumFindElement {
 
 
         //将页面拖动到最下方
-        ((JavascriptExecutor)driver).executeScript("window.scrollTo(100,450);");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(100,450);");
         Thread.sleep(3000);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -236,6 +244,26 @@ public class SeleniumFindElement {
     }
 
 
+    //切换iframe
+
+    @Test
+    public void testChangeIframe() {
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        driver.manage().window().maximize();
+        WebElement frame1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@name='frame1']")));
+        WebElement frame2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//iframe[@name='frame2']")));
+
+        //切到第二个frame
+        driver.switchTo().frame(frame2);
+        WebElement untiled = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='settings']/table/tbody/tr[1]")));
+        System.out.println(untiled.getText());
+        driver.close();
+
+
+    }
 
 
 }
