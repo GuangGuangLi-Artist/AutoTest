@@ -1,10 +1,41 @@
 package com.course.code.seleniumLearn;
 
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.DoubleClickAction;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 public class SeleniumFindElement {
+
+    String path = System.getProperty("user.dir");
+    String driverPath = path + "\\src\\main\\java\\com\\course\\code\\utils\\drivers\\chromedriver.exe";
+    String URL_test = "https://liushilive.github.io/html_example/index.html";
+
+
+
+//    @BeforeMethod
+//    public void testBefore() {
+//        System.setProperty("webdriver.chrome.driver",driverPath);
+//        driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(1, TimeUnit.MINUTES); //隐式等待
+//        driver.get(URL);
+//        driver.manage().window().maximize();
+//
+//    }
+
 
     @Test
     public void testFindByCss() {
@@ -13,4 +44,198 @@ public class SeleniumFindElement {
         driver.get("https://liushilive.github.io/html_example/index.html");
         driver.close();
     }
+
+    /**
+     * 隐式等待 隐式等待的理解，就是我们通过代码设置一个等待时间，如果在这个等待时间内，网页加载完成后就执行下一步，否则一直等待到时间截止。
+     *      driver.manage.timeouts.implicitlyWait(long time, TimeUtil unit);
+     * 显式等待 显示等待是等待指定元素设置的等待时间，在设置时间内，默认每隔0.5s检测一次当前的页面这个元素是否存在，如果在规定的时间内找到了元素
+     * 则执行相关操作，如果超过设置时间检测不到则抛出异常。默认抛出异常为：NoSuchElementException。推荐使用显示等待。
+     * WebDriberWait wait = new WebDriverWait(dirver, timeOutInSeconds);
+     * wait.nutil(expectCondition);
+     */
+
+    @Test
+    public void testFindElement() throws MalformedURLException {
+        System.setProperty("webdriver.chrome.driver",driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        driver.manage().window().maximize();
+//        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//        WebDriverWait wait = new WebDriverWait(driver, 60);
+//        WebElement d1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("D1")));
+
+//        WebElement d1 = driver.findElement(By.id("D1"));
+//        String d1Text = d1.getText();
+//        System.out.println(d1Text);
+//        Assert.assertEquals(d1Text, "我出来啦");
+        driver.findElement(By.id("uid")).sendKeys("liguang");
+        driver.findElement(By.id("pwd")).sendKeys("123456");
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
+        driver.close();
+
+
+
+    }
+
+    @Test
+    public void testSelected() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver",driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        driver.manage().window().maximize();
+
+        //下拉框定位
+        WebElement selectId = driver.findElement(By.id("s1Id"));
+        Select select = new Select(selectId);
+        // 获取所有的下拉值
+        List<WebElement> options = select.getOptions();
+
+        // 按照下拉索引选择值
+        select.selectByIndex(2);
+        Thread.sleep(5000);
+        for (WebElement option : options) {
+            System.out.println(option.getText());
+        }
+
+        WebElement selectIdDra = driver.findElement(By.id("s3Id"));
+        Select selectDra = new Select(selectIdDra);
+        selectDra.selectByIndex(4);
+        Thread.sleep(5000);
+        driver.close();
+
+
+
+    }
+
+    //弹出框
+    @Test
+    public void testAlert() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver",driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        driver.manage().window().maximize();
+        //弹出框
+        WebElement alertId1 = driver.findElement(By.id("b1"));
+        alertId1.click();
+        Alert alert = driver.switchTo().alert();
+        //获取弹出框内容
+        String alertText = alert.getText();
+        Thread.sleep(5000);
+        System.out.println(alertText);
+        Assert.assertEquals(alertText, "有警告?");
+        //接受弹出框
+        alert.accept();
+
+        // 弹出提问框
+        WebElement alertId2 = driver.findElement(By.id("b2"));
+        alertId2.click();
+        Alert alert2 = driver.switchTo().alert();
+        Thread.sleep(5000);
+        alert2.sendKeys("liguang");
+        alert2.accept();
+
+        // 弹出模态框
+        WebElement alertId3 = driver.findElement(By.id("b3"));
+        alertId3.click();
+        Thread.sleep(5000);
+        WebElement motaiInput = driver.findElement(By.id("basic-addon1"));
+        motaiInput.sendKeys("模态框");
+        WebElement alertId5 = driver.findElement(By.id("b5"));
+        alertId5.click();
+        Thread.sleep(5000);
+
+        driver.close();
+
+
+    }
+
+    //双击元素
+    @Test
+    public void doubleClick() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver",driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        driver.manage().window().maximize();
+
+        //双击  鼠标Actions 方法
+        WebElement doubleClick = driver.findElement(By.id("dblclick"));
+        Actions actions = new Actions(driver);
+        actions.doubleClick(doubleClick);
+        actions.perform();
+        Thread.sleep(5000);
+        driver.close();
+
+    }
+
+    //悬浮 - 多级下拉菜单
+
+    @Test
+    public void testXuanfu() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver",driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        driver.manage().window().maximize();
+        Actions actions = new Actions(driver);
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+
+        //定位到  悬浮多级下拉菜单
+        WebElement menu = driver.findElement(By.xpath("//ul[@id='menu']/li"));
+        //跳转到第一层
+        actions.moveToElement(menu).perform();
+        //等待第二级出现
+        WebElement menu_gpu = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//ul[@id='menu']/li/ul/li[1]/a")));
+        //跳转到第二层
+        actions.moveToElement(menu_gpu).perform();
+
+        //等待第三层出现并点击
+        WebElement xuanfu =wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//ul[@id='menu']/li/ul/li[1]/ul[1]/li[2]/a")));
+        actions.moveToElement(xuanfu).click().perform();
+        driver.close();
+
+    }
+
+    @Test
+    public void testSlideBlock() throws InterruptedException, IOException {
+        System.setProperty("webdriver.chrome.driver",driverPath);
+        WebDriver driver = new ChromeDriver();
+        driver.get(URL_test);
+        driver.manage().window().maximize();
+//        Actions actions = new Actions(driver);
+//        WebDriverWait wait = new WebDriverWait(driver, 60);
+//        WebElement menu = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//p[@id='drag']/div[3]")));
+//
+//        actions.clickAndHold(menu)
+//                .moveByOffset(2400,0)
+//                .release()
+//                .perform();
+
+
+        //将页面拖动到最下方
+        ((JavascriptExecutor)driver).executeScript("window.scrollTo(100,450);");
+        Thread.sleep(3000);
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        WebElement menu = driver.findElement(By.xpath("//p[@id='drag']/div[3]"));
+        js.executeScript(
+                "var slider = arguments[0];" +
+                        "slider.style.left = '250px';", // 直接修改 CSS left 属性
+                menu
+        );
+
+        js.executeScript("arguments[0].dispatchEvent(new MouseEvent('mousemove', {clientX: 250}));", menu);
+
+        WebElement rightElement = driver.findElement(By.xpath("//p[@id='drag']/div[3]"));
+        String menuValue = rightElement.getAttribute("style");
+        System.out.println(menuValue);
+
+        // 截图验证
+        File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(screenshot, new File("slidercreenshot.png"));
+
+        driver.close();
+    }
+
+
+
+
 }
