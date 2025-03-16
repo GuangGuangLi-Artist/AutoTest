@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumFindElement {
@@ -21,7 +22,6 @@ public class SeleniumFindElement {
     String path = System.getProperty("user.dir");
     String driverPath = path + "\\src\\main\\java\\com\\course\\code\\utils\\drivers\\chromedriver.exe";
     String URL_test = "https://liushilive.github.io/html_example/index.html";
-
 
 
     @Test
@@ -62,12 +62,12 @@ public class SeleniumFindElement {
     public void testWaitShow() {//显示等待
         System.setProperty("webdriver.chrome.driver", driverPath);
         WebDriver driver = new ChromeDriver();
-        WebDriverWait wait = new WebDriverWait(driver,15);
+        WebDriverWait wait = new WebDriverWait(driver, 15);
         driver.get("https://liushilive.github.io/html_example/index.html");
         driver.manage().window().maximize();
         WebElement until = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='D1']/div")));
         String text = until.getText();
-        Assert.assertEquals(text,"我出来啦");
+        Assert.assertEquals(text, "我出来啦");
         driver.close();
 
     }
@@ -264,6 +264,67 @@ public class SeleniumFindElement {
 
 
     }
+    //浏览器导航操作
+    @Test
+    public void testNavigation() {
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.manage().window().maximize();
+        driver.get(URL_test);
+        WebElement advanceUrl = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[@class='nav-item'][3]/a")));
+        advanceUrl.click();
+
+        // 2. 获取所有窗口句柄并切换到第二个标签页
+        String originalWindowHandle = driver.getWindowHandle();
+        for (String windowHandle : driver.getWindowHandles()) {
+            if (!windowHandle.equals(originalWindowHandle)) {
+                driver.switchTo().window(windowHandle);
+                break;
+            }
+        }
+
+
+
+        driver.close();
+
+
+    }
+
+
+    //使用javaScript 操作日期控件 更新日期
+    @Test
+    public void testDateAdd() throws IOException {
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        driver.manage().window().maximize();
+        driver.get("https://liushilive.github.io/html_example/index1.html#");
+        WebElement today = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='today']")));
+
+//        ((JavascriptExecutor) driver).executeScript("window.scrollTo({x: 0, y: document.body.scrollHeight, behavior: 'smooth'});");
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(100,4500)");
+
+//        today.sendKeys("2018-01-02");
+//        today.sendKeys("2018-01-02");
+
+        //添加javaScript操作
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        String script = "document.getElementsByClassName('today').value=2011-01-02";
+        js.executeScript(script);
+
+        //截图
+        File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(file,new File("date.png"));
+
+        driver.close();
+
+
+    }
+
+
+
+
 
 
 }
