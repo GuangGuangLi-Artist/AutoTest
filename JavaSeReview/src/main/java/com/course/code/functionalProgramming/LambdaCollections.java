@@ -58,6 +58,7 @@ public class LambdaCollections {
         list.sort((str1,str2) -> str1.length() - str2.length());
 
         list.forEach(System.out::println);
+
     }
 
     public void testList_spliterator(){

@@ -1,6 +1,7 @@
 package com.course.pageobject.cases;
 
 import com.course.pageobject.handle.AddCourseHandle;
+import com.course.pageobject.utils.InitDriver;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -9,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class AddCourse  extends InitDriver{
+public class AddCourse  extends InitDriver {
     /**
      * 添加课程测试
      * 测试两个场景

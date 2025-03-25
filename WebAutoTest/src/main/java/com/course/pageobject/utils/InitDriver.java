@@ -1,4 +1,4 @@
-package com.course.pageobject.cases;
+package com.course.pageobject.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

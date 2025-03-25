@@ -2,16 +2,16 @@ package com.course.pageobject.cases;
 
 import com.course.muke.cases.casecollection.TestNgListenerScreen;
 import com.course.pageobject.handle.LoginHandle;
+import com.course.pageobject.utils.InitDriver;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 @Listeners(TestNgListenerScreen.class)
-public class LoginCase extends InitDriver {
+public class LoginCase  extends InitDriver{
 
     public WebDriver driver;
     public LoginHandle loginHandle;

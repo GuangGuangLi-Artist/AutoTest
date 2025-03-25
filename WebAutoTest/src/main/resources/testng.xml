@@ -13,9 +13,12 @@
                     <exclude name="sendToEmail"></exclude>
                 </methods>
             </class>
-            <class name="com.course.muke.cases.casecollection.TestNgUseTest">
+<!--            <class name="com.course.muke.cases.casecollection.TestNgUseTest">-->
+<!--                <methods>-->
+<!--                    <include name=""></include>-->
+<!--                </methods>-->
 
-            </class>
+<!--            </class>-->
 
             <class name="com.course.pageobject.cases.LoginCase">
                 <methods>
