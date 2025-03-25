@@ -3,7 +3,10 @@ package com.course.code.coreclass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class StringTest {
 
@@ -149,6 +152,42 @@ public class StringTest {
             res[i] = arr[i];
         }
         System.out.println(Arrays.toString(res));
+    }
+
+    @Test
+    public void testEqual() {
+        String s1 = "hello";
+        String s2 = "hello";
+        System.out.println(System.identityHashCode(s1));
+        System.out.println(System.identityHashCode(s2));
+        System.out.println(s1 == s2);
+    }
+
+    @Test
+    public void testIterator() {
+        //练习集合的迭代器遍历方式
+
+        Collection<String> collectionStr = new ArrayList<>();
+        collectionStr.add("hello");
+        collectionStr.add("world");
+        collectionStr.add("liguang");
+
+        String joins = String.join(",", collectionStr);
+        System.out.println(joins);
+
+
+        //遍历方式1
+        for (String s : collectionStr) {
+            System.out.print(s);
+        }
+
+
+        //遍历方式2
+        Iterator<String> stringIterator = collectionStr.iterator();
+        while (stringIterator.hasNext()) {
+            System.out.println(stringIterator.next());
+        }
+
     }
 
 }

@@ -52,7 +52,7 @@ public class UserManager {
         int result =0;
         if(x!=null){
             result = template.insert("addUser",user);
-            template.commit(true);
+//            template.commit(true);
         }
         if(result>0){
             log.info("添加用户的数量是：" + result);
