@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  *
@@ -106,6 +107,52 @@ public class ReflectReview {
 
             System.out.println("-------------");
 
+            //通过无参构造创建对象
+            Constructor c4 = forNameClass.getConstructor();
+            PersonReflect instace4 = (PersonReflect)c4.newInstance();
+            //获取成员变量
+            Field genderField = forNameClass.getField("gender");
+            genderField.set(instace4,"男");
+            System.out.println(instace4);
+
+            //获取私有修饰的成员变量
+            Field namePrivate = forNameClass.getDeclaredField("name");
+            namePrivate.setAccessible(true);//设置暴力访问
+            namePrivate.set(instace4,"这是私有");
+            System.out.println(instace4);
+
+            //获取默认修饰的age
+            Field ageDefault = forNameClass.getDeclaredField("age");
+            ageDefault.set(instace4,15);
+            System.out.println(instace4);
+
+            System.out.println("-------------");
+
+            //获取所有的方法
+            Method[] allMethods = forNameClass.getDeclaredMethods();
+            for (Method allMethod : allMethods) {
+                System.out.println(allMethod);
+
+            }
+            System.out.println("-------------");
+
+            //获取无参方法
+            Method methodShow = forNameClass.getMethod("method", String.class);
+            methodShow.invoke(instace4, "这是有参数无返回值");
+
+
+            System.out.println("-------------");
+
+            //获取带参方法有返回值
+            Method methodGetString = forNameClass.getMethod("getString", String.class, int.class);
+            Object objectReturn = methodGetString.invoke(instace4, "这是带参数有返回", 123);
+            System.out.println(objectReturn);
+            System.out.println("-------------");
+
+            //获取私有方法
+            Method privateFunctionMethod = forNameClass.getDeclaredMethod("function");
+            privateFunctionMethod.setAccessible(true);//暴力访问
+            privateFunctionMethod.invoke(instace4);
 
 
         } catch (ClassNotFoundException e) {
@@ -117,6 +164,8 @@ public class ReflectReview {
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchFieldException e) {
             throw new RuntimeException(e);
         }
     }

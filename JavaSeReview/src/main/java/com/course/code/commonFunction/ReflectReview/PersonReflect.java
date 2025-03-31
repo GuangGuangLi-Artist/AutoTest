@@ -58,6 +58,11 @@ public class PersonReflect {
         System.out.println("method" + name);
     }
 
+    //返回
+    public String getString(String s, int i){
+        return s + "----" + i;
+    }
+
     //私有
     private void function() {
         System.out.println("function");
