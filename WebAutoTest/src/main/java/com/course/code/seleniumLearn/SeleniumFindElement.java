@@ -322,6 +322,50 @@ public class SeleniumFindElement {
 
     }
 
+    //css定位元素
+
+    /**
+     * id选择器，通过id属性定位
+     *      driver.find_element_by_css_selector(‘#su’)
+     * class选择器，通过class属性定位
+     *      driver.find_element_by_css_selector(‘.bg s_btn’)
+     * 元素选择器，通过元素定位
+     *      driver.find_element_by_css_selector(‘input’)
+     * 属性选择器，通过属性定位
+     *      driver.find_element_by_css_selector(‘[name='ie']’)
+     * 层级选择器，用空格或者大于号表示层级关系
+     *      driver.find_element_by_css_selector(‘div > [name='ie']’)
+     * css延伸
+     *      input[type^=’P’]  找一个input元素，type属性的值以P开头
+     *      input[type$=’d’]  找一个input元素，type属性的值以d结尾
+     *      input[type*=’w’]  找一个input元素，type属性的值包含w
+     */
+    @Test
+    public void testCssById() {
+        System.setProperty("webdriver.chrome.driver", driverPath);
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        driver.manage().window().maximize();
+        driver.get("https://liushilive.github.io/html_example/index1.html#");
+        WebElement uidElement = wait.until(ExpectedConditions.elementToBeClickable(new By.ByCssSelector("input#uid")));//id选择器，通过id属性定位
+        uidElement.sendKeys("test");
+        WebElement passElement = wait.until(ExpectedConditions.elementToBeClickable(new By.ByCssSelector("[name=password]")));//属性选择器，通过属性定位
+        passElement.sendKeys("123");
+
+        WebElement checkBox = wait.until(ExpectedConditions.presenceOfElementLocated(new By.ByCssSelector("input[value='cv2']")));//属性值选择器
+        checkBox.click();
+
+        File su = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(su,new File("submit.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        driver.close();
+
+
+    }
+
 
 
 
