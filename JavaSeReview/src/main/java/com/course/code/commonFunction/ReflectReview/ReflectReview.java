@@ -148,7 +148,6 @@ public class ReflectReview {
             Object objectReturn = methodGetString.invoke(instace4, "这是带参数有返回", 123);
             System.out.println(objectReturn);
             System.out.println("-------------");
-
             //获取私有方法
             Method privateFunctionMethod = forNameClass.getDeclaredMethod("function");
             privateFunctionMethod.setAccessible(true);//暴力访问
