@@ -34,9 +34,25 @@ public class ConfigFile {
         }
 
 
+        String testUrl = address + uri;
+
+        return testUrl;
+    }
+
+    public static String getMocoUrl(InterfaceName name){
+        String address = bundle.getString("moco.url");
+        String uri="";
+        if(name==InterfaceName.MOCOLOGIN){
+            uri = bundle.getString("moco.login.uri");
+        }
+
+        if(name==InterfaceName.MOCOGET){
+            uri = bundle.getString("moco.get.uri");
+        }
 
         String testUrl = address + uri;
 
         return testUrl;
+
     }
 }

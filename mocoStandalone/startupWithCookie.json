@@ -61,8 +61,7 @@
       "uri": "/getdemo/api1/getTest",
       "method": "get",
       "cookies": {
-        "email": "9999@123.com",
-        "login": "success"
+        "login": "true"
       },
       "queries": {
         "name": "getWithLi",
@@ -82,6 +81,30 @@
           "behind": "guang",
           "before": "li"
         }
+      }
+    }
+  },
+  {
+    "description":"这是登录接口",
+    "request": {
+      "uri": "/post/login",
+      "method": "post",
+      "headers": {
+        "content-type": "application/json"
+
+      },
+      "json": {
+        "name": "guangguangjson",
+        "password": "guangjson"
+      }
+    },
+    "response": {
+      "cookies": {
+        "login":"true"
+      },
+      "json": {
+        "code": 200,
+        "status": "success"
       }
     }
   }

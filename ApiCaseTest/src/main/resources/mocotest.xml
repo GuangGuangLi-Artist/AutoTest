@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="用户管理系统测试套件">
+<test name="moco测试带有cookie和token的接口">
+<classes>
+    <class name="com.course.code.cases.moco.MocoLoginTest"></class>
+</classes>
+</test>
+
+</suite>

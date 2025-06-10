@@ -10,6 +10,8 @@ public class TestConfig {
     public static String getUserInfoUrl;
     public static String getUserListUrl;
     public static String updateUserUrl;
+    public static String mocologinUrl;
+    public static String mocoGetApiURL;
 
 
     public static DefaultHttpClient defaultHttpClient;

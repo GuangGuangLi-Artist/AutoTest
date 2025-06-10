@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="学习如何使用group">
+    <test name="driver组执行了两个类中都属于driver组的方法">
+        <groups>
+            <run>
+                <include name="driver"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.course.code.cases.group.ClassCard1"></class>
+            <class name="com.course.code.cases.group.ClassCard2"></class>
+        </classes>
+    </test>
+    <!-- 配置测试报告监听器-->
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"></listener>
+    </listeners>
+</suite>
