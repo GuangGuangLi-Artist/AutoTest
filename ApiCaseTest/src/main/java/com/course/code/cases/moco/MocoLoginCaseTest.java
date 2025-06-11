@@ -8,20 +8,16 @@ import com.course.code.utils.ConfigFile;
 import org.apache.http.Consts;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.CookieStore;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class MocoLoginCaseTest {
 
@@ -66,7 +62,6 @@ public class MocoLoginCaseTest {
             for (Header header : cookies) {
                 System.out.println(header.getValue());
             }
-            System.out.println(Arrays.toString(cookies));
             responseRes = EntityUtils.toString(responseEntity, Consts.UTF_8);
             TestConfig.cookieStore  = TestConfig.defaultHttpClient.getCookieStore();
             System.out.println(TestConfig.cookieStore.toString());
@@ -84,11 +79,17 @@ public class MocoLoginCaseTest {
                     throw new RuntimeException(e);
                 }
             }
-            if (TestConfig.defaultHttpClient != null) {
-                TestConfig.defaultHttpClient.close();
-            }
+
         }
 
         return  responseRes;
+    }
+
+    @AfterTest
+    public void testLoginAfter(){
+
+        if (TestConfig.defaultHttpClient != null) {
+            TestConfig.defaultHttpClient.close();
+        }
     }
 }

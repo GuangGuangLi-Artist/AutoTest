@@ -12,9 +12,11 @@ public class TestConfig {
     public static String updateUserUrl;
     public static String mocologinUrl;
     public static String mocoGetApiURL;
+    public static String mocoPostApiURL;
 
 
     public static DefaultHttpClient defaultHttpClient;
 
     public static CookieStore cookieStore;
+
 }

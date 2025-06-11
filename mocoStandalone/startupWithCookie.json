@@ -85,6 +85,35 @@
     }
   },
   {
+    "description":"这是一个Content-Type为application/x-www-form-urlencoded; charset=utf-8的请求  date 22-9-24",
+    "request": {
+      "uri": "/postwithToken/urlencoded",
+      "method": "post",
+      "headers": {
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Authorization": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWFuZ2d1YW5nanNvbiIsInJvbGUiOiJhZG1pbiIsImRlcGFydG1lbnQiOiJJVCIsImlhdCI6MTc0OTU1OTgzNiwiZXhwIjoxNzQ5NTYzNDM2fQ.R_lQNSXX9mlWlnBdtETthlmRAL4cFl8EmhXHXUs0MgfY_etOznuV1l3agHfg4_1YHFqUk_8wiC6vYwRie-ciAQ"
+
+      },
+      "cookies": {
+        "login":"true"
+      },
+      "forms": {
+        "name": "guangguang",
+        "password": "guang"
+      }
+    },
+    "response": {
+      "headers": {
+        "Content-Typ":"application/json"
+      },
+      "json": {
+        "code": 200,
+        "status": "success",
+        "result": "请求参数是application/x-www-form-urlencoded类型"
+      }
+    }
+  },
+  {
     "description":"这是登录接口",
     "request": {
       "uri": "/post/login",
@@ -102,9 +131,13 @@
       "cookies": {
         "login":"true"
       },
+      "headers": {
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJndWFuZ2d1YW5nanNvbiIsInJvbGUiOiJhZG1pbiIsImRlcGFydG1lbnQiOiJJVCIsImlhdCI6MTc0OTU1OTgzNiwiZXhwIjoxNzQ5NTYzNDM2fQ.R_lQNSXX9mlWlnBdtETthlmRAL4cFl8EmhXHXUs0MgfY_etOznuV1l3agHfg4_1YHFqUk_8wiC6vYwRie-ciAQ"
+      },
       "json": {
         "code": 200,
         "status": "success"
+
       }
     }
   }

@@ -50,6 +50,10 @@ public class ConfigFile {
             uri = bundle.getString("moco.get.uri");
         }
 
+        if(name==InterfaceName.MOCOPOSTURLENCODED){
+            uri = bundle.getString("moco.post.uri");
+        }
+
         String testUrl = address + uri;
 
         return testUrl;

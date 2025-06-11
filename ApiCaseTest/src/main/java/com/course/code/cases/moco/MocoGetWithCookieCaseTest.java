@@ -1,9 +1,7 @@
 package com.course.code.cases.moco;
 
 import com.course.code.config.TestConfig;
-import com.course.code.domain.InterfaceName;
 import com.course.code.domain.MocoGetCase;
-import com.course.code.domain.MocoLoginCase;
 import com.course.code.utils.ConfigFile;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
@@ -15,6 +13,7 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -22,6 +21,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Map;
 
 import static com.course.code.domain.InterfaceName.MOCOGET;
 
@@ -40,8 +40,8 @@ public class MocoGetWithCookieCaseTest {
     @BeforeMethod
     public void loginBefore() {
         context = HttpClientContext.create();
-        CookieStore cookieStore = MocoLoginUtils.loginSuccessMoco();
-        context.setCookieStore(cookieStore);
+        Map<String,Object> resMap = MocoLoginUtils.loginSuccessMoco();
+        context.setCookieStore((CookieStore) resMap.get("cookie"));
 //        TestConfig.defaultHttpClient.setCookieStore(cookieStore);
         System.out.println("BeforeMethod  执行了");
 
@@ -94,14 +94,21 @@ public class MocoGetWithCookieCaseTest {
                 }
             }
 
-            if(TestConfig.defaultHttpClient != null) {
-                TestConfig.defaultHttpClient.close();
-            }
+
         }
 
 
 
         return resBody;
+    }
+
+    @AfterMethod
+    public void testGetafter() {
+        context.removeAttribute(HttpClientContext.COOKIE_STORE);
+        if(TestConfig.defaultHttpClient != null) {
+            TestConfig.defaultHttpClient.close();
+        }
+        System.out.println("AfterMethod  执行了");
     }
 
 
