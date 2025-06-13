@@ -1,0 +1,18 @@
+[
+  {
+    "description":"模拟一个带参数的get请求的mock例子",
+    "request": {
+      "uri": "/jmeter/get/JSR223",
+      "method": "get",
+      "queries": {
+        "name": "c3ViaWFv"
+      }
+    },
+    "response": {
+      "text": "c3ViaWFvQmFjaw==",
+      "headers": {
+        "Content-Type": "text/html;charset=GBK"
+      }
+    }
+  }
+]
