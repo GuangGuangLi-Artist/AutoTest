@@ -1,5 +1,7 @@
 package com.course.code.commonFunction;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
@@ -72,5 +74,21 @@ public class PropertiesReview {
                 }
             }
         }
+    }
+
+    @Test
+    public void testProperty() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/AutoTest/WebAutoTest/src/main/resources/chromedriver.exe");
+//        System.setProperty("webdriver.chrome.driver","F:/ideaWorkspace/chromedriver.exe");
+        Properties properties = System.getProperties();
+        properties.forEach((x,y) -> System.out.println(x + "------" + y));
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.baidu.com");
+        Thread.sleep(3000);
+        driver.close();
+
+
+
     }
 }

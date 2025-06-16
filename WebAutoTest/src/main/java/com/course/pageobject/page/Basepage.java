@@ -22,7 +22,7 @@ public class Basepage {
     }
 
     public By getByByLocal(String key){
-        ProUtil proUtil = new ProUtil("src/main/java/com/course/muke/cases/config/element.properties");
+        ProUtil proUtil = new ProUtil("src/main/java/com/course/pageobject/config/element.properties");
         String locator = proUtil.getPro(key);//name>email
 
         String locatorBy = locator.split(">")[0];//name

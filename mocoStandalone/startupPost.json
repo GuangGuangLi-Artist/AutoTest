@@ -138,6 +138,29 @@
         ]
       }
     }
-  }
+  },
+  {
+    "description":"这是一个Content-Type为application/json的请求  date 22-9-24",
+    "request": {
+      "uri": "/post/json/postman",
+      "method": "post",
+      "headers": {
+        "content-type": "application/json"
 
+      },
+      "json": {
+        "name": "guangguangjson"
+      }
+    },
+    "response": {
+      "headers": {
+        "content-Type":"application/json"
+      },
+      "json": {
+        "code": 200,
+        "status": "success",
+        "result": "请求参数是application/json类型"
+      }
+    }
+  }
 ]

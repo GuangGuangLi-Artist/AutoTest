@@ -22,7 +22,7 @@ public class LoginCase  extends InitDriver{
     public void beforeLogin(String uri,String browser){
 
 
-        PropertyConfigurator.configure("src/main/java/com/course/muke/cases/config/log4j.properties");
+        PropertyConfigurator.configure("src/main/java/com/course/pageobject/config/element.properties");
         //logger.debug("初始化浏览器");
         driver = getDriver(browser);
         driver.get(uri);
