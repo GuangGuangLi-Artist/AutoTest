@@ -27,6 +27,7 @@
       <module>HuaWeiSuanFa</module>
       <module>CodeCaprice</module>
       <module>AppiumTest</module>
+      <module>AutoPlaywright</module>
       <!--<module>ApiAutoPro</module>-->
   </modules>
 

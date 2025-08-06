@@ -30,6 +30,7 @@ public class TestAppiumDemo {
             driver.getPageSource();
         } finally {
             driver.quit();
+            
         }
 
     }
