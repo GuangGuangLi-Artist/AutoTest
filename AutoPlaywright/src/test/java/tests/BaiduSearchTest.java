@@ -1,13 +1,22 @@
 package tests;
 
 import base.BaseTest;
-import com.course.code.data.BaiduSearchData;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
+import data.BaiduSearchData;
 import com.course.code.pages.BaiduHomePage.BaiduHomePage;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.AssertUtil;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Epic("百度首页测试")
 @Feature("搜索功能")
@@ -15,7 +24,7 @@ public class BaiduSearchTest extends BaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(BaiduSearchTest.class);
 
-    @Test(description = "测试百度搜索功能",dataProvider = "searchKeywords",dataProviderClass = BaiduSearchData.class)
+    @Test(description = "测试百度搜索功能",dataProvider = "csvKeywords",dataProviderClass = BaiduSearchData.class)
     @Severity(SeverityLevel.CRITICAL)
     @Story("用户输入关键词进行搜索")
     public void testSearch(String keyword) {
@@ -26,7 +35,7 @@ public class BaiduSearchTest extends BaseTest {
         baiduHomePage.navigateTo();//在页面打开百度首页
         baiduHomePage.enterSearchText(keyword);
         baiduHomePage.clickSearchButton();
-        Assert.assertTrue(baiduHomePage.isResultShown(),"搜索结果未展示");
+        AssertUtil.assertFalse(baiduHomePage.isResultShown(),"搜索结果其实已展示");
         logger.info("测试完成：搜索关键词“{}”成功展示结果。", keyword);
 
     }

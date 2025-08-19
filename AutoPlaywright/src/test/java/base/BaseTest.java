@@ -1,26 +1,34 @@
 package base;
 
 import com.microsoft.playwright.*;
+import io.qameta.allure.Allure;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-
-import java.nio.file.Paths;
+import org.testng.annotations.*;
+import utils.ScreenshotUtil;
 
 public class BaseTest {
 
+    public static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
     protected Playwright playwright;
     protected Browser browser;
     protected Page page;
     protected BrowserContext context;
-    protected Logger logger;
 
     @BeforeClass
-    public void setUp()  {
+    @Parameters({"browserName"})
+    public void setUp(@Optional("chrome") String browserName) throws Exception  {
         playwright = Playwright.create();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(5000));
+        BrowserType browserType;
+        if("firefox".equalsIgnoreCase(browserName)){
+            browserType = playwright.firefox();
+            logger.info("启动 Firefox 浏览器");
+        }else {
+            browserType = playwright.chromium();
+            logger.info("启动 Chrome 浏览器（默认）");
+        }
+        browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(5000));
         context = browser.newContext();
         page = context.newPage();
     }
@@ -28,14 +36,21 @@ public class BaseTest {
     public void captureScreenshotOnFailure(ITestResult result) {
         if (!result.isSuccess()) {
             String testName = result.getMethod().getMethodName();
-            String screenshotPath = "screenshots/" + testName + "_" + System.currentTimeMillis() + ".png";
-            page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get(screenshotPath)).setFullPage(true));
-            logger.error("Test failed. Screenshot saved at: {}", screenshotPath);
+            String fileName = testName + "__" + System.currentTimeMillis() + ".png";
+            byte[] screenshot = ScreenshotUtil.captureScreenshot(page,fileName);
+            Allure.getLifecycle().addAttachment(
+                    "Failure Screenshot",
+                    "image/png",
+                    "png",
+                    screenshot
+            );
+
+            logger.error("Test failed. Screenshot attached to Allure report: {}}", fileName);
         }
     }
 
     @AfterClass
-    public void teartoen() {
+    public void teardown() {
         if (playwright != null) {
             playwright.close();
         }

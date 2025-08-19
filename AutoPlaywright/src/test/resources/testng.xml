@@ -1,5 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="百度首页测试框架">
+    <parameter name="browserName" value="firefox"></parameter>
     <test name="百度测试功能">
       <packages>
           <package name="tests"></package>
