@@ -1,8 +1,11 @@
 package tests;
 
 import base.BaseTest;
+import com.course.code.data.BaiduSearchData;
 import com.course.code.pages.BaiduHomePage.BaiduHomePage;
 import io.qameta.allure.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,16 +13,21 @@ import org.testng.annotations.Test;
 @Feature("搜索功能")
 public class BaiduSearchTest extends BaseTest {
 
-    @Test(description = "测试百度搜索功能")
+    private static final Logger logger = LoggerFactory.getLogger(BaiduSearchTest.class);
+
+    @Test(description = "测试百度搜索功能",dataProvider = "searchKeywords",dataProviderClass = BaiduSearchData.class)
     @Severity(SeverityLevel.CRITICAL)
     @Story("用户输入关键词进行搜索")
-    public void testSearch() {
+    public void testSearch(String keyword) {
+
+        logger.info("开始测试搜索关键词：{}", keyword);
 
         BaiduHomePage baiduHomePage = new BaiduHomePage(page);//调用playwright 打开一个空白页面
         baiduHomePage.navigateTo();//在页面打开百度首页
-        baiduHomePage.enterSearchText("百度改页面了吗");
+        baiduHomePage.enterSearchText(keyword);
         baiduHomePage.clickSearchButton();
         Assert.assertTrue(baiduHomePage.isResultShown(),"搜索结果未展示");
+        logger.info("测试完成：搜索关键词“{}”成功展示结果。", keyword);
 
     }
 

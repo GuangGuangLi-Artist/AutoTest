@@ -51,7 +51,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testng.version}</version>
+            <version>7.9.0</version>
         </dependency>
         <dependency>
             <groupId>com.relevantcodes</groupId>
@@ -93,6 +93,16 @@
             <artifactId>allure-testng</artifactId>
             <version>2.24.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.13</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
     </dependencies>
 
     <properties>
@@ -114,31 +124,20 @@
 
         <!-- TestNG执行插件 -->
         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>3.0.0-M5</version>
+            <version>3.1.2</version>
             <configuration>
                 <suiteXmlFiles>
                     <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                 </suiteXmlFiles>
-                <argLine>
-                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.7/aspectjweaver-1.9.7.jar"
-                </argLine>
             </configuration>
-            <dependencies>
-                <dependency>
-                    <groupId>org.aspectj</groupId>
-                    <artifactId>aspectjweaver</artifactId>
-                    <version>1.9.7</version>
-                </dependency>
-            </dependencies>
         </plugin>
 
         <!-- Allure报告插件 -->
         <plugin>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-maven</artifactId>
-            <version>2.12.0</version>
+            <version>2.11.2</version>
         </plugin>
     </plugins>
 </build>
