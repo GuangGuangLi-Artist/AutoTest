@@ -23,7 +23,9 @@ public class AutoCases {
     void initBrowser() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setArgs(Collections.singletonList("--start-maximized"))
-                .setHeadless(false).setSlowMo(3000));
+                .setHeadless(false)
+                .setChromiumSandbox(true)
+                .setSlowMo(5000));
 
         context = browser.newContext(new Browser.NewContextOptions().setViewportSize(1920, 1080));
         page = context.newPage();
@@ -38,8 +40,8 @@ public class AutoCases {
     @Feature("API功能测试")
     public void testScript1() {
         page.navigate("https://www.baidu.com/");
-        page.locator("#kw").fill("test");
-        page.locator("#kw").press("Enter");
+        page.locator("//div[@id='chat-input-area']/textarea").fill("test");
+        page.locator("#chat-submit-button").press("Enter");
 
     }
 
