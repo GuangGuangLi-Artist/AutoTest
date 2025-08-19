@@ -35,7 +35,7 @@ public class BaiduSearchTest extends BaseTest {
         baiduHomePage.navigateTo();//在页面打开百度首页
         baiduHomePage.enterSearchText(keyword);
         baiduHomePage.clickSearchButton();
-        AssertUtil.assertFalse(baiduHomePage.isResultShown(),"搜索结果其实已展示");
+        AssertUtil.assertTrue(baiduHomePage.isResultShown(),"搜索结果没有展示!");
         logger.info("测试完成：搜索关键词“{}”成功展示结果。", keyword);
 
     }
