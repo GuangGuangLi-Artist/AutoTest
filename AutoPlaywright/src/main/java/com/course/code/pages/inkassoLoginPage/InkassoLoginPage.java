@@ -14,7 +14,7 @@ public class InkassoLoginPage {
     private final Locator phoneNumber;
     private final Locator verifyCode;
     private final Locator xiyi;
-    private final  Locator subButton;
+    private final Locator subButton;
     private final Locator userphone;
 
 
@@ -25,7 +25,7 @@ public class InkassoLoginPage {
         this.verifyCode = page.getByPlaceholder("请输入6位数验证码");
         this.xiyi = page.locator("form div").filter(new Locator.FilterOptions().setHasText("我已阅读并接受 《用户协议》 和 《隐私政策》")).locator("span").nth(1);
         this.subButton = page.getByRole(AriaRole.DIALOG).getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions().setName("登录/注册"));
-        this.userphone = page.locator( "xpath =//span[starts-with(@class,'el-dropdown-link')]");
+        this.userphone = page.locator("xpath =//span[starts-with(@class,'el-dropdown-link')]");
 
     }
 
@@ -46,16 +46,19 @@ public class InkassoLoginPage {
         logger.info("Entering inkasso login using user name: " + number);
         phoneNumber.fill(number);
     }
+
     @Step("输入验证码:{code}")
     public void enterverifyCode(String code) {
         logger.info("Entering inkasso login using user code: " + code);
         verifyCode.fill(code);
     }
+
     @Step("点击协议")
     public void clickrxidyi() {
         logger.info("Clicking rxidyi");
         xiyi.click();
     }
+
     @Step("点击登录按钮")
     public void clicksubButton() {
         logger.info("Clicking sub button");
@@ -75,7 +78,6 @@ public class InkassoLoginPage {
         clicksubButton();
 
     }
-
 
 
 }

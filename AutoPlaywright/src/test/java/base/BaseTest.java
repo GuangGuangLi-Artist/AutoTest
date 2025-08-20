@@ -18,13 +18,13 @@ public class BaseTest {
 
     @BeforeClass
     @Parameters({"browserName"})
-    public void setUp(@Optional("chrome") String browserName) throws Exception  {
+    public void setUp(@Optional("chrome") String browserName) throws Exception {
         playwright = Playwright.create();
         BrowserType browserType;
-        if("firefox".equalsIgnoreCase(browserName)){
+        if ("firefox".equalsIgnoreCase(browserName)) {
             browserType = playwright.firefox();
             logger.info("启动 Firefox 浏览器");
-        }else {
+        } else {
             browserType = playwright.chromium();
             logger.info("启动 Chrome 浏览器（默认）");
         }
@@ -32,12 +32,13 @@ public class BaseTest {
         context = browser.newContext();
         page = context.newPage();
     }
+
     @AfterMethod
     public void captureScreenshotOnFailure(ITestResult result) {
         if (!result.isSuccess()) {
             String testName = result.getMethod().getMethodName();
             String fileName = testName + "__" + System.currentTimeMillis() + ".png";
-            byte[] screenshot = ScreenshotUtil.captureScreenshot(page,fileName);
+            byte[] screenshot = ScreenshotUtil.captureScreenshot(page, fileName);
             Allure.getLifecycle().addAttachment(
                     "Failure Screenshot",
                     "image/png",
@@ -51,11 +52,12 @@ public class BaseTest {
 
     @AfterClass
     public void teardown() {
-        if (playwright != null) {
-            playwright.close();
-        }
-    }
+        if (page != null) page.close();
+        if (context != null) context.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
 
+    }
 
 
 }

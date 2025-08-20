@@ -17,7 +17,8 @@ public class DataProviderUtil {
         if (filepath.endsWith(".csv")) {
             return loadCSV(filepath);
         } else if (filepath.endsWith(".json")) {
-            return List.of(loadJSON(filepath));
+            List<Map<String, Object>> jsonMapList = List.of(loadJSON(filepath));
+            return jsonMapList;
         } else if (filepath.endsWith(".yaml") || filepath.endsWith(".yml")) {
             return List.of(loadYAML(filepath));
         } else if (filepath.endsWith(".properties")) {
@@ -70,7 +71,8 @@ public class DataProviderUtil {
 
         ObjectMapper mapper = new ObjectMapper();
         try {
-            return mapper.readValue(new File(filePath), Map.class);
+            Map<String, Object> mapJson = mapper.readValue(new File(filePath), Map.class);
+            return mapJson;
         } catch (IOException e) {
             e.printStackTrace();
         }

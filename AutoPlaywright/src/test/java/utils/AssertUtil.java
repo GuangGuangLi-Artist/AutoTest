@@ -8,12 +8,12 @@ public class AssertUtil {
     private static final Logger logger = LoggerFactory.getLogger(AssertUtil.class);
 
     public static void assertTrue(boolean condition, String message) {
-        logger.info("断言是否为真：{}",message);
+        logger.info("断言是否为真：{}", message);
         Assert.assertTrue(condition, message);
     }
 
     public static void assertFalse(boolean condition, String message) {
-        logger.error("断言失败：{}",message);
+        logger.error("断言失败：{}", message);
         Assert.fail(message);
     }
 
