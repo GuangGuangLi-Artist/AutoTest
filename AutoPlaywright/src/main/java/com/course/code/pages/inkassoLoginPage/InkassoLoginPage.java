@@ -15,6 +15,7 @@ public class InkassoLoginPage {
     private final Locator verifyCode;
     private final Locator xiyi;
     private final  Locator subButton;
+    private final Locator userphone;
 
 
     public InkassoLoginPage(Page page) {
@@ -24,6 +25,8 @@ public class InkassoLoginPage {
         this.verifyCode = page.getByPlaceholder("请输入6位数验证码");
         this.xiyi = page.locator("form div").filter(new Locator.FilterOptions().setHasText("我已阅读并接受 《用户协议》 和 《隐私政策》")).locator("span").nth(1);
         this.subButton = page.getByRole(AriaRole.DIALOG).getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions().setName("登录/注册"));
+        this.userphone = page.locator( "xpath =//span[starts-with(@class,'el-dropdown-link')]");
+
     }
 
     public void navigateToInkassoLoginPage(String loginUrl) {
@@ -57,6 +60,11 @@ public class InkassoLoginPage {
     public void clicksubButton() {
         logger.info("Clicking sub button");
         subButton.click();
+    }
+
+    public String getUserphone() {
+        logger.info("Getting user phone number");
+        return userphone.innerText();
     }
 
     public void login(String number, String code) {

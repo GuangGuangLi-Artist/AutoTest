@@ -2,12 +2,12 @@ package tests;
 
 import base.BaseTest;
 import com.course.code.pages.inkassoLoginPage.InkassoLoginPage;
-import data.BaiduSearchData;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.AssertUtil;
 import utils.DataProviderUtil;
 
 import java.util.Map;
@@ -37,7 +37,8 @@ public class InkassologinTest extends BaseTest {
         InkassoLoginPage loginPage = new InkassoLoginPage(page);
         loginPage.navigateToInkassoLoginPage(url);
         loginPage.login(username, password);
-
+        String phone = loginPage.getUserphone();
+        AssertUtil.assertEquals(phone,"15607521234","登录成功");
 
     }
 }
