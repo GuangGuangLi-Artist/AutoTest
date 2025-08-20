@@ -1,4 +1,4 @@
-package com.course.code.pages.BaiduHomePage;
+package com.course.code.pages.baiduHomePage;
 
 import com.microsoft.playwright.Page;
 import org.slf4j.Logger;

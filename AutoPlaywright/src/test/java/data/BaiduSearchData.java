@@ -5,7 +5,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +31,7 @@ public class BaiduSearchData {
     @DataProvider(name = "csvKeywords")
     public static Object[][] provideKeywordsFromCsv() throws Exception {
         List<Object[]> data = new ArrayList<>();
-        String csvPath = "src/test/resources/data/keywords.csv";
+        String csvPath = "src/test/resources/testdata/csv/keywords.csv";
         try (
                 InputStreamReader isr = new InputStreamReader(new FileInputStream(csvPath),"UTF-8");
                 CSVReader reader = new CSVReader(isr)
