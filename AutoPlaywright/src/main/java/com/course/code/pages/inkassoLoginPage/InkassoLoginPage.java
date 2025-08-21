@@ -68,6 +68,7 @@ public class InkassoLoginPage {
         subButton.click();
     }
 
+    //判断用户是否登录成功
     public String getUserphone() {
         logger.info("Getting user phone number");
         return userphone.innerText();
@@ -77,6 +78,8 @@ public class InkassoLoginPage {
         logger.info("Getting fail message");
         return failMsg.isVisible();
     }
+
+
 
     public void login(String number, String code) {
         clickLoginButton();
