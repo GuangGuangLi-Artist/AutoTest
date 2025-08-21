@@ -6,6 +6,8 @@ import data.BaiduSearchData;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.AssertUtil;
 
@@ -28,7 +30,16 @@ public class BaiduSearchTest extends BaseTest {
         baiduHomePage.clickSearchButton();
         AssertUtil.assertTrue(baiduHomePage.isResultShown(),"搜索结果有没有展示!");
         logger.info("测试完成：搜索关键词“{}”成功展示结果。", keyword);
+        //项目使用mvn clean test执行后没有生成logs目录及其文件
 
+    }
+
+    @Test
+    public void testlog(){
+        System.out.println("执行成功");
+        String testS = "hello logBack";
+        AssertUtil.assertEquals("hello logBack",testS,"这是成功了");
+        logger.info("怎么不显示呢{}",testS);
     }
 
 

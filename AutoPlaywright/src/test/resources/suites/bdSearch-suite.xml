@@ -2,8 +2,8 @@
 <suite name="百度首页测试框架">
     <parameter name="browserName" value="chrome"></parameter>
     <test name="百度测试功能">
-      <packages>
-          <package name="tests"></package>
-      </packages>
+      <classes>
+          <class name="tests.BaiduSearchTest"></class>
+      </classes>
     </test>
 </suite>
