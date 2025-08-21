@@ -16,7 +16,7 @@ public class BaseTest {
     protected Page page;
     protected BrowserContext context;
 
-    @BeforeClass
+    @BeforeMethod
     @Parameters({"browserName"})
     public void setUp(@Optional("chrome") String browserName) throws Exception {
         playwright = Playwright.create();
@@ -48,13 +48,14 @@ public class BaseTest {
 
             logger.error("Test failed. Screenshot attached to Allure report: {}}", fileName);
         }
+        if (page != null) page.close();
+        if (context != null) context.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
     }
 
     @AfterClass
     public void teardown() {
-        if (page != null) page.close();
-        if (context != null) context.close();
-        if (browser != null) browser.close();
         if (playwright != null) playwright.close();
 
     }

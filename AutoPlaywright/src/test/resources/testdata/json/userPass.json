@@ -1,7 +1,16 @@
 {
-  "username": "15607521234",
-  "password": "666888",
-  "login_url": "http://test.changan-inkasso.com:7576/#/home",
-  "expected_error": "用户名或密码错误"
+  "rightUser": {
+    "username": "15607521234",
+    "password": "666888",
+    "login_url": "http://test.changan-inkasso.com:7576/#/home",
+    "expected_error": "用户名或密码错误"
+  },
+  "wrongUser": {
+    "username": "15607521234",
+    "password": "666887",
+    "login_url": "http://test.changan-inkasso.com:7576/#/home",
+    "expected_error": "用户名或密码错误"
+  }
+
 }
 
