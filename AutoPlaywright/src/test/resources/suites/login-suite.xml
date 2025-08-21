@@ -2,7 +2,12 @@
 <suite name="LoginSuite">
     <test name="LoginTest">
         <classes>
-            <class name="tests.InkassologinTest"></class>
+            <class name="tests.InkassologinTest">
+                <methods>
+                    <include name="testLoginSuccessWithJSON"></include>
+                    <include name="testLoginFailWithJSON"></include>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
