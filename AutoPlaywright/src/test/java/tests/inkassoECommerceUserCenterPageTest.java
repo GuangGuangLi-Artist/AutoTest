@@ -3,6 +3,8 @@ package tests;
 import base.BaseTest;
 import com.course.code.pages.inkassoECommerceUserCenterPage.inkassoECommerceUserCenterPage;
 import com.course.code.pages.inkassoLoginPage.InkassoLoginPage;
+import com.microsoft.playwright.Browser;
+import com.microsoft.playwright.BrowserContext;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,7 @@ import org.testng.annotations.Test;
 import utils.AssertUtil;
 import utils.DataProviderUtil;
 
+import java.nio.file.Paths;
 import java.util.Map;
 
 
@@ -20,33 +23,14 @@ import java.util.Map;
 public class inkassoECommerceUserCenterPageTest extends BaseTest {
 
     private static final Logger logger = LoggerFactory.getLogger(inkassoECommerceUserCenterPageTest.class);
-    String userPassFilePath = "src/test/resources/testdata/json/userPass.json";
     String eCommerceUserCenterPagepath = "src/test/resources/testdata/json/ECommerceUserCenterPage/ECommerceUserCenterPage.json";
 
-    @DataProvider(name = "loginRData")
-    public Object[][] loginRDataProvider() {
-        return DataProviderUtil.loadFromJsonKey(userPassFilePath,"rightUser");
-
-    }
-
-    @Test(description = "测试登录成功",dataProvider = "loginRData")
-    @Severity(SeverityLevel.CRITICAL)
-    @Story("用户输入手机号和验证码登录")
-    public void testLoginSuccessWithJSON(Map<String,Object> data){
-        logger.info("开始测试登录页面");
-        String url = (String) data.get("login_url");
-        String username = (String) data.get("username");
-        String password = (String) data.get("password");
-        InkassoLoginPage loginPage = new InkassoLoginPage(page);
-        loginPage.navigateToInkassoLoginPage(url);
-        loginPage.login(username, password);
-
-    }
 
     @DataProvider(name="addShopData")
     public Object[][] addShopDataProvider(){
         return DataProviderUtil.loadFromJsonKey(eCommerceUserCenterPagepath,"addShop");
     }
+
 
     @Test(description = "添加店铺成功",dataProvider = "addShopData")
     @Severity(SeverityLevel.CRITICAL)
@@ -55,8 +39,11 @@ public class inkassoECommerceUserCenterPageTest extends BaseTest {
 
         logger.info("开始测试国内电商添加店铺");
         String eCommerce_url = (String) data.get("ECommerce_url");
+        Browser.NewContextOptions options = new Browser.NewContextOptions().setStorageStatePath(Paths.get("src/test/resources/loginState.json"));
+        context = browser.newContext(options);
         inkassoECommerceUserCenterPage addShopPage = new inkassoECommerceUserCenterPage(page);
         addShopPage.navigateToECommerceUserCenterPag(eCommerce_url);
+
         addShopPage.addShop();
 
 

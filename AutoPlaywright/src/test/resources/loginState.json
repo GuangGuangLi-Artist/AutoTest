@@ -1,0 +1,1 @@
+{"cookies":[{"name":"satoken","value":"e8383b3c-c626-438e-92a8-70a76bf447b2","domain":"test.changan-inkasso.com","path":"/","expires":-1,"httpOnly":false,"secure":false,"sameSite":"Lax"}],"origins":[{"origin":"http://test.changan-inkasso.com:7576","localStorage":[{"name":"website_login","value":"true"},{"name":"website_user","value":"15607521234"}]}]}

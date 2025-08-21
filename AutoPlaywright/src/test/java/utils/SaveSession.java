@@ -2,16 +2,21 @@ package utils;
 
 import com.course.code.pages.inkassoLoginPage.InkassoLoginPage;
 import com.microsoft.playwright.*;
-import org.testng.annotations.Test;
 
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 
+/**
+ * 存储登录状态 后续调用复用
+ */
+
 public class SaveSession {
 
     String userPassFilePath = "src/test/resources/testdata/json/userPass.json";
-    String storageJson = "";
     public Map<String, Object> loginRDataProvider() {
         return DataProviderUtil.getValueByJsonKey(userPassFilePath,"rightUser");
 
@@ -19,8 +24,7 @@ public class SaveSession {
     }
 
 
-    @Test
-    public static void saveLoginSession(){
+    public static void saveLoginSession() throws IOException {
         try (Playwright playwright = Playwright.create()) {
             Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setSlowMo(5000).setHeadless(false));
             BrowserContext context = browser.newContext();
@@ -33,11 +37,10 @@ public class SaveSession {
             loginPage.navigateToInkassoLoginPage(url);
             loginPage.login(username, password);
             Path path = Paths.get("src/test/resources/loginState.json");
-            String s = context.storageState(path);
-            System.out.println(s);
-
-            System.out.println("登录状态已保存到 loginState.json");
+            String storeJson = context.storageState();
+            Files.write(path,storeJson.getBytes(StandardCharsets.UTF_8));
             browser.close();
+
 
 
         }

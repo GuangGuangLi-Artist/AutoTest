@@ -14,10 +14,12 @@ public class inkassoECommerceUserCenterPage {
     private static final Logger logger = LoggerFactory.getLogger(inkassoECommerceUserCenterPage.class);
     private Page page;
 
+    private Locator loginButton;
     private Locator userCenter;
     private Locator addShopButton;
     public inkassoECommerceUserCenterPage(Page page) {
         this.page = page;
+        this.loginButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("登录/注册"));
         this.userCenter = page.getByRole(AriaRole.LINK,new Page.GetByRoleOptions().setName("用户中心"));
         this.addShopButton = page.getByText("添加店铺");
 
@@ -26,6 +28,12 @@ public class inkassoECommerceUserCenterPage {
     public void navigateToECommerceUserCenterPag(String url) {
         logger.info("navigateToECommerceUserCenterPag(" + url + ")");
         page.navigate(url);
+    }
+
+    @Step("clickLoginButton")
+    public void clickLoginButton() {
+        logger.info("clickLoginButton()");
+        loginButton.click();
     }
 
     @Step("clickUserCenter")
@@ -42,6 +50,7 @@ public class inkassoECommerceUserCenterPage {
 
     public void addShop(){
         logger.info("add shop");
+        clickLoginButton();
         clickUserCenter();
         clickAddShopButton();
 
