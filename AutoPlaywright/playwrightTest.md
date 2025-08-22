@@ -12,3 +12,4 @@
     3.mvn clean test \ -DsuiteFile="src/test/resources/suites/regression-suite.xml" \ -Ddata.format="json"
 
 
+Y

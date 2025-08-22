@@ -57,7 +57,6 @@ public class InkassologinTest {
         String url = (String) data.get("login_url");
         String username = (String) data.get("username");
         String password = (String) data.get("password");
-        String expected_error = (String) data.get("expected_error");
         InkassoLoginPage loginPage = new InkassoLoginPage(page);
         loginPage.navigateToInkassoLoginPage(url);
         loginPage.login(username, password);

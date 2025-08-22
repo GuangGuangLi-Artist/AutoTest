@@ -7,17 +7,17 @@ import io.qameta.allure.Step;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class inkassoECommerceUserCenterPage {
+public class InkassoECommerceUserCenterPage {
     /**
      * 国内电商用户中心首页
      */
-    private static final Logger logger = LoggerFactory.getLogger(inkassoECommerceUserCenterPage.class);
+    private static final Logger logger = LoggerFactory.getLogger(InkassoECommerceUserCenterPage.class);
     private Page page;
 
     private Locator loginButton;
     private Locator userCenter;
     private Locator addShopButton;
-    public inkassoECommerceUserCenterPage(Page page) {
+    public InkassoECommerceUserCenterPage(Page page) {
         this.page = page;
         this.loginButton = page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("登录/注册"));
         this.userCenter = page.getByRole(AriaRole.LINK,new Page.GetByRoleOptions().setName("用户中心"));
