@@ -71,6 +71,8 @@ public class LoginManager {
         } catch (Exception e) {
             logger.warn("检测登录状态失败，可能未登录");
             return false;
+        }finally {
+            page.close();
         }
     }
 }

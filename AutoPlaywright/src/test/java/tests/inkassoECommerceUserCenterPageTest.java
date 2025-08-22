@@ -2,6 +2,8 @@ package tests;
 
 import base.BaseTest;
 import com.course.code.pages.inkassoECommerceUserCenterPage.InkassoECommerceUserCenterPage;
+import com.microsoft.playwright.Page;
+import com.microsoft.playwright.options.AriaRole;
 import io.qameta.allure.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +11,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.DataProviderUtil;
 
-import java.io.IOException;
 import java.util.Map;
 
 
@@ -29,13 +30,20 @@ public class inkassoECommerceUserCenterPageTest extends BaseTest {
     @Test(description = "添加店铺成功",dataProvider = "addShopData")
     @Severity(SeverityLevel.CRITICAL)
     @Story("添加店铺成功")
-    public void testAddShopSuccessWithJSON(Map<String,Object> data) throws IOException {
+    public void testAddShopSuccessWithJSON(Map<String,Object> data)  {
 
         logger.info("开始测试国内电商添加店铺");
         String eCommerce_url = (String) data.get("ECommerce_url");
         InkassoECommerceUserCenterPage userCenterPage = new InkassoECommerceUserCenterPage(page);
         userCenterPage.navigateToECommerceUserCenterPag(eCommerce_url);
-        userCenterPage.clickLoginButton();
-        userCenterPage.addShop();
+        //如果已登录 就不点击登录按钮，如果没登录，就先点击登录按钮 添加店铺
+        if (page.getByRole(AriaRole.LINK,new Page.GetByRoleOptions().setName("用户中心")).isVisible()){
+            userCenterPage.addShop();
+        }else {
+            userCenterPage.clickLoginButton();
+            userCenterPage.addShop();
+        }
+
+
     }
 }

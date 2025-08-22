@@ -1,7 +1,6 @@
 package base;
 
 import com.microsoft.playwright.*;
-import com.microsoft.playwright.options.AriaRole;
 import io.qameta.allure.Allure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,21 +10,20 @@ import utils.DataProviderUtil;
 import utils.LoginManager;
 import utils.ScreenshotUtil;
 
-import java.nio.file.Paths;
 import java.util.Map;
 
 public class BaseTest {
 
     public static final Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    public static String statePath = "src/test/resources/loginState.json";
     protected Playwright playwright;
     protected Browser browser;
     protected Page page;
     protected BrowserContext context;
-    public static String statePath = "src/test/resources/loginState.json";
 
     @BeforeMethod
-    @Parameters({"browserName","useLoginState"})
-    public void setUp(@Optional("chrome") String browserName,@Optional("true") boolean useLoginState) throws Exception {
+    @Parameters({"browserName", "useLoginState"})
+    public void setUp(@Optional("chrome") String browserName, @Optional("true") boolean useLoginState) throws Exception {
         // 登录状态文件
         playwright = Playwright.create();
         BrowserType browserType;
@@ -46,24 +44,24 @@ public class BaseTest {
 
             //添加登录状态失效的情况
             String e_url = "http://222.90.211.174:19998/tec#/dashboard";
-            if (!LoginManager.isLogininValid(page,e_url)){
+            if (!LoginManager.isLogininValid(page, e_url)) {
                 logger.info("登录状态无效，重新登录...");
-//                page.close();
+                page.close();
                 String userPassFilePath = "src/test/resources/testdata/json/userPass.json";
-                Map<String, Object> userInfo = DataProviderUtil.getValueByJsonKey(userPassFilePath,"rightUser");
+                Map<String, Object> userInfo = DataProviderUtil.getValueByJsonKey(userPassFilePath, "rightUser");
                 String url = (String) userInfo.get("login_url");
                 String username = (String) userInfo.get("username");
                 String password = (String) userInfo.get("password");
-                LoginManager.saveLoginSession(browser,url,username,password,statePath);
+                LoginManager.saveLoginSession(browser, url, username, password, statePath);
 
                 //重新加载context和page
-                context = LoginManager.loadLoggedInContext(browser,statePath);
-            }else {
+                context = LoginManager.loadLoggedInContext(browser, statePath);
+            } else {
                 logger.info("检测到已登录，无需重新登录");
             }
 
 
-        }else {
+        } else {
             context = browser.newContext();
             logger.info("新建无状态上下文");
         }
@@ -87,13 +85,12 @@ public class BaseTest {
             logger.error("Test failed. Screenshot attached to Allure report: {}}", fileName);
         }
         if (page != null) page.close();
-        if (context != null) context.close();
-        if (browser != null) browser.close();
-        if (playwright != null) playwright.close();
     }
 
     @AfterClass
     public void teardown() {
+        if (context != null) context.close();
+        if (browser != null) browser.close();
         if (playwright != null) playwright.close();
 
     }
