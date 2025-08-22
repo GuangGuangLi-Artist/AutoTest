@@ -8,6 +8,7 @@
     1.mvn allure:serve
 ---------------------------------------
     1.执行不同的测试套 mvn clean test -DsuiteFile="src/test/resources/suites/login-suite.xml"
-    2.mvn clean test \ -DsuiteFile="src/test/resources/suites/regression-suite.xml" \ -Ddata.format="json"
+    2.mvn clean test -DsuiteFile="src/test/resources/suites/eCommerceUserCenterPage-suite.xml"
+    3.mvn clean test \ -DsuiteFile="src/test/resources/suites/regression-suite.xml" \ -Ddata.format="json"
 
 

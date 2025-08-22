@@ -1,12 +1,16 @@
 package base;
 
 import com.microsoft.playwright.*;
+import com.microsoft.playwright.options.AriaRole;
 import io.qameta.allure.Allure;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import utils.LoginManager;
 import utils.ScreenshotUtil;
+
+import java.nio.file.Paths;
 
 public class BaseTest {
 
@@ -15,10 +19,12 @@ public class BaseTest {
     protected Browser browser;
     protected Page page;
     protected BrowserContext context;
+    public static String statePath = "src/test/resources/loginState.json";
 
     @BeforeMethod
-    @Parameters({"browserName"})
-    public void setUp(@Optional("chrome") String browserName) throws Exception {
+    @Parameters({"browserName","useLoginState"})
+    public void setUp(@Optional("chrome") String browserName,@Optional("true") boolean useLoginState) throws Exception {
+        // 登录状态文件
         playwright = Playwright.create();
         BrowserType browserType;
         if ("firefox".equalsIgnoreCase(browserName)) {
@@ -29,7 +35,17 @@ public class BaseTest {
             logger.info("启动 Chrome 浏览器（默认）");
         }
         browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(5000));
-        context = browser.newContext();
+        if (useLoginState) {
+//            context = browser.newContext(new Browser.NewContextOptions()
+//                    .setStorageStatePath(Paths.get(statePath)));
+            context = LoginManager.loadLoggedInContext(browser, statePath);
+            page = context.newPage();
+            logger.info("加载登录状态文件: {}", statePath);
+        }else {
+            context = browser.newContext();
+            logger.info("新建无状态上下文");
+        }
+
         page = context.newPage();
     }
 

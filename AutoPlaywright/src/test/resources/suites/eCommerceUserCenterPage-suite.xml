@@ -1,12 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="LoginSuite">
+<suite name="国内电商首页">
     <parameter name="browserName" value="chrome"></parameter>
-    <test name="LoginTest">
+    <test name="国内电商首页操作">
         <classes>
-            <class name="tests.InkassologinTest">
+            <class name="tests.inkassoECommerceUserCenterPageTest">
                 <methods>
-                    <include name="testLoginSuccessWithJSON"></include>
-                    <include name="testLoginFailWithJSON"></include>
+                    <include name="testAddShopSuccessWithJSON"></include>
                 </methods>
             </class>
         </classes>

@@ -50,7 +50,6 @@ public class inkassoECommerceUserCenterPage {
 
     public void addShop(){
         logger.info("add shop");
-        clickLoginButton();
         clickUserCenter();
         clickAddShopButton();
 
