@@ -48,7 +48,7 @@ public class BaseTest {
             String e_url = "http://222.90.211.174:19998/tec#/dashboard";
             if (!LoginManager.isLogininValid(page,e_url)){
                 logger.info("登录状态无效，重新登录...");
-                page.close();
+//                page.close();
                 String userPassFilePath = "src/test/resources/testdata/json/userPass.json";
                 Map<String, Object> userInfo = DataProviderUtil.getValueByJsonKey(userPassFilePath,"rightUser");
                 String url = (String) userInfo.get("login_url");

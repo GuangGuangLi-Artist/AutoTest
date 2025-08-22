@@ -66,6 +66,7 @@ public class LoginManager {
         try {
             page.navigate(checkUrl);
             page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("登录/注册")).click();
+            page.getByRole(AriaRole.BUTTON).click();
             return page.getByText("退出").isVisible();//登录
         } catch (Exception e) {
             logger.warn("检测登录状态失败，可能未登录");
