@@ -1,0 +1,1 @@
+[appium教程](https://appium.tutorial.hogwarts.ceshiren.com/app_auto_testing/v2/L1/tutorial/Appium%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/ "appium的教程")
