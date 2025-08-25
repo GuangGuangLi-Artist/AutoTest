@@ -16,10 +16,10 @@ import java.util.Map;
 
 @Epic("国内电商用户中心页")//定义一个测试功能的顶层范围 可以将多个 @Allure.feature 标记的用例归类到同一个epic 下
 @Feature("添加店铺")
-public class inkassoECommerceUserCenterPageTest extends BaseTest {
+public class InkassoECommerceUserCenterPageTest extends BaseTest {
 
 
-    private static final Logger logger = LoggerFactory.getLogger(inkassoECommerceUserCenterPageTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(InkassoECommerceUserCenterPageTest.class);
     String eCommerceUserCenterPagepath = "src/test/resources/testdata/json/ECommerceUserCenterPage/ECommerceUserCenterPage.json";
 
     @DataProvider(name="addShopData")

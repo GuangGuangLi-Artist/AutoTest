@@ -3,7 +3,7 @@
     <parameter name="browserName" value="chrome"></parameter>
     <test name="国内电商首页操作">
         <classes>
-            <class name="tests.inkassoECommerceUserCenterPageTest">
+            <class name="tests.InkassoECommerceUserCenterPageTest">
                 <methods>
                     <include name="testAddShopSuccessWithJSON"></include>
                 </methods>
