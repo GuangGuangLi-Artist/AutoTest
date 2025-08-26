@@ -40,7 +40,7 @@ public class TestAppiumApkDemo {
      *
      */
 
-    @Test
+    @Test 
     public void testAppiumApiToast() {
         driver.findElement(new AppiumBy.ByAccessibilityId("Views")).click();
         driver.findElement(new AppiumBy.ByAndroidUIAutomator("new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().text(\"Popup Menu\"))")).click();
