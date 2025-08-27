@@ -1,0 +1,7 @@
+08-24 11:09:36.259  1600  3906 I WindowManager: Check opening app=ActivityRecord{f4f7b53 u0 com.huawei.android.launcher/.unihome.UniHomeLauncher t7}: allDrawn=true startingDisplayed=false startingMoved=false isRelaunching()=false mStartingWindow=null isOneStepWindowChanging=falseisOpenCombinationSplitScreen=false shouldWaitCombine=false
+08-24 11:09:38.828  1600  2596 I WindowManager: Check opening app=ActivityRecord{55ec145 u0 com.xueqiu.android/.mainnesting.view.MainNestingActivity t39722}: allDrawn=false startingDisplayed=true startingMoved=false isRelaunching()=false mStartingWindow=Window{870f7c2 u0 SnapshotStartingWindow for taskId=39722} isOneStepWindowChanging=falseisOpenCombinationSplitScreen=false shouldWaitCombine=false
+08-24 11:09:57.540  1600  2419 I WiFi_PRO_WifiProStateMachine: isSwitching = false, isDialogDisplayed = false, isAllowWiFiHandoverMobile = true, level = 3
+08-24 11:10:09.574  1600  2419 I WiFi_PRO_WifiProStateMachine: isSwitching = false, isDialogDisplayed = false, isAllowWiFiHandoverMobile = true, level = 3
+08-24 11:10:17.598  1600  2419 I WiFi_PRO_WifiProStateMachine: isSwitching = false, isDialogDisplayed = false, isAllowWiFiHandoverMobile = true, level = 3
+08-24 11:10:25.630  1600  2419 I WiFi_PRO_WifiProStateMachine: isSwitching = false, isDialogDisplayed = false, isAllowWiFiHandoverMobile = true, level = 3
+08-24 11:10:33.656  1600  2419 I WiFi_PRO_WifiProStateMachine: isSwitching = false, isDialogDisplayed = false, isAllowWiFiHandoverMobile = true, level = 3
