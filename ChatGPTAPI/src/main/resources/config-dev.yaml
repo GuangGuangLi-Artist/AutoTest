@@ -1,0 +1,4 @@
+
+env: dev
+base_url: http://dev.api.example.com
+token_key: dev-token
