@@ -27,7 +27,6 @@
       <module>CodeCaprice</module>
       <module>AppiumTest</module>
       <module>AutoPlaywright</module>
-      <module>ChatGPTAPI</module>
       <!--<module>ApiAutoPro</module>-->
   </modules>
 
