@@ -4,6 +4,7 @@ import com.course.code.pages.firstPage.SnowBallFirstPage;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
 import org.openqa.selenium.Capabilities;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -25,8 +26,8 @@ public class SearchCase {
                 .amend("appium:ensureWebviewsHavePages", true)
                 .amend("appium:nativeWebScreenshot", true)
                 .amend("appium:newCommandTimeout", 3600)
-                .amend("appium:autoGrantPermissions", true)
-                .amend("appium:autoAcceptAlerts",true)//自动接收弹框为true
+//                .amend("appium:autoGrantPermissions", true)
+//                .amend("appium:autoAcceptAlerts",true)//自动接收弹框为true
                 .amend("appium:automationName", "UiAutomator2")
                 .amend("appium:noReset", true)
                 .amend("appium:shouldTerminateApp", true);
@@ -41,7 +42,16 @@ public class SearchCase {
     @Test
     public void testSerach(){
         SnowBallFirstPage sfPage = new SnowBallFirstPage(driver);
-        sfPage.search();
+
+        //adb shell pm clear io.appium.android.apis 清空缓存
+        sfPage.clickContinueButton();
+        sfPage.clickConfirmButton();
+        sfPage.clickContentButton();
+        sfPage.clickAssetsButton();
+        sfPage.clickReadAssetsButton();
+        String content = sfPage.getAssetsTextButtonContent();
+        Assert.assertEquals(content,"This text is stored in a raw Asset.\\n\\nIt was read and placed into the TextView here.\\n");
+
 
     }
 
