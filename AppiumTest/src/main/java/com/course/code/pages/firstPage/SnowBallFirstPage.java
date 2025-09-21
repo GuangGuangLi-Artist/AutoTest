@@ -4,8 +4,12 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.time.Duration;
 
 
 public class SnowBallFirstPage {
@@ -25,9 +29,9 @@ public class SnowBallFirstPage {
 
     public SnowBallFirstPage(AndroidDriver driver) {
         //// 点击 Animation
-        this.continueButton = driver.findElement((AppiumBy.id("com.android.permissioncontroller:id/continue_button")));
-        this.confirmButton = driver.findElement((AppiumBy.id("android:id/button1")));
-        this.contentElement = driver.findElement((AppiumBy.accessibilityId("content")));
+        WebDriverWait waitD = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.contentElement = waitD.until(ExpectedConditions.elementToBeClickable(AppiumBy.accessibilityId("content")));
+
         this.assetsElement = driver.findElement((AppiumBy.accessibilityId("Assets")));
         this.readAssetsButton = driver.findElement((AppiumBy.accessibilityId("Read Asset")));
         this.assetsTextElement = driver.findElement((AppiumBy.id("io.appium.android.apis:id/text")));

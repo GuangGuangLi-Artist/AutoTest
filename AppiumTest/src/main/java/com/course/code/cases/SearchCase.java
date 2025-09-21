@@ -1,9 +1,14 @@
 package com.course.code.cases;
 
 import com.course.code.pages.firstPage.SnowBallFirstPage;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.options.BaseOptions;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -11,10 +16,12 @@ import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
 
 public class SearchCase {
 
     private AndroidDriver driver;
+
 
     @BeforeClass
     public void setUp() {
@@ -34,6 +41,7 @@ public class SearchCase {
 
 
         driver = new AndroidDriver(this.getUrl(), capabilities);
+        //解决弹框 ，进入到apidemo
 
 
     }
@@ -41,16 +49,25 @@ public class SearchCase {
 
     @Test
     public void testSerach(){
-        SnowBallFirstPage sfPage = new SnowBallFirstPage(driver);
-
-        //adb shell pm clear io.appium.android.apis 清空缓存
-        sfPage.clickContinueButton();
-        sfPage.clickConfirmButton();
-        sfPage.clickContentButton();
-        sfPage.clickAssetsButton();
-        sfPage.clickReadAssetsButton();
-        String content = sfPage.getAssetsTextButtonContent();
-        Assert.assertEquals(content,"This text is stored in a raw Asset.\\n\\nIt was read and placed into the TextView here.\\n");
+//        SnowBallFirstPage sfPage = new SnowBallFirstPage(driver);
+//        //adb shell pm clear io.appium.android.apis 清空缓存
+        //添加显示等待
+        WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement continueButton = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.widget.Button[@resource-id=\"com.android.permissioncontroller:id/continue_button\"]")));
+        continueButton.click();
+        WebElement confirmButton = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.xpath("//android.widget.Button[@resource-id=\"android:id/button1\"]")));
+        confirmButton.click();
+        WebElement contentElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Content\"]")));
+        contentElement.click();
+        WebElement assetsElement = webDriverWait.until(ExpectedConditions.elementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Assets\"]")));
+        assetsElement.click();
+        WebElement readAssetsButton = webDriverWait.until(ExpectedConditions.elementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@content-desc=\"Read Asset\"]")));
+        readAssetsButton.click();
+        WebElement  assetsTextElement = webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.id("io.appium.android.apis:id/text")));
+        String string = assetsTextElement.getText();
+        System.out.println(string);
+        boolean contains = StringUtils.contains(string, "This text is stored in a raw Asset");
+        Assert.assertTrue(contains);
 
 
     }
