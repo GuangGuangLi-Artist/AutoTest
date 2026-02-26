@@ -7,9 +7,7 @@
 ---------------------------------------
     1.mvn allure:serve
 ---------------------------------------
-    1.执行不同的测试套 mvn clean test -DsuiteFile="src/test/resources/suites/login-suite.xml"
+    0.执行不同的测试套--(执行地址)在项目和POM文件同层目录下执行
+    1.mvn clean test -DsuiteFile="src/test/resources/suites/login-suite.xml"
     2.mvn clean test -DsuiteFile="src/test/resources/suites/eCommerceUserCenterPage-suite.xml"
     3.mvn clean test \ -DsuiteFile="src/test/resources/suites/regression-suite.xml" \ -Ddata.format="json"
-
-
-Y
