@@ -1,0 +1,175 @@
+1.HashMap 的底层实现原理是什么？
+    HashMap的底层实现原理可以概括为“数组+链表+红黑树”
+    具体核心点是
+        1.数据结构
+            - 主体是一个数组，用于存储数据
+            - 当发生哈希冲突时，数组槽位上会挂一个链表
+            - 当链表长度超过阈值（8）且数组长度超过64是，链表会转化为红黑树，以提高查询效率
+        2.存取流程
+            - put操作：计算Key的hash,通过（n-1）& hash得到数组下标，若该位置为空，直接插入，若不为空，遍历链表或红黑树，找到相同Key更新Value，否则添加新节点
+            - Get操作:计算Hash值定位下标，然后遍历链表或红黑树，通过equals()比较Key找到对应的Value。
+        3.扩容机制
+            - 当元素个数超过 容量*负载因子（默认0.75）时，触发扩容
+            -容量变为原来的两倍，重新计算所有元素的存储位置
+        4.关键特性
+            - 线程不安全 多线程环境下可能导致数据覆盖或者死循环
+            - 允许null 允许一个null健和多个null值
+一句话总结:HashMap通过数组存储数据，链表处理哈希冲突，红黑树优化极端环境下的性能，是空间和时间效效率的平衡设计。
+
+2.ArrayList 和 LinkedList 的区别及适用场景？
+   - 内部数据结构不同
+       - ArrayList:基于动态数组实现
+       - LinkedList:基于双向链表实现，它使用节点来存储元素，每个节点包含一个数据元素和两个指针，分别指向前一个节点和后一个节点
+   - 遍历性能
+       - ArrayList：访问迅速，可以通过索引直接访问元素
+       - LinkedList：随机访问性能查，因为必须从链表的头部或尾部开始遍历，直到找到目标索引
+    - 插入和删除
+        - ArrayList：在末尾插入删除是高效的，在中间和开头插入和删除因为需要移动元素，性能较差
+        - LinkedList:插入和删除的性能较好，特别是在链表中间或者头尾插入和删除元素时
+    - 使用场景
+        - ArrayList：在末尾插入删除是高效的，在中间和开头插入和删除因为需要移动元素，性能较差适用于频繁查询，而对插入和删除要求不严格的场景
+        - LinkedList：适用于频繁插入和删除的场景，而对随机访问需求少的场景
+3.面向对象的三大特性
+    封装：就是将属性和方法进行打包，隐藏具体的实现细节，给外部提供必要的操作接口
+        - 隐藏定位符：将页面元素的定位方式进行封装，用例中只调用操作方法，而不关心具体按钮的xpath或者id是什么
+        - 好处:当页面元素变动时，只需要修改Page类内部的定位符，不需要修改所有调用该元素的测试用例
+    继承：子类继承父类的属性和方法，实现代码复用
+        - BasePage设计：创建一个BasePage,封装所有的页面通用操作(显示等待页面元素出现，截图，滚动 ，初始化webDriver)
+        - 具体的页面类继承这个BasePage,就可以直接使用这些方法，避免重复代码
+    多态：同一操作作用于不同的对象，可以有不同的解释和执行结果（通常通过方法重写/重载实现）
+        - 统一接口，不同实现，比如我可以是同一个登录接口，传入不同的页面，例如app或者web页面的登录，实现不同的页面的登录
+        - 好处：提高测试脚本的灵活性
+        -多态如何实现呢：
+            1.有继承
+            2.有方法重写
+            3.有父类引用指向子类对象
+4.throw 和 throws 的区别？
+    throw(动作)
+        - 在方法内部，抛出具体的异常 throw new Exception("具体异常")
+    throws（声明）
+        - 在方法声明处，参数列表后跟异常类名 throws IOException
+5.在自动化执行中，你如何处理非预期的 RuntimeException？
+    1.全局异常捕获，新建监听器，实现TestNg的ITestListener，捕获异常，防止脚本中断退出
+    2.关键动作，保存现场，一旦捕获异常，执行try-catch,截图保存失败页面，保存执行日志
+    3.智能控制执行流程，如果是网络或加载类的瞬时异常，就执行重试(实现IRetryAnalyzer，直接在方法上添加只能重试逻辑)，如果是逻辑错误，直接标识失败
+    4.资源清理，退出浏览器驱动
+    5.告警通知，触发邮件发送
+        实现方式 自定义监听类>基础测试类设计>注册监听器
+
+6.如何在自动化测试中实现并发执行以缩短测试时间？
+    1.实现并发执行主要通过TestNg测试框架的多线程能力suite设置(parallel='methods',thread-count)结合WebDriver 的线程隔离来完
+7.CSS Selector 和 XPath 的区别？
+    - 定位方向
+        css:单向，只能从父级向下
+        xpath:双向
+    - 执行速度
+        css:快
+        xpath:稍慢
+    - 文本匹配
+        css:不支持
+        xpath:支持 可通过text()函数定位
+8.当元素 ID 是动态生成的，你会采取什么定位方案？
+    - css
+        前缀匹配 (^=)、后缀匹配 ($=)、包含匹配 (*=)
+    - xpath
+        contains() 函数、starts-with() 函数
+9.强制等待、隐式等待、显式等待的区别？
+    - 强制等待:hread.sleep(5000),无论元素是否出现，死等
+    - 隐式等待：driver.manage().timeouts().implicitlyWait(...)，全局轮询，设置一个全局超时时间。若元素未找到，驱动会轮询直到超时；若找到则立即继续。灵活性低
+    - 显示等待:WebDriverWait + ExpectedConditions,只能轮询，针对特定元素/条件设置超时。每隔固定时间（默认0.5s）检查条件，满足即停止，不满足则重试直到超时。灵活性高
+
+10.详细描述你搭建的 POM (Page Object Model) 模式。它是如何解决页面变动带来的维护问题的？
+    POM核心思想是将页面结构（元素定位）与测试逻辑（业务操作）分离，通常包含三层
+    1.Page层（页面对象）封装页面元素
+    2.Test层（测试用例）调用方法操作页面元素
+    3.Base层（基类） 提供通用能力，封装webDriver,截图等
+    页面变动时只需要维护对应Page层元素的定位元素的表达式就可以
+11.如何处理多窗口切换（Window Handle） (核心逻辑 获取所有窗口句柄 -> 遍历比对 -> 切换到目标窗口)
+    - 记录当前主窗口句柄：String originalHandle = driver.getWindowHandle();
+    - 触发打开新窗口操作。
+    - 获取所有句柄集合：Set<String> allHandles = driver.getWindowHandles();
+    - 遍历集合，排除原句柄，切换到新句柄：
+    - 操作完后，切回主窗口：driver.switchTo().window(originalHandle);
+12.如何处理iframe 嵌入页面（核心逻辑 显式等待 iframe 可用（frameToBeAvailableAndSwitchToIt（By.id("frameId"）） -> 切换进 iframe -> 操作元素 -> 切回主文档）
+13.如何处理JS 弹窗 alert(), confirm(), prompt()（核心逻辑 切换到 Alert 上下文 -> 获取文本/执行操作）
+14.使用 HttpClient 时，如何处理 Cookie、Session 和 Token 鉴权？
+    - Cookie 与 Session 处理 (状态保持)
+        1，创建 CookieStore (如 BasicCookieStore)
+        2.构建 HttpClient 时绑定该 Store。
+        3.执行请求时，Client 会自动管理 Cookie 的存储和发送
+    - Token 鉴权处理 (动态注入)
+        1.提取：从登录响应 Body 中解析出 Token。
+        2.存储：将 Token 存入静态变量
+        3.注入：在每个需要鉴权的请求 Header 中动态添加 Authorization: Bearer <token>
+        4.如果token会过期，怎么办。封装一个方法，每次登录之后重新获取这个token,每次执行用例时进行beforeClass的登录，获取cookie和token
+15.你的测试数据是如何存储和读取的（Excel, YAML, JSON, 还是数据库）？
+    数据管理策略是“分层存储，动态构建”
+        1.静态用例与配置，首选Yaml和Properties,结构清晰，存储接口入参和路径信息等
+        2.动态数据与验证，依赖数据库，封装方法操作数据库，在setUP阶段通过sql生成带有唯一标识的（如时间戳）干净数据，在TearDown阶段进行删除
+        3.大批量数据驱动：对于边界值等上百组数据的场景，使用Excel配合测试框架的DataProvider 进行参数化迭代
+        4.核心原则就是数据和代码进行分离，避免将测试数据写死在代码中
+16.接口 A 的输出是接口 B 的输入，在自动化框架中你如何优雅地传递这些关联参数？
+    主要是使用"上下文隔离+自动注入"的模式
+    1.核心机制，设计了一个基于ThreadLocal 的 全局上下文管理器 (Context Manager)，使命Map结构，分别设计了set get,clear方法
+    2.生产端，A接口执行成功后将数据存放回放到上下文管理器
+    3.消费端，接口B配合dependsOnMethods方法获取到A接口返回的信息
+    4.数据清理 afterMethod时清空Context
+17.常用注解（如 @BeforeMethod, @DataProvider）的执行顺序是怎样的？
+    @BeforeSuite (整个套件只执行一次)
+    @BeforeTest (每个 <test> 标签只执行一次)
+    @BeforeClass (每个类只执行一次)
+    @BeforeMethod (关键点：如果有 N 组数据，它会执行 N 次，每次测试前都执行)
+    @DataProvider (关键点：在 @BeforeMethod 之后，测试方法之前执行。它负责生成当前这一轮的数据)
+    @Test (使用 DataProvider 提供的数据执行)
+    @AfterMethod (关键点：每组数据执行完后立即执行，共执行 N 次)
+    @AfterClass
+    @AfterTest
+    @AfterSuite
+18.如何利用 Maven Profile 实现不同测试环境（Dev/Test/Staging）的快速切换？
+    1.核心配置步骤 (pom.xml)
+        在 pom.xml 中定义三个 Profile，分别对应 Dev、Test、Staging。利用 <properties> 定义环境变量，并在 <build> 中开启资源过滤（Resource Filtering）
+    2.配置文件模板 (src/main/resources/config.properties)
+        在资源文件中使用 ${key} 占位符。Maven 编译时会自动将其替换为 Profile 中定义的值。
+    3.Java 代码读取 (测试基类)
+        在测试代码中，通过 System.getProperty() 读取 Maven 传递过来的系统属性。建议封装一个工具类。
+    4. 命令行切换操作
+        mvn clean test
+19.当多人在同一个自动化项目上提交代码发生冲突时，你的解决流程是什么？
+    1.预防
+        勤拉取，小步提交，明确分工
+    2.合并
+        冲突时解决冲突后先解决本地冲突后本地测试运行通过后再提交
+    3.合并提交后组内同步信息
+
+20.你使用过哪些第三方报告工具（如 Allure, ExtentReports）？它们能展示哪些核心维度？
+    概览仪表盘 (Dashboard)
+        趋势图 (Trend Chart)：展示最近 20 次构建的通过率趋势，直观判断版本质量是上升还是下降
+        饼图统计：Passed, Failed, Broken (代码错误), Skipped, Unknown 的比例。
+        耗时分布：识别运行最慢的测试用例（Top Slow Tests）
+    套件与层级 (Suites & Hierarchy)
+        按 @Story, @Feature, @Package 自动归类，清晰展示业务模块的测试覆盖情况
+    用例详情 (Test Case Details) —— 这是 Allure 最强大的地方
+        步骤流 (Steps)：如果使用了 @Step 注解，报告会像讲故事一样展示每一步的操作
+        附件 (Attachments)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

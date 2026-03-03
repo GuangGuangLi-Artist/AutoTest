@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="seleniumWeb测试">
+<suite name="seleniumWeb测试" parallel="methods" thread-count="3">
     <parameter name="username" value="940102569@qq.com"></parameter>
     <parameter name="password" value="Safe"></parameter>
     <parameter name="uri" value="https://www.imooc.com"></parameter>
@@ -31,5 +31,6 @@
     <!-- 配置测试报告监听器-->
     <listeners>
         <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"></listener>
+        <listener class-name="com.course.pageobject.exceptionListener.TestListener"></listener>
     </listeners>
 </suite>
