@@ -46,4 +46,12 @@ public class BaiduSearchData {
         return data.toArray(new Object[0][0]);
 
     }
+
+    @Test
+    public void testx(){
+        double yu = (100/0.3333333) * 0.9;
+        double zaitu = 269.999999;
+        System.out.println("yu = " + yu);
+        System.out.println(zaitu < yu);
+    }
 }

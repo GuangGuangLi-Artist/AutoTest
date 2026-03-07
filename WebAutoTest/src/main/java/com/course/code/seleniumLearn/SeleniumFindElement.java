@@ -61,6 +61,7 @@ public class SeleniumFindElement {
     @Test
     public void testWaitShow() {//显示等待
         System.setProperty("webdriver.chrome.driver", driverPath);
+        System.out.println();
         WebDriver driver = new ChromeDriver();
         WebDriverWait wait = new WebDriverWait(driver, 15);
         driver.get("https://liushilive.github.io/html_example/index.html");
