@@ -3,7 +3,7 @@ package com.course.code.commonFunction.annotation.refle;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-@Sign(className = "com.course.code.commonFunction.annotation.refle.Cat",methodName = "eat")
+@Sign(className = "com.course.code.commonFunction.annotation.refle.Cat", methodName = "eat")
 public class SignTest {
     public static void main(String[] args) {
         Class<SignTest> signTest = null;

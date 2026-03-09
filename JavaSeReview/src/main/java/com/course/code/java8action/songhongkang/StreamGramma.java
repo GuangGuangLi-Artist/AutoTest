@@ -12,15 +12,14 @@ import static java.util.stream.Collectors.toList;
 
 /**
  * Stream API
- *     流(Stream)是什么
- *         是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
- *     Stream 的操作三个步骤
- *         创建 Stream：一个数据源（如：集合、数组），获取一个流
- *         中间操作：一个中间操作链，对数据源的数据进行处理
- *         终止操作(终端操作)：一个终止操作，执行中间操作链，并产生结果
+ * 流(Stream)是什么
+ * 是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。
+ * Stream 的操作三个步骤
+ * 创建 Stream：一个数据源（如：集合、数组），获取一个流
+ * 中间操作：一个中间操作链，对数据源的数据进行处理
+ * 终止操作(终端操作)：一个终止操作，执行中间操作链，并产生结果
  */
 public class StreamGramma {
-
 
 
     // 四种方式创建Stream
@@ -44,7 +43,7 @@ public class StreamGramma {
         streamFourIterate.limit(10).forEach(System.out::println);
 
         System.out.println("*************** 生成");
-        Stream<Integer> streamFourGenerate =  Stream.generate(() -> (int)(Math.random() * 10));
+        Stream<Integer> streamFourGenerate = Stream.generate(() -> (int) (Math.random() * 10));
         streamFourGenerate.limit(5).forEach(System.out::println);
 
 
@@ -107,7 +106,7 @@ public class StreamGramma {
                 .forEach(System.out::println);
 
 
-        List<String> stringList = Arrays.asList("aaa","eee","ccc","ddd");
+        List<String> stringList = Arrays.asList("aaa", "eee", "ccc", "ddd");
         System.out.println("*************** map");
         stringList.stream()
                 .map(String::toUpperCase)
@@ -115,7 +114,7 @@ public class StreamGramma {
 
         System.out.println("*************** flatMap");
         stringList.stream()
-                .flatMap( x -> getcharacterStream(x))
+                .flatMap(x -> getcharacterStream(x))
                 .forEach(System.out::println);
 
 
@@ -126,10 +125,10 @@ public class StreamGramma {
 
         System.out.println("*************** sorted(Comparator comp) 比较器顺序排序");
         eightObjects.stream()
-                .sorted((o1,o2) -> {
-                    if(o1.getAge() == o2.getAge()) {
+                .sorted((o1, o2) -> {
+                    if (o1.getAge() == o2.getAge()) {
                         return -o1.getName().compareTo(o2.getName());
-                    }else {
+                    } else {
                         return o1.getAge() - o2.getAge();
                     }
                 })
@@ -155,7 +154,6 @@ public class StreamGramma {
 
 
     }
-
 
 
     public Stream<Character> getcharacterStream(String str) {
@@ -209,10 +207,10 @@ public class StreamGramma {
         List<JavaEightObject> eightTerminate = Arrays.asList(new JavaEightObject("许巍", 35, JavaEightObject.Status.BUSY),
                 new JavaEightObject("窦唯", 28, JavaEightObject.Status.FREE),
                 new JavaEightObject("汪峰", 28, JavaEightObject.Status.VOCATION),
-                new JavaEightObject("李志", 20,JavaEightObject.Status.BUSY),
+                new JavaEightObject("李志", 20, JavaEightObject.Status.BUSY),
                 new JavaEightObject("崔永元", 40, JavaEightObject.Status.VOCATION),
                 new JavaEightObject("崔永元", 40, JavaEightObject.Status.FREE),
-                new JavaEightObject("柴静", 18,JavaEightObject.Status.BUSY));
+                new JavaEightObject("柴静", 18, JavaEightObject.Status.BUSY));
 
         System.out.println("*************** allMatch(Predicate p)  检查是否匹配所有元素");
         boolean allMatch = eightTerminate.stream()
@@ -271,13 +269,13 @@ public class StreamGramma {
         System.out.println(map_reduce);
 
         System.out.println("toList  List<T>    把流中元素收集到List");
-        List<String> nameList= eightTerminate.stream()
+        List<String> nameList = eightTerminate.stream()
                 .map(JavaEightObject::getName)
                 .collect(toList());
         nameList.forEach(System.out::println);
 
         System.out.println("toSet  Set<T>      把流中元素收集到Set");
-        Set<String> nameSet= eightTerminate.stream()
+        Set<String> nameSet = eightTerminate.stream()
                 .map(JavaEightObject::getName)
                 .collect(Collectors.toSet());
         nameSet.forEach(System.out::println);
@@ -301,7 +299,7 @@ public class StreamGramma {
                 .collect(Collectors.summingInt(JavaEightObject::getAge));
         System.out.println(ageSum);
         System.out.println("averagingInt  Double    计算流中元素Integer属性的平均值");
-        Double ageAverage =  eightTerminate.stream()
+        Double ageAverage = eightTerminate.stream()
                 .collect(Collectors.averagingInt(JavaEightObject::getAge));
         System.out.println(ageAverage);
         System.out.println("summarizingInt  IntSummaryStatistics    收集流中Integer属性的统计值。");
@@ -333,28 +331,18 @@ public class StreamGramma {
         System.out.println("groupingBy Map<K, List<T>>    根据某属性值对流分组，属性为K，结果为V");
         Map<String, List<JavaEightObject>> nameMap = eightTerminate.stream()
                 .collect(Collectors.groupingBy(JavaEightObject::getName));
-        nameMap.forEach((name,list) -> {
-            System.out.println(name + "-------" + StringUtils.join(",",list));
+        nameMap.forEach((name, list) -> {
+            System.out.println(name + "-------" + StringUtils.join(",", list));
         });
         System.out.println("partitioningBy  Map<Boolean, List<T>>    根据true或false进行分区");
         Map<Boolean, List<JavaEightObject>> partitioningMap = eightTerminate.stream()
                 .collect(Collectors.partitioningBy(e -> e.getAge() > 35));
-        partitioningMap.forEach((name,list) -> {
-            System.out.println(name + "-------" + StringUtils.join(",",list));
+        partitioningMap.forEach((name, list) -> {
+            System.out.println(name + "-------" + StringUtils.join(",", list));
         });
 
 
     }
-
-
-
-
-
-
-
-
-
-
 
 
 }

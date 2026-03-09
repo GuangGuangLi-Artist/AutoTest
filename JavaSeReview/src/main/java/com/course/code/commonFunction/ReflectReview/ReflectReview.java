@@ -8,28 +8,27 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- *
- *   反射：就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法。
- *
- *     Person p = new Person();
- *     p.使用
- *
- *     要想这样使用，首先你必须得到class文件对象，其实也就是得到Class类的对象。
- *     Class类：
- *             成员变量	Field
- *             构造方法	Constructor
- *             成员方法	Method
- *
- *     获取class文件对象的方式：
- *     A:Object类的getClass()方法
- *     B:数据类型的静态属性class
- *     C:Class类中的静态方法
- *             public static Class forName(String className)
+ * 反射：就是通过class文件对象，去使用该文件中的成员变量，构造方法，成员方法。
+ * <p>
+ * Person p = new Person();
+ * p.使用
+ * <p>
+ * 要想这样使用，首先你必须得到class文件对象，其实也就是得到Class类的对象。
+ * Class类：
+ * 成员变量	Field
+ * 构造方法	Constructor
+ * 成员方法	Method
+ * <p>
+ * 获取class文件对象的方式：
+ * A:Object类的getClass()方法
+ * B:数据类型的静态属性class
+ * C:Class类中的静态方法
+ * public static Class forName(String className)
  */
 public class ReflectReview {
 
     @Test
-    public void testReflectDemo1(){
+    public void testReflectDemo1() {
         //Object类的getClass()方法
         ReflectReview obj1 = new ReflectReview();
         Class<? extends ReflectReview> aClass1 = obj1.getClass();
@@ -43,7 +42,7 @@ public class ReflectReview {
     }
 
     @Test
-    public void testReflectDemo2(){
+    public void testReflectDemo2() {
         //数据类型的静态属性class
         Class<ReflectReview> reviewClass = ReflectReview.class;
         System.out.println(int.class);
@@ -51,7 +50,7 @@ public class ReflectReview {
     }
 
     @Test
-    public void testReflectDemo3(){
+    public void testReflectDemo3() {
         Class<?> forNameClass = null;
         try {
             forNameClass = Class.forName("com.course.code.commonFunction.ReflectReview.PersonReflect");
@@ -62,7 +61,7 @@ public class ReflectReview {
     }
 
     @Test
-    public void testReflectDemo4(){
+    public void testReflectDemo4() {
         //获取构造方法并使用
         Class<?> forNameClass = null;
         try {
@@ -80,7 +79,7 @@ public class ReflectReview {
             System.out.println("-------------");
 
             //使用无参构造创建对象
-            PersonReflect noPara = (PersonReflect)single.newInstance();
+            PersonReflect noPara = (PersonReflect) single.newInstance();
             noPara.show();
 
             System.out.println("-------------");
@@ -109,21 +108,21 @@ public class ReflectReview {
 
             //通过无参构造创建对象
             Constructor c4 = forNameClass.getConstructor();
-            PersonReflect instace4 = (PersonReflect)c4.newInstance();
+            PersonReflect instace4 = (PersonReflect) c4.newInstance();
             //获取成员变量
             Field genderField = forNameClass.getField("gender");
-            genderField.set(instace4,"男");
+            genderField.set(instace4, "男");
             System.out.println(instace4);
 
             //获取私有修饰的成员变量
             Field namePrivate = forNameClass.getDeclaredField("name");
             namePrivate.setAccessible(true);//设置暴力访问
-            namePrivate.set(instace4,"这是私有");
+            namePrivate.set(instace4, "这是私有");
             System.out.println(instace4);
 
             //获取默认修饰的age
             Field ageDefault = forNameClass.getDeclaredField("age");
-            ageDefault.set(instace4,15);
+            ageDefault.set(instace4, 15);
             System.out.println(instace4);
 
             System.out.println("-------------");

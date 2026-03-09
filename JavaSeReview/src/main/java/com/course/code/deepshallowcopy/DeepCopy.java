@@ -1,6 +1,6 @@
 package com.course.code.deepshallowcopy;
 
-public class DeepCopy  implements Cloneable{
+public class DeepCopy implements Cloneable {
 
     private String name;
 
@@ -16,16 +16,16 @@ public class DeepCopy  implements Cloneable{
         this.name = name;
     }
 
-    public DeepCopy clone(){
+    public DeepCopy clone() {
         try {
             return (DeepCopy) super.clone();
-        }catch (CloneNotSupportedException e){
+        } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
     }
 }
 
-class PersonDeep implements Cloneable{
+class PersonDeep implements Cloneable {
 
     private DeepCopy deepCopy;
 
@@ -41,15 +41,15 @@ class PersonDeep implements Cloneable{
         this.deepCopy = deepCopy;
     }
 
-    public PersonDeep clone(){
+    public PersonDeep clone() {
 
         try {
             PersonDeep pd = (PersonDeep) super.clone();
             pd.setDeepCopy(pd.getDeepCopy().clone());
             return pd;
 
-        }catch (CloneNotSupportedException e){
-            throw  new AssertionError();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
         }
     }
 }

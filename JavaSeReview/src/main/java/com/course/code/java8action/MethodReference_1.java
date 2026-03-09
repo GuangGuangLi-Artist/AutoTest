@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 
 /**
  * 方法引用
@@ -14,26 +13,22 @@ import java.util.stream.Collectors;
  */
 public class MethodReference_1 {
 
-    private String getString(Supplier<String> supplier){
+    private String getString(Supplier<String> supplier) {
         return supplier.get() + "test";
     }
 
-    private String getString2(String str, Function<String,String> function){
-       return function.apply(str);
+    private String getString2(String str, Function<String, String> function) {
+        return function.apply(str);
     }
-
-
-
-
 
 
     public static void main(String[] args) {
         //类名::静态方法名
         ArrayList<Student> studentsList = new ArrayList<>();
-        Student s1 = new Student("zhangdan",10);
-        Student s2 = new Student("lisi",90);
-        Student s3 = new Student("wangwu",50);
-        Student s4 = new Student("zhaoliu",40);
+        Student s1 = new Student("zhangdan", 10);
+        Student s2 = new Student("lisi", 90);
+        Student s3 = new Student("wangwu", 50);
+        Student s4 = new Student("zhaoliu", 40);
         studentsList.add(s1);
         studentsList.add(s2);
         studentsList.add(s3);
@@ -56,7 +51,7 @@ public class MethodReference_1 {
         studentsList.forEach(System.out::println);
         System.out.println("---------------");
 
-       //2引用名【对象名】::实例方法名
+        //2引用名【对象名】::实例方法名
 
 //        StudentComparator studentComparator = new StudentComparator();
 //        studentsList.sort((st1,st2) -> studentComparator.studentCompareByScore(st1,st2));
@@ -78,8 +73,8 @@ public class MethodReference_1 {
         studentsList.forEach(student -> System.out.println(student));
         System.out.println("---------------");
 
-        List<String> cities = Arrays.asList("qingdao","chongqing","tianjing","beijing");
-        Collections.sort(cities,String::compareToIgnoreCase);
+        List<String> cities = Arrays.asList("qingdao", "chongqing", "tianjing", "beijing");
+        Collections.sort(cities, String::compareToIgnoreCase);
         cities.forEach(System.out::println);
         System.out.println("---------------");
 
@@ -87,23 +82,13 @@ public class MethodReference_1 {
         MethodReference_1 m1 = new MethodReference_1();
         System.out.println(m1.getString(String::new));
         System.out.println("---------------");
-        System.out.println(m1.getString2("hello",String::new));
+        System.out.println(m1.getString2("hello", String::new));
         System.out.println("---------------");
 
 
         //默认方法  default method
 
         //实现类的优先级要比接口的优先级要更高一些
-
-
-
-
-
-
-
-
-
-
 
 
     }

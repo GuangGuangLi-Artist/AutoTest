@@ -7,20 +7,20 @@ import java.util.*;
 public class MapReview {
 
     @Test
-    public void testMap()  {
+    public void testMap() {
 
-        HashMap<Integer,String> map = new HashMap<>();
+        HashMap<Integer, String> map = new HashMap<>();
 
-        map.put(1,"张三");
-        map.put(2,"李四");
-        map.put(3,"王五");
+        map.put(1, "张三");
+        map.put(2, "李四");
+        map.put(3, "王五");
 
         //map使用entrySet遍历 键值对遍历
         Set<Map.Entry<Integer, String>> entrySet = map.entrySet();
         for (Map.Entry<Integer, String> entry : entrySet) {
             Integer key = entry.getKey();
             String value = entry.getValue();
-            System.out.println(  key + " : " + value);
+            System.out.println(key + " : " + value);
 
         }
 

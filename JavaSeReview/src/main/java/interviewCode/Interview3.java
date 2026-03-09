@@ -14,7 +14,7 @@ public class Interview3 {
 
     }
 
-    public static String xuanzhuan(String s1){
+    public static String xuanzhuan(String s1) {
         String res = "";
         ArrayList<Character> list1 = new ArrayList<>();
 

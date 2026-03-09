@@ -13,7 +13,7 @@ public class StreamLearn2 {
     //并发流
 
     @Test
-    public void testParalleStream(){
+    public void testParalleStream() {
         //并发流
         List<String> uuIdList = new ArrayList<>(5000000);
         for (int i = 0; i < 5000000; i++) {

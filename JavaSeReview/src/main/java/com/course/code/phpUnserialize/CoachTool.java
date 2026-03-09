@@ -6,12 +6,14 @@ import org.phprpc.util.AssocArray;
 import org.phprpc.util.Cast;
 import org.phprpc.util.PHPSerializer;
 
-import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class CoachTool {
 
-    public List<String> unserializePHParray(String content){
+    public List<String> unserializePHParray(String content) {
         List<String> list = new ArrayList<String>();
         PHPSerializer p = new PHPSerializer();
         if (StringUtils.isEmpty(content))
@@ -22,8 +24,8 @@ public class CoachTool {
                 String t = (String) Cast.cast(array.get(i), String.class);
                 list.add(t);
             }
-        }catch (Exception e){
-            System.out.println("反序列化PHParray: " + content + " 失败！！！" );
+        } catch (Exception e) {
+            System.out.println("反序列化PHParray: " + content + " 失败！！！");
         }
         return list;
     }
@@ -31,21 +33,21 @@ public class CoachTool {
 
     // https://blog.csdn.net/netuser1937/article/details/121206500
     //https://blog.csdn.net/cxclll/article/details/125788362
-    public JSONObject unserializePHPJsonObject(String content){
+    public JSONObject unserializePHPJsonObject(String content) {
         JSONObject jsonObject = new JSONObject();
         PHPSerializer p = new PHPSerializer();
 
         if (StringUtils.isEmpty(content))
             return jsonObject;
         try {
-            HashMap<String,String>  hashMap= (HashMap<String, String>) p.unserialize(content.getBytes("utf-8"), Map.class);
-            for (String key: hashMap.keySet()){
-                jsonObject.put(key,hashMap.get(key));
+            HashMap<String, String> hashMap = (HashMap<String, String>) p.unserialize(content.getBytes("utf-8"), Map.class);
+            for (String key : hashMap.keySet()) {
+                jsonObject.put(key, hashMap.get(key));
             }
-           return jsonObject;
+            return jsonObject;
 
-        }catch (Exception e){
-            System.out.println("反序列化PHParray: " + content + " 失败！！！" );
+        } catch (Exception e) {
+            System.out.println("反序列化PHParray: " + content + " 失败！！！");
         }
         return jsonObject;
     }
@@ -76,7 +78,6 @@ public class CoachTool {
 //        return jsonObject;
 //
 //}
-
 
 
 }

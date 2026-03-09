@@ -1,6 +1,6 @@
 package com.course.code.commonFunction.ThreadRev;
 
-public class ThreadRunableIml implements Runnable{
+public class ThreadRunableIml implements Runnable {
 
 
     @Override

@@ -24,7 +24,7 @@ public class DBUtils {
             user = dbInfo.username();
             password = dbInfo.password();
 
-        }else {
+        } else {
             InputStream inputStream = DBUtils.class.getResourceAsStream("db.properties");
             try {
                 PROPERTIES.load(inputStream);
@@ -43,7 +43,7 @@ public class DBUtils {
     public static Connection getMyConnection() {
 
         try {
-            return DriverManager.getConnection(url,user,password);
+            return DriverManager.getConnection(url, user, password);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

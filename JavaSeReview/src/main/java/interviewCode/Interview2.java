@@ -5,7 +5,6 @@ import java.util.*;
 public class Interview2 {
 
     /**
-     *
      * @param args
      */
 

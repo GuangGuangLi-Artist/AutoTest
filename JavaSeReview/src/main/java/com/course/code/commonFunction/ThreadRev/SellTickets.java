@@ -8,7 +8,7 @@ public class SellTickets implements Runnable {
 
     @Override
     public void run() {
-        while(true){
+        while (true) {
             synchronized (object) {
 
                 if (ticket > 0) {

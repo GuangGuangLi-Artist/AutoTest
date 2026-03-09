@@ -8,34 +8,31 @@ public class ExtendsConstructionMethod {
         Zi zi1 = new Zi("zhangsan");
 
 
-
-
     }
 }
 
 
+class Fu {
 
-class Fu{
-
-    public Fu(){
+    public Fu() {
         System.out.println("父类的无参构造方法");
     }
 
-    public Fu(String name){
+    public Fu(String name) {
         System.out.println("父类的带参构造方法");
     }
 
 }
 
-class Zi extends Fu{
+class Zi extends Fu {
 
 
-    public Zi(){
+    public Zi() {
         super();
         System.out.println("子类的无参构造方法");
     }
 
-    public Zi(String name){
+    public Zi(String name) {
         //默认省略super()
         super();
         System.out.println("子类的带参构造方法");

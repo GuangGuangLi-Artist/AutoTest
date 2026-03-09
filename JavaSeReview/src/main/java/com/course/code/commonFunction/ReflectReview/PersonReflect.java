@@ -59,7 +59,7 @@ public class PersonReflect {
     }
 
     //返回
-    public String getString(String s, int i){
+    public String getString(String s, int i) {
         return s + "----" + i;
     }
 

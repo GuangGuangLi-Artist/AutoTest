@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class    StringTest {
+public class StringTest {
 
 
     @Test
-    public void stringMethod(){
+    public void stringMethod() {
         String s1 = "hello";
         String s2 = "world";
         String s3 = s1.toUpperCase();
@@ -21,24 +21,24 @@ public class    StringTest {
 
     }
 
-   @Test
-    public void splitString(){
-        String s1 ="A,B,C,D";
+    @Test
+    public void splitString() {
+        String s1 = "A,B,C,D";
         String[] splits1 = s1.split(",");
-       for (String s:splits1){
-           System.out.print(s);
-       }
+        for (String s : splits1) {
+            System.out.print(s);
+        }
     }
 
     @Test
-    public void joinString(){
-        String[] s1 = {"A","B","C"};
-        String s3 = String.join("***",s1);
+    public void joinString() {
+        String[] s1 = {"A", "B", "C"};
+        String s3 = String.join("***", s1);
         System.out.println(s3);
     }
 
     @Test
-    public void stringBuilderTest(){
+    public void stringBuilderTest() {
 
         StringBuilder stringBuilder = new StringBuilder(1024);
         for (int i = 0; i < 1000; i++) {
@@ -53,24 +53,24 @@ public class    StringTest {
     //2:任何数据和字符串进行操作，结果都是字符串类型。
     // 但是要注意运算的顺序。
     @Test
-    public void  stringOut(){
+    public void stringOut() {
         System.out.println('a');//a
         System.out.println('a' + 1);//98
         System.out.println('a' + 1 + "hello");//98hello
-        System.out.println("hello"+ 'a' + 1);//helloa1
+        System.out.println("hello" + 'a' + 1);//helloa1
         System.out.println("5 + 5 = " + 5 + 5);//5 + 5 = 55
-        System.out.println( 5 + 5 + "=5 + 5");//10=5 + 5
+        System.out.println(5 + 5 + "=5 + 5");//10=5 + 5
 
 
     }
 
 
     @Test
-    public void plusAndredece(){
+    public void plusAndredece() {
         int a = 2;
         int b = ++a;
-        System.out.println("a = " + a );//3
-        System.out.println("b = " + b );//3
+        System.out.println("a = " + a);//3
+        System.out.println("b = " + b);//3
 
         int c = 2;
         int d = c++;
@@ -98,24 +98,23 @@ public class    StringTest {
         System.out.println(++i);
 
         int m = 20;
-        m+=1;
+        m += 1;
         System.out.println(m);//
-
 
 
     }
 
     @Test
-    public void testFor(){
+    public void testFor() {
 
         int a = 1;
         int b = 1;
-        for(int i=0;i<=10;i++){
-            System.out.println(a+"\t"+b+"\t");
-            a=a+b;
-            b=a+b;
+        for (int i = 0; i <= 10; i++) {
+            System.out.println(a + "\t" + b + "\t");
+            a = a + b;
+            b = a + b;
         }
-        String[] stringArr = {"苏彪","赫赫拉拉","张彪","陈彪"};
+        String[] stringArr = {"苏彪", "赫赫拉拉", "张彪", "陈彪"};
 
         for (int i = 0; i < stringArr.length; ++i) {
             //System.out.println(stringArr[i]);
@@ -123,16 +122,16 @@ public class    StringTest {
     }
 
     @Test
-    public void stringLearn(){
+    public void stringLearn() {
         String str1 = new String("baba");
         System.out.println(str1.toUpperCase());
-        Assert.assertEquals(str1.toUpperCase(),"BABA");
+        Assert.assertEquals(str1.toUpperCase(), "BABA");
 
     }
 
 
     @Test
-    public void testChar(){
+    public void testChar() {
         char ch = 'a';
         int aNum = (int) ch;
         System.out.println(aNum);
@@ -144,11 +143,11 @@ public class    StringTest {
 
 
     @Test
-    public void testRev(){
-        int[] arr = {8,5,3,4,2,6};
+    public void testRev() {
+        int[] arr = {8, 5, 3, 4, 2, 6};
         Arrays.sort(arr);
-        int [] res = new int[arr.length];
-        for (int i= arr.length -1 ; i >= 0; i--) {
+        int[] res = new int[arr.length];
+        for (int i = arr.length - 1; i >= 0; i--) {
             res[i] = arr[i];
         }
         System.out.println(Arrays.toString(res));

@@ -2,12 +2,12 @@ package com.course.code.commonFunction.ThreadRev;
 
 import java.util.Date;
 
-public class ThreadInterrupt extends Thread{
-    public ThreadInterrupt(){
+public class ThreadInterrupt extends Thread {
+    public ThreadInterrupt() {
         super();
     }
 
-    public  ThreadInterrupt(String name){
+    public ThreadInterrupt(String name) {
         super(name);
     }
 

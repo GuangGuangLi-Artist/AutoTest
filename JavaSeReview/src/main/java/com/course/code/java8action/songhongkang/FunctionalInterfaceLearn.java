@@ -14,15 +14,14 @@ import java.util.function.Supplier;
 
 /**
  * 函数式接口
- *     只包含一个抽象方法的接口，称为函数式接口.
- *     我们可以在任意函数式接口上使用 @FunctionalInterface 注解，这样做可以检查它是否是一个函数式接口，同时 javadoc 也会包含一条声明，说明这个接口是一个函数式接口。
- *
+ * 只包含一个抽象方法的接口，称为函数式接口.
+ * 我们可以在任意函数式接口上使用 @FunctionalInterface 注解，这样做可以检查它是否是一个函数式接口，同时 javadoc 也会包含一条声明，说明这个接口是一个函数式接口。
+ * <p>
  * 四大内置函数式接口
- *     Consumer<T> 消费型接口    void accept(T t)
- *     Supplier<T> 供给型接口    T get()
- *     Function<T, R>函数型接口  R apply(T t);
- *     Predicate<T> 断定型接口   boolean test(T t);
- *
+ * Consumer<T> 消费型接口    void accept(T t)
+ * Supplier<T> 供给型接口    T get()
+ * Function<T, R>函数型接口  R apply(T t);
+ * Predicate<T> 断定型接口   boolean test(T t);
  */
 public class FunctionalInterfaceLearn {
 
@@ -40,20 +39,20 @@ public class FunctionalInterfaceLearn {
 
     }
 
-    public Integer operaterNum(Integer num,Myfun mf) {
+    public Integer operaterNum(Integer num, Myfun mf) {
         return mf.getValue(num);
     }
 
     // 带有泛型的接口
     @Test
     public void testFunctionalInterfaceTwo() {
-        operateLong(10L,20L,(x,y) -> (Long) (x + y));
-        operateLong(10L,20L,(x,y) -> (Long) (x * y));
+        operateLong(10L, 20L, (x, y) -> (Long) (x + y));
+        operateLong(10L, 20L, (x, y) -> (Long) (x * y));
 
     }
 
-    public void operateLong(Long one,Long two, Myfun2<Long,Long> myfun2) {
-        System.out.println(myfun2.getValue(one,two));
+    public void operateLong(Long one, Long two, Myfun2<Long, Long> myfun2) {
+        System.out.println(myfun2.getValue(one, two));
     }
 
     @Test
@@ -61,6 +60,7 @@ public class FunctionalInterfaceLearn {
         consumerE("abcde", x -> System.out.println("消费型接口处理s: " + x));
 
     }
+
     @Test
     public void testFunctionalInterfaceSupplier() {
         List<Integer> listRan = supplierE(5, () -> (int) (Math.random() * 10));
@@ -79,11 +79,10 @@ public class FunctionalInterfaceLearn {
 
     @Test
     public void testFunctionalInterfacePredicate() {
-        List<String> stringList = Arrays.asList("hello","world","ha","ele");
+        List<String> stringList = Arrays.asList("hello", "world", "ha", "ele");
         List<String> listRes = predicateE(stringList, (x) -> x.length() >= 3);
-        System.out.println(StringUtils.join("",listRes));
+        System.out.println(StringUtils.join("", listRes));
     }
-
 
 
     public void consumerE(String s, Consumer<String> consumer) {
@@ -101,7 +100,7 @@ public class FunctionalInterfaceLearn {
     }
 
     // 函数型接口的练习
-    public String functionE(String x, Function<String,String> fu) {
+    public String functionE(String x, Function<String, String> fu) {
         return fu.apply(x);
     }
 
@@ -115,11 +114,6 @@ public class FunctionalInterfaceLearn {
         }
         return res;
     }
-
-
-
-
-
 
 
 }

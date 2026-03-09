@@ -1,9 +1,6 @@
 package com.course.code.oop.interfacedemo.interfaceUse;
 
-public class Student  extends Person{
-
-
-
+public class Student extends Person {
 
 
     public Student() {

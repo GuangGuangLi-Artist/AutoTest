@@ -12,11 +12,11 @@ import java.util.Arrays;
 public class Ques_283 {
     public static void main(String[] args) {
         Ques_283 q = new Ques_283();
-        int[] nums = {0,1,0,3,12};
+        int[] nums = {0, 1, 0, 3, 12};
         q.moveZeroes(nums);
         System.out.println(Arrays.toString(nums));
 
-     }
+    }
 
 
     public void moveZeroes(int[] nums) {
@@ -27,14 +27,14 @@ public class Ques_283 {
          *  为了保证非零元素的顺序不变，我们需要维护最左边的空位的位置（下标）。
          */
         int i0 = 0;//维护另一个下标 i0 i0指向最左边的空位
-        for (int i =0;i<nums.length;i++) {
-             if(nums[i] != 0) {//从左到右遍历 nums[i]。
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {//从左到右遍历 nums[i]。
                 //交换nums[i] 和nums[i0]
                 int temp = nums[i];
                 nums[i] = nums[i0];
                 nums[i0] = temp;
                 i0++;//交换后把i0和i都加1
-             }
+            }
         }
 
     }

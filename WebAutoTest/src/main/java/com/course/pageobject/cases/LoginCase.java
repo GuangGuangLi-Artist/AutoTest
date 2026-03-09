@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-@Listeners(TestNgListenerScreen.class)
 public class LoginCase  extends InitDriver{
 
     public WebDriver driver;

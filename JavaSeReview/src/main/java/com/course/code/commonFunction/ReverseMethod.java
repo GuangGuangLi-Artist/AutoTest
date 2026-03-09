@@ -17,9 +17,9 @@ public class ReverseMethod {
         }
 
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < str.length(); i+=k) {
+        for (int i = 0; i < str.length(); i += k) {
             int end = i + k;
-            if(end > str.length()) {
+            if (end > str.length()) {
                 end = str.length();
             }
 

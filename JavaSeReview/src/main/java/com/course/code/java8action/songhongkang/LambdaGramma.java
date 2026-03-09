@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 
 /**
  * Lambda 表达式语法
- *     ->左侧：指定了 Lambda 表达式需要的所有参数
- *     ->右侧：指定了 Lambda 体，即 Lambda 表达式要执行的功能。
+ * ->左侧：指定了 Lambda 表达式需要的所有参数
+ * ->右侧：指定了 Lambda 体，即 Lambda 表达式要执行的功能。
  */
 public class LambdaGramma {
 
@@ -38,9 +38,9 @@ public class LambdaGramma {
     //语法格式四：Lambda 需要两个参数，并且有返回值
     @Test
     public void testLambdaGrammaFour() {
-        BinaryOperator<Integer> bo = (x,y) -> {
+        BinaryOperator<Integer> bo = (x, y) -> {
             System.out.println("Lambda 需要两个参数，并且有返回值");
-            return  x + y;
+            return x + y;
         };
         Integer res = bo.apply(10, 20);
         System.out.println(res);
@@ -49,7 +49,7 @@ public class LambdaGramma {
     //语法格式五：当 Lambda 体只有一条语句时，return 与大括号可以省略
     @Test
     public void testLambdaGrammaFive() {
-        BinaryOperator<Integer> bo = (x,y) ->  x + y;
+        BinaryOperator<Integer> bo = (x, y) -> x + y;
         Integer res = bo.apply(10, 30);
         System.out.println(res);
     }
@@ -58,12 +58,10 @@ public class LambdaGramma {
     @Test
     public void testLambdaGrammaSix() {
         // x y 的数据类型为Integer 可根据编译器推断出类型 称为类型推断
-        BinaryOperator<Integer> bo = (x,y) ->  x + y;
+        BinaryOperator<Integer> bo = (x, y) -> x + y;
         Integer res = bo.apply(10, 30);
         System.out.println(res);
     }
-
-
 
 
 }

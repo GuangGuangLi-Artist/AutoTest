@@ -1,6 +1,6 @@
 package com.course.code.oop.duotai.commonUse;
 
-public class Dog extends Animail{
+public class Dog extends Animail {
 
     // 子类：Dog
     @Override

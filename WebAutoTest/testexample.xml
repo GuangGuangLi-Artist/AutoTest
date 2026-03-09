@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Advanced Automation Suite" parallel="classes" thread-count="2">
+    <!--
+      【核心知识点】并行配置
+      parallel="methods": 同一个类中的不同测试方法并行执行
+      thread-count="4": 同时开启 4 个线程
+    -->
+    <listeners>
+        <listener class-name="com.testNgExample.listeners.TestListener"></listener>
+    </listeners>
+    <!-- 测试组 1: 冒烟测试 (Smoke) -->
+    <test name="Smoke Tests" parallel="false">
+        <groups>
+            <run>
+                <include name="smoke"></include>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.testNgExample.cases.WorkFlowTest"></class>
+        </classes>
+    </test>
+    
+    <test name="Data Driver Tests">
+        <classes>
+            <class name="com.testNgExample.cases.DataDrivenTest"></class>
+        </classes>
+    </test>
+</suite>

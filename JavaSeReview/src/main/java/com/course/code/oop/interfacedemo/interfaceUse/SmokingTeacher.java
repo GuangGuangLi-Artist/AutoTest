@@ -1,6 +1,6 @@
 package com.course.code.oop.interfacedemo.interfaceUse;
 
-public class SmokingTeacher extends Teacher implements Smoking{
+public class SmokingTeacher extends Teacher implements Smoking {
 
     public SmokingTeacher() {
     }

@@ -9,8 +9,9 @@ public class ReversStringTest {
 
     /**
      * 反转字符串中每隔k个字符的子串（使用 substring 方法）
+     *
      * @param str 输入字符串
-     * @param k 反转间隔
+     * @param k   反转间隔
      * @return 处理后的字符串
      */
     public static String reverseStr(String str, int k) {

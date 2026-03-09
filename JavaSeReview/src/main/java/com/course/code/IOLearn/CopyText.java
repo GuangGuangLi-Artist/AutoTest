@@ -20,7 +20,7 @@ public class CopyText {
         FileWriter writer = new FileWriter(desc);
 
         int ch = 0;
-        while ((ch= reader.read())!=-1){
+        while ((ch = reader.read()) != -1) {
             writer.write(ch);
 
         }
@@ -38,10 +38,10 @@ public class CopyText {
         FileReader reader = new FileReader(src);
         FileWriter writer = new FileWriter(desc);
 
-        char [] chars = new char[1024];
+        char[] chars = new char[1024];
         int len = 0;
-        while ((len=reader.read(chars)) != -1){
-            writer.write(chars,0,len);
+        while ((len = reader.read(chars)) != -1) {
+            writer.write(chars, 0, len);
         }
 
         reader.close();
@@ -60,7 +60,7 @@ public class CopyText {
 
         int ch = 0;
 
-        while ((ch= br.read()) != -1){
+        while ((ch = br.read()) != -1) {
             bw.write(ch);
         }
 
@@ -79,8 +79,8 @@ public class CopyText {
 
         char[] chars = new char[1024];
         int len = 0;
-        while ((len=br.read(chars)) != -1){
-            bw.write(chars,0,len);
+        while ((len = br.read(chars)) != -1) {
+            bw.write(chars, 0, len);
         }
         br.close();
         bw.close();
@@ -96,7 +96,7 @@ public class CopyText {
         BufferedWriter bw = new BufferedWriter(new FileWriter(desc));
 
         String line = null;
-        while ((line=br.readLine()) != null){
+        while ((line = br.readLine()) != null) {
             bw.write(line);
             bw.newLine();
             bw.flush();
@@ -105,7 +105,6 @@ public class CopyText {
         br.close();
         bw.close();
     }
-
 
 
 }

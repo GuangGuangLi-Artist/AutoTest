@@ -26,7 +26,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.14.1</version>
+            <version>${selenuim-java.version}</version>
         </dependency>
         <!--        处理excel使用-->
         <dependency>
@@ -71,19 +71,14 @@
             <version>${testng.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.relevantcodes</groupId>
+            <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>${extentreports.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.vimalselvam</groupId>
-            <artifactId>testng-extentsreport</artifactId>
-            <version>${testngextentreports.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>${extentreportsaventstack.version}</version>
+            <artifactId>extentreports-testng-adapter</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

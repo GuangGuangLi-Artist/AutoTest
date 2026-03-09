@@ -30,12 +30,7 @@ public class ThreadReview {
         System.out.println(myThread3.getPriority());
 
 
-
-
-
     }
-
-
 
 
 }

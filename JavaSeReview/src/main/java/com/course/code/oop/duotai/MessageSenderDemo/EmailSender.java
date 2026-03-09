@@ -2,7 +2,7 @@ package com.course.code.oop.duotai.MessageSenderDemo;
 
 
 //实现类
-public class EmailSender implements MessgerSender{
+public class EmailSender implements MessgerSender {
 
 
     @Override

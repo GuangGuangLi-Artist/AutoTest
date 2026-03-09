@@ -21,7 +21,7 @@ public class ReflectPersonDemo {
 
         Constructor reflectConstructor = personClassReflect.getConstructor(String.class, int.class);
         //创建实例
-        Person person = (Person) reflectConstructor.newInstance("li",23);
+        Person person = (Person) reflectConstructor.newInstance("li", 23);
 
 
         //获取方法
@@ -37,7 +37,7 @@ public class ReflectPersonDemo {
         runMethod.setAccessible(true);
         runMethod.invoke(person);
 
-        Person person1 = new Person("liguan",12);
+        Person person1 = new Person("liguan", 12);
 
         //获取成员变量
         Field nameField = personClassReflect.getDeclaredField("name");

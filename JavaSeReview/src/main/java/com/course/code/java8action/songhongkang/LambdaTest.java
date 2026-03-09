@@ -24,13 +24,12 @@ public class LambdaTest {
     }
 
 
-
     @Test
     public void test2() {
-        Comparator<Integer> com1= new Comparator<Integer>() {
+        Comparator<Integer> com1 = new Comparator<Integer>() {
             @Override
-            public int compare(Integer o1,Integer o2) {
-                return Integer.compare(o1,o2);
+            public int compare(Integer o1, Integer o2) {
+                return Integer.compare(o1, o2);
             }
         };
 
@@ -39,7 +38,7 @@ public class LambdaTest {
 
         System.out.println("****************************");
 
-        Comparator<Integer> comparator = (o1,o2) -> Integer.compare(o1,02);
+        Comparator<Integer> comparator = (o1, o2) -> Integer.compare(o1, 02);
         int lambda1 = comparator.compare(1, 2);
         System.out.println(lambda1);
 
@@ -49,9 +48,6 @@ public class LambdaTest {
         int compareFun = comparatorFunc.compare(1, 2);
         System.out.println(compareFun);
     }
-
-
-
 
 
 }

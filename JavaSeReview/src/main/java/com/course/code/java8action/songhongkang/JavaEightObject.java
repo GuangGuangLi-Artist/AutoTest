@@ -52,7 +52,6 @@ public class JavaEightObject {
     }
 
 
-
     public JavaEightObject() {
     }
 

@@ -40,8 +40,8 @@ public class CommonFunction {
         System.out.println(equals);
 
         System.out.println("---------------");
-        System.out.println("charAt: " +s.charAt(1));
-        System.out.println("indexOf: " +s.indexOf("li"));
+        System.out.println("charAt: " + s.charAt(1));
+        System.out.println("indexOf: " + s.indexOf("li"));
         System.out.println("lastIndexOf: " + s.lastIndexOf("li"));
         System.out.println("isEmpty: " + s.isEmpty());
         System.out.println("contentEquals: " + s.contentEquals("ls"));
@@ -50,17 +50,17 @@ public class CommonFunction {
         System.out.println("startsWith: " + s.startsWith("s"));
         System.out.println("endsWith: " + s.endsWith("s"));
         System.out.println("substring: " + s.substring(1, s.length() - 1));
-        System.out.println("replace: " + s.replace('l','s'));
+        System.out.println("replace: " + s.replace('l', 's'));
         System.out.println("trim: " + s.trim());
 
         System.out.println("---------------");
-        char[] chars = {'a','c'};
+        char[] chars = {'a', 'c'};
         System.out.println("valueOf: " + String.valueOf(chars));
-        System.out.println("format: " + String.format("Hi,%s",s));
+        System.out.println("format: " + String.format("Hi,%s", s));
         List<String> sli = new ArrayList<>();
         sli.add("hehe");
         sli.add("wawa");
-        System.out.println("join: " + String.join("--",sli));
+        System.out.println("join: " + String.join("--", sli));
 
 
     }

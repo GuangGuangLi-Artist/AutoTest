@@ -3,7 +3,6 @@ package com.course.code.commonFunction.annotation;
 
 /**
  * 自定义注解
- *
  */
 public @interface MyAnno {
 
@@ -21,7 +20,10 @@ public @interface MyAnno {
 
     //以上类型的数组
     String[] values();
+
     Lamp[] lamps();
+
     MyAnno2[] myAnno2s();
+
     int[] numbers();
 }

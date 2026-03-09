@@ -9,7 +9,7 @@ import java.lang.annotation.*;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(value = {ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.TYPE,ElementType.FIELD, ElementType.PARAMETER,ElementType.ANNOTATION_TYPE,ElementType.PACKAGE})
+@Target(value = {ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.TYPE, ElementType.FIELD, ElementType.PARAMETER, ElementType.ANNOTATION_TYPE, ElementType.PACKAGE})
 @Inherited
 public @interface MyAnnoTarget {
 

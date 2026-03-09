@@ -1,6 +1,9 @@
 package interviewCode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Interview4 {
@@ -13,9 +16,9 @@ public class Interview4 {
 
 
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User(12,"a"));
-        users.add(new User(12,"b"));
-        users.add(new User(13,"c"));
+        users.add(new User(12, "a"));
+        users.add(new User(12, "b"));
+        users.add(new User(13, "c"));
         Map<Integer, List<User>> groupUser = new HashMap<>();
         //获取用户年龄
         Map<Integer, Long> integerLongMap = users.stream()
@@ -27,8 +30,6 @@ public class Interview4 {
             System.out.println(age + " " + count);
         });
     }
-
-
 
 
 }

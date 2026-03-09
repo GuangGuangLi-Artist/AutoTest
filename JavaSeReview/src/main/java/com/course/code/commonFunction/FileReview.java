@@ -26,7 +26,7 @@ public class FileReview {
         String absolutePath = file.getAbsolutePath();
         System.out.println("absolutePath: " + absolutePath);
 
-        File fileNew = new File(property + "\\src\\main\\java\\FileDemo\\","newFile.txt");
+        File fileNew = new File(property + "\\src\\main\\java\\FileDemo\\", "newFile.txt");
         boolean rename = file.renameTo(fileNew);
         System.out.println("rename: " + rename);
 
@@ -42,7 +42,6 @@ public class FileReview {
         for (File listFile : listFiles) {
             System.out.println("listFile: " + listFile.getName());
         }
-
 
 
     }

@@ -8,6 +8,7 @@ public class Ques_263 {
      * 输入：n = 6
      * 输出：true
      * 解释：6 = 2 × 3
+     *
      * @param args
      */
 
@@ -22,18 +23,18 @@ public class Ques_263 {
 
 
     public static boolean isUgly(int n) {
-        if(n <= 0) {
+        if (n <= 0) {
             return false;
         }
-        while(n % 3 == 0) {
+        while (n % 3 == 0) {
             n /= 3;
         }
 
-        while(n % 5 == 0) {
+        while (n % 5 == 0) {
             n /= 5;
         }
 
         // 如果是2的幂 那么 n & （n- 1） 一定是0
-        return (n & (n -1 )) == 0;
+        return (n & (n - 1)) == 0;
     }
 }

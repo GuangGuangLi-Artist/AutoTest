@@ -9,7 +9,8 @@ public class NotificationService {
     public NotificationService(MessgerSender sender) {
         this.sender = sender;
     }
+
     public void notifyUser(String to, String message) {
-        sender.send(to,message); // // 多态：根据实际对象调用对应的 send 方法
+        sender.send(to, message); // // 多态：根据实际对象调用对应的 send 方法
     }
 }

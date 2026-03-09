@@ -12,20 +12,18 @@ import java.util.Map;
 public class Ques_1512 {
 
     public static void main(String[] args) {
-        int[] nums = {1,1,2,1};
+        int[] nums = {1, 1, 2, 1};
         //int res = numIdenticalPairs(nums);
         int res = numIdenticalPairsMap(nums);
         System.out.println(res);
     }
 
 
-
-
     public static int numIdenticalPairs(int[] nums) {
         int ans = 0;
         int[] cnt = new int[10];
         //nums=[1,1,2,1]：
-        for(int x: nums){
+        for (int x : nums) {
             //cnt[x] 表示之前遍历过的X的个数，加到ans
             //如果先执行cnt[x]++,再执行ant += cnt[x],就把i=j这种情况也统计进来了，算出的结果会偏大
             ans += cnt[x];

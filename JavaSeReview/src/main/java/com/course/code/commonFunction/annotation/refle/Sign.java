@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * 使用反射机制解析注解
- *
+ * <p>
  * 描述需要执行的类名和方法名
  */
 
@@ -15,5 +15,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Sign {
     String className();
+
     String methodName();
 }

@@ -1,6 +1,6 @@
 package com.course.code.oop.duotai;
 
-public class SouthPerson extends Person{
+public class SouthPerson extends Person {
 
     @Override
     public void eat() {

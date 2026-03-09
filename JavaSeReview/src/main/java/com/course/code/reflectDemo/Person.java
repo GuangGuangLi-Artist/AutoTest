@@ -36,11 +36,11 @@ public class Person {
         this.age = age;
     }
 
-    public void eat(){
+    public void eat() {
         System.out.println("成员方法");
     }
 
-    private void run(){
+    private void run() {
         System.out.println("私有成员方法");
     }
 }

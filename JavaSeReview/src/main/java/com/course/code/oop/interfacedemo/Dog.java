@@ -1,6 +1,6 @@
 package com.course.code.oop.interfacedemo;
 
-public class Dog implements Animal{
+public class Dog implements Animal {
 
     @Override
     public void method() {
@@ -10,7 +10,7 @@ public class Dog implements Animal{
 
     @Override
     public void show() {
-       //num = 100;//Cannot assign a value to final variable 'num'
+        //num = 100;//Cannot assign a value to final variable 'num'
         System.out.println(num);
         System.out.println("---------");
         //num2 = 200;//Cannot assign a value to final variable 'num2'

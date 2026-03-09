@@ -6,7 +6,7 @@ public class GenericTest {
 
 
     @Test
-    public void runStr(){
+    public void runStr() {
         GenericDemoImpl<String> genericDemo = new GenericDemoImpl<String>();
         genericDemo.printTonConsle("泛型文字符串");
         String a = genericDemo.returnStr("返回的字符串");
@@ -15,13 +15,12 @@ public class GenericTest {
     }
 
     @Test
-    public void runInt(){
+    public void runInt() {
         GenericDemoImpl<Integer> genericDemo = new GenericDemoImpl<Integer>();
         genericDemo.printTonConsle(100);
         Integer a = genericDemo.returnStr(1000);
         System.out.println(a);
     }
-
 
 
 }

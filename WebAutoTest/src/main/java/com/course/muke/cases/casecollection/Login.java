@@ -8,16 +8,19 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
-import org.testng.reporters.Files;
+//import org.testng.reporters.Files;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Login {
     public WebDriver driver;
     public void initDriver(){
-        System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver","src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("https://www.imooc.com/user/newlogin");
         driver.manage().window().setSize(new Dimension(1500,2000));
@@ -57,13 +60,21 @@ public class Login {
 
         //String clsName = this.getClass().getName();
         String pngName = curTime + ".png";
+        String dirPath = "src/main/java/com/course/muke/cases/log/";
+        File dir = new File(dirPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
 
         String curPath = System.getProperty("user.dir");
         System.out.println(curPath);
-        File logFile = ((RemoteWebDriver)driver).getScreenshotAs(OutputType.FILE);
+        //File logFile = ((RemoteWebDriver)driver).getScreenshotAs(OutputType.FILE);
+        File logFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         FileInputStream fis = new FileInputStream(logFile);
         try {
-            Files.copyFile(fis,new File("src/main/java/com/course/muke/cases/log/" + pngName));
+
+            //Files.copyFile(fis,new File("src/main/java/com/course/muke/cases/log/" + pngName));
+            Files.copy(logFile.toPath(), Paths.get(dirPath + pngName),StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }

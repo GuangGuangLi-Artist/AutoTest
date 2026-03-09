@@ -1,17 +1,19 @@
 package com.course.code.oop.abstractDemo;
 
 public class Cat extends Animal {
-    private  String name;
+    private String name;
+
     public Cat() {
 
     }
+
     public Cat(String name) {
         this.name = name;
 
     }
 
     public void eat() {
-        System.out.println( this.name + " cat eat");
+        System.out.println(this.name + " cat eat");
     }
 
     public void show() {
@@ -21,5 +23,8 @@ public class Cat extends Animal {
         System.out.println(num2);
     }
 
-    public void function(){};
+    public void function() {
+    }
+
+    ;
 }

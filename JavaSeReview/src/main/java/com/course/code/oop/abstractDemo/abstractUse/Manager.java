@@ -1,6 +1,6 @@
 package com.course.code.oop.abstractDemo.abstractUse;
 
-public class Manager extends Employee{
+public class Manager extends Employee {
 
     private int bonus;
 

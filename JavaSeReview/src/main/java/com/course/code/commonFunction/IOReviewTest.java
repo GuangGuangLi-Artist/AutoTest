@@ -11,10 +11,10 @@ public class IOReviewTest {
 
 
     /**
-     *字节流
+     * 字节流
      * FileInputStream 输入流
      * FileOutputStream 输出流
-     *
+     * <p>
      * 先写后读，先常规 后buffer
      */
     @Test
@@ -25,14 +25,14 @@ public class IOReviewTest {
         FileOutputStream fos = null;
 
         try {
-            fos  =  new FileOutputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\FileOutputStream.txt"), true);
+            fos = new FileOutputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\FileOutputStream.txt"), true);
             fos.write(bytes);
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (fos != null) {
                 try {
                     fos.close();
@@ -52,7 +52,7 @@ public class IOReviewTest {
         try {
             fis = new FileInputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\FileOutputStream.txt"));
             int i = 0;
-            byte [] bys = new byte[1024];
+            byte[] bys = new byte[1024];
             int len = 0;
 
             while ((len = fis.read(bys)) != -1) {
@@ -62,7 +62,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (fis != null) {
                 try {
                     fis.close();
@@ -75,7 +75,7 @@ public class IOReviewTest {
         FileInputStream fis1 = null;
         int bys = 0;
         try {
-            fis1 =  new FileInputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\FileOutputStream.txt"));
+            fis1 = new FileInputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\FileOutputStream.txt"));
             while ((bys = fis1.read()) != -1) {
                 System.out.print((char) bys);
             }
@@ -83,8 +83,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-        finally {
+        } finally {
             if (fis1 != null) {
                 try {
                     fis1.close();
@@ -104,10 +103,10 @@ public class IOReviewTest {
         int len = bytes.length;
         try {
             bfos = new BufferedOutputStream(new FileOutputStream(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\BufferedOutputStream.txt"));
-            bfos.write(bytes,0,len);
+            bfos.write(bytes, 0, len);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (bfos != null) {
                 try {
                     bfos.close();
@@ -125,7 +124,7 @@ public class IOReviewTest {
         BufferedInputStream bis = null;
 
         try {
-            bis = new BufferedInputStream(new FileInputStream(new File(System.getProperty("user.dir") +  "\\src\\main\\java\\FileDemo\\BufferedOutputStream.txt")));
+            bis = new BufferedInputStream(new FileInputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\BufferedOutputStream.txt")));
             byte[] bys = new byte[1024];
             int len = 0;
             while ((len = bis.read(bys)) != -1) {
@@ -135,7 +134,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (bis != null) {
                 try {
                     bis.close();
@@ -148,7 +147,7 @@ public class IOReviewTest {
         BufferedInputStream bis1 = null;
 
         try {
-            bis1 = new BufferedInputStream(new FileInputStream(new File(System.getProperty("user.dir") +  "\\src\\main\\java\\FileDemo\\BufferedOutputStream.txt")));
+            bis1 = new BufferedInputStream(new FileInputStream(new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\BufferedOutputStream.txt")));
             int len = 0;
             while ((len = bis1.read()) != -1) {
                 System.out.print((char) len);
@@ -157,7 +156,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (bis1 != null) {
                 try {
                     bis1.close();
@@ -180,7 +179,7 @@ public class IOReviewTest {
             fw.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (fw != null) {
                 try {
                     fw.close();
@@ -199,7 +198,7 @@ public class IOReviewTest {
         int len = 0;
         try {
             fr = new FileReader(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\FileWriter.txt");
-            if ((len = fr.read(chs)) != -1){
+            if ((len = fr.read(chs)) != -1) {
                 System.out.println(new String(chs, 0, len));
             }
 
@@ -207,7 +206,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (fr != null) {
                 try {
                     fr.close();
@@ -235,7 +234,7 @@ public class IOReviewTest {
             bw.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (bw != null) {
                 try {
                     bw.close();
@@ -261,7 +260,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (br != null) {
                 try {
                     br.close();
@@ -286,7 +285,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (br1 != null) {
                 try {
                     br1.close();
@@ -300,11 +299,11 @@ public class IOReviewTest {
     }
 
     /**
-     *序列化流
-     *         ObjectOutputStream
-     *     反序列化流
-     *         ObjectInputStream
-     *     使用transient关键字声明不需要序列化的成员变量
+     * 序列化流
+     * ObjectOutputStream
+     * 反序列化流
+     * ObjectInputStream
+     * 使用transient关键字声明不需要序列化的成员变量
      */
 
     @Test
@@ -313,13 +312,13 @@ public class IOReviewTest {
 
         try {
             oos = new ObjectOutputStream(new FileOutputStream(System.getProperty("user.dir") + "\\src\\main\\java\\FileDemo\\ObjectOutputStream.txt"));
-            Person p = new Person("序列化流",26);
-            Person p2 = new Person("序列化流1",27);
+            Person p = new Person("序列化流", 26);
+            Person p2 = new Person("序列化流1", 27);
             oos.writeObject(p);
             oos.flush();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (oos != null) {
                 try {
                     oos.close();
@@ -344,7 +343,7 @@ public class IOReviewTest {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             if (ois != null) {
                 try {
                     ois.close();
@@ -354,14 +353,6 @@ public class IOReviewTest {
             }
         }
     }
-
-
-
-
-
-
-
-
 
 
 }
