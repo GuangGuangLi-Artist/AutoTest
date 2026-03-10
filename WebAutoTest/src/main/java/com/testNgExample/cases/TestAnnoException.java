@@ -46,7 +46,9 @@ public class TestAnnoException {
         System.out.println("当前线程名:" + Thread.currentThread().getName() + " 当前线程ID:[" + Thread.currentThread().getId() + "]");
     }
 
-    @Test(attributes = {@CustomAttribute(name="Attribute",values={"name"})})
+
+    //MyReportListener test_Exception.xml
+    @Test(attributes = {@CustomAttribute(name="Attribute",values={"name"}),@CustomAttribute(name = "priority_level", values = {"high"})})
     public  void testAttribute() {
         logger.info("testAttribute");
         System.out.println("testAttribute") ;
