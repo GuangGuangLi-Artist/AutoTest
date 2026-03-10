@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="timeOutRetry">
+    <listeners>
+        <listener class-name="com.testNgExample.listeners.RetryListener"></listener>
+    </listeners>
+
+    <test name="timeOutRetry">
+        <groups>
+            <run>
+                <include name="retryxmlUse"></include>
+            </run>
+        </groups>
+        
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoTimeOutRetry"></class>
+        </classes>
+    </test>
+</suite>

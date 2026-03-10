@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="自己搞清楚测试testng">
+
+    <test name="这是测试优先级参数使用的">
+        <classes>
+            <class name="com.testNgExample.cases.WorkUse">
+
+            </class>
+        </classes>
+    </test>
+
+
+    <listeners >
+        <listener class-name="com.testNgExample.listeners.TestListener"></listener>
+    </listeners>
+</suite>

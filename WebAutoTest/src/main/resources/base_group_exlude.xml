@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="RunRegressionExceptLogin">
+    <test name="RunRegressionExceptLogin">
+        <groups>
+            <!-- 排除 login 组，即使它们也在 regression 里 -->
+            <run>
+                <include name="regression"></include>
+                <exclude name="login"></exclude>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoBaseRule"></class>
+        </classes>
+    </test>
+    
+    
+</suite>

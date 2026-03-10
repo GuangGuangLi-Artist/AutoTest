@@ -1,0 +1,18 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="DependencySuite">
+    <test name="OrderFlow">
+        <groups>
+            <run>
+                <include name="order"></include>
+            </run>
+            <dependencies>
+                <!-- order 组 依赖于 login 组 -->
+                <group name="order" depends-on="login"></group>
+            </dependencies>
+        </groups>
+        
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoBaseRule"></class>
+        </classes>
+    </test>
+</suite>

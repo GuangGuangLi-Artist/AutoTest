@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="依赖方法和组执行">
+    <test name="依赖执行">
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoDependRule"></class>
+        </classes>
+    </test>
+</suite>

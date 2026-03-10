@@ -1,0 +1,34 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="dog组，测试组执行">
+    <test name="run smoke">
+        <groups >
+            <run>
+                <!-- 只跑冒烟 -->
+                <include name="smoke"></include>
+            </run>
+        </groups>
+
+        <!-- 即使不写 classes，TestNG 也会扫描整个项目查找带 smoke 标签的类 -->
+        <!-- 但为了性能，通常建议指定包或类范围 -->
+
+<!--        <packages>-->
+<!--            <package name="com.testNgExample.cases"></package>-->
+<!--        </packages>-->
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoBaseRule"></class>
+        </classes>
+
+
+    </test>
+
+    <test name="测试alwaysrun的执行">
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoBaseRule">
+                <methods>
+                    <include name="testFail"></include>
+                    <include name="test_alwaysrun"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
