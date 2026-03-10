@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="attiibute">
+    <test name="attiibute使用" parallel="methods" thread-count="4">
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoException">
+                <methods>
+                    <include name="testAttribute"></include>
+                </methods>
+
+            </class>
+        </classes>
+    </test>
+</suite>

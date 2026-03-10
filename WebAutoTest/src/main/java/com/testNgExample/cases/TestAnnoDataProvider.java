@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * 数据驱动 (Data-Driven Testing)
@@ -29,6 +32,47 @@ public class TestAnnoDataProvider {
         System.out.println("当前线程名:" + Thread.currentThread().getName() + " 当前线程ID:[" + Thread.currentThread().getId() + "]");
 
     }
+
+
+
+    @Test(dataProvider = "companyData")
+    public void testDataProvider1(String company,String degree){
+        logger.info("testDataProvider");
+        System.out.println("公司名:" + company + " 职级:" + degree) ;
+        System.out.println("当前线程名:" + Thread.currentThread().getName() + " 当前线程ID:[" + Thread.currentThread().getId() + "]");
+    }
+
+
+    @Test(dataProvider = "iteratorData")
+    public void testDataProvider2(String data) {
+        logger.info("testDataProvider");
+        System.out.println("数据:" + data) ;
+        System.out.println("当前线程名:" + Thread.currentThread().getName() + " 当前线程ID:[" + Thread.currentThread().getId() + "]");
+
+    }
+
+
+    @DataProvider(name="companyData")
+    public String[][] getComstring(){
+        return new String[][]{
+                {"软通","3"},
+                {"中软","1"},
+                {"华为","0"},
+        };
+    }
+
+
+
+    @DataProvider(name = "iteratorData")
+    public Iterator<Object[]> getIteObj(){
+        List<Object[]> data = new ArrayList<>();
+        data.add(new Object[]{"data1"});
+        data.add(new Object[]{"data2"});
+        data.add(new Object[]{"data3"});
+
+        return data.iterator();
+    }
+
 
 
     @DataProvider(name = "dataLogin")

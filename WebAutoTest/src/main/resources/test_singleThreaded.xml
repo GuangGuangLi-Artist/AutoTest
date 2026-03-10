@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="singleThread">
+    <test name="singleThread使用" parallel="methods" thread-count="4">
+        <classes>
+            <class name="com.testNgExample.cases.TestAnnoSingleThreaded">
+
+            </class>
+        </classes>
+    </test>
+</suite>
