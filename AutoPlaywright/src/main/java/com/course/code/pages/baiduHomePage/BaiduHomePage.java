@@ -12,6 +12,7 @@ public class BaiduHomePage {
     private final String searchInput = "//div[@id='chat-input-area']/textarea";
     private final String searchButton = "#chat-submit-button";
 
+    //带参构造保证了Page页面对象的唯一性
     public BaiduHomePage(Page page) {
         this.page = page;
     }

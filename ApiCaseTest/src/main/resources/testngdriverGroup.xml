@@ -12,8 +12,4 @@
             <class name="com.course.code.cases.group.ClassCard2"></class>
         </classes>
     </test>
-    <!-- 配置测试报告监听器-->
-    <listeners>
-        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"></listener>
-    </listeners>
 </suite>
