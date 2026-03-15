@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="parameter的使用方法">
+    <parameter name="browser" value="chrome"></parameter>
+    <parameter name="env" value="dev"></parameter>
+    <test name="parameterUse">
+        <classes>
+            <class name="com.testNgExample.cases.TestParameter"></class>
+        </classes>
+    </test>
+</suite>

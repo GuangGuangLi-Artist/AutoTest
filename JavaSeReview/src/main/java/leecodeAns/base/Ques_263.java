@@ -17,7 +17,8 @@ public class Ques_263 {
         int n = 7;
         System.out.println(isUgly(n));
 
-//        System.out.println(Math.pow(3,19));
+//        System.out.println(Math.pow(3,19)); 这是我在分支new新添加的内容
+        //这是我在main分支添加的内容
 
     }
 
