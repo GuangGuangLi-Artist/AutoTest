@@ -1,0 +1,31 @@
+# 接口自动话框架里添加请求参数加密、返回值解密功能和实现环境切换执行功能
+
+## 背景
+这是一个java的接口自动化项目,使用TestNg框架进行API测试,项目功能缺少环境切换和请求参数加密和返回值解密,需要进行添加
+
+## 你的任务
+1.观察项目结构，为项目添加上test环境和dev环境切换功能
+2.添加一条moco测试用例，要求对请求参数的密码进行rsa加密算法
+3.将添加的用例放到mocotest.xml并执行测试
+4.测试实现环境切换成功的功能
+5.解释你的实现方案
+
+## 项目结构
+```
+.
+├── src/main/java/com/course/code/
+├──────cases/moco
+├──────────MocoLoginCaseTest.java #测试用例
+├──────config      # 配置全局对象
+│   └── Testconfig.java    # 配置类
+├───── utils/
+│   └── ConfigFile.java       # 加载配置文件
+|── src/main/resources
+|-------config.properties、testcaseconfig.properties #环境配置信息
+|-------databaseConfig.xml、mybatis-config.xml #数据库配置项
+|-------mocotest.xml #testng管理的用例
+└── pom.xml                 # Maven配置
+```
+
+## 注意事项
+  修改文件前请先让我确认执行

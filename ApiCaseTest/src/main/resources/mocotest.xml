@@ -8,6 +8,11 @@
             <include name="mocoLoginTrue"></include>
         </methods>
     </class>
+    <class name="com.course.code.cases.moco.MocoLoginRsaCaseTest">
+        <methods>
+            <include name="mocoLoginRsaPassword"></include>
+        </methods>
+    </class>
     <class name="com.course.code.cases.moco.MocoGetWithCookieCaseTest">
         <methods>
             <include name="testMocoGet"></include>

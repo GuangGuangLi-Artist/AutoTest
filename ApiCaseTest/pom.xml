@@ -21,6 +21,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <active.profile>dev</active.profile>
   </properties>
 
   <dependencies>
@@ -110,6 +111,17 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation><activeByDefault>true</activeByDefault></activation>
+      <properties><env.type>dev</env.type></properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties><env.type>test</env.type></properties>
+    </profile>
+  </profiles>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -169,5 +181,23 @@
         </configuration>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resource</directory>
+        <filtering>true</filtering>
+        <excludes>
+          <exclude>**/*.properties</exclude>
+          <exclude>**/*.xml</exclude>
+        </excludes>
+      </resource>
+    </resources>
   </build>
 </project>
