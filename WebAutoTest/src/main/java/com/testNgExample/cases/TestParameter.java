@@ -8,7 +8,7 @@ public class TestParameter {
 
     @Parameters({"browser","env"})
     @Test
-    public void testParameter(String browserName,String env){
+    public void testParameter(String browserName ,String env){
         System.out.println("浏览器:" + browserName + " 环境：" + env);
 
 

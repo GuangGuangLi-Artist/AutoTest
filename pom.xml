@@ -27,7 +27,8 @@
       <module>CodeCaprice</module>
       <module>AppiumTest</module>
       <module>AutoPlaywright</module>
-      <!--<module>ApiAutoPro</module>-->
+    <module>GemWebAuto</module>
+    <!--<module>ApiAutoPro</module>-->
   </modules>
 
   <name>AutoTest</name>
