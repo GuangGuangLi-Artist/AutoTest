@@ -80,9 +80,9 @@ public class Lee_28 {
     private void getNext(int[] next, String needle) {
         //构建next数组分三步走
         //第一步  初始化
-        int j = 0;//指向后缀末尾
+        int j = 0;//指向前缀末尾
         next[0] = 0;
-        //i 指向前缀末尾
+        //i 指向后缀末尾
         for (int i = 1; i < needle.length(); i++) {
             while (j > 0 && needle.charAt(i) != needle.charAt(j)) { //处理不相等
                 j = next[j - 1]; //字符不相等
