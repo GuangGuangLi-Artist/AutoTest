@@ -77,21 +77,31 @@ public class Lee_28 {
 
     }
 
+    /**
+     *
+     * @param next
+     * @param needle
+     * 第一步 初始化数组 j 指向前缀末尾 i 指向后缀末尾
+     * 第二步 前后缀不相等
+     * 第三步 前后缀相等
+     * 第四步 更新数组
+     */
+
     private void getNext(int[] next, String needle) {
         //构建next数组分三步走
         //第一步  初始化
-        int j = 0;//指向后缀末尾
+        int j = 0;//指向前缀末尾
         next[0] = 0;
-        //i 指向前缀末尾
+        //i 指向后缀末尾
         for (int i = 1; i < needle.length(); i++) {
-            while (j > 0 && needle.charAt(i) != needle.charAt(j)) { //处理不相等
+            while (j > 0 && needle.charAt(i) != needle.charAt(j)) { //处理前后缀不相等
                 j = next[j - 1]; //字符不相等
             }
 
-            if (needle.charAt(i) == needle.charAt(j)) {
+            if (needle.charAt(i) == needle.charAt(j)) { //处理前后缀相等
                 j++;
             }
-            next[i] = j;
+            next[i] = j;//更新数组
         }
 
     }
